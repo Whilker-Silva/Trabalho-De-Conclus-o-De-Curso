@@ -1,0 +1,76 @@
+\section{Seguimento de Trajetória}
+\label{sec:seguimento_trajetoria}
+
+O seguimento autônomo de trajetórias do VIDA é realizado por meio de uma implementação do controlador Stanley, executada em um nó ROS~2 no notebook. O algoritmo utiliza os estados estimados pelo EKF e uma trajetória de referência previamente definida para calcular os comandos de esterçamento necessários à correção dos desvios de posição e orientação. A implementação incorpora modificações à formulação original, visando melhorar o comportamento do veículo durante a operação experimental.
+
+\subsection{Implementação do Controlador Stanley}
+\label{subsec:implementacao_stanley}
+
+As trajetórias de referência são representadas por sequências de pontos geográficos, posteriormente convertidos para o referencial local utilizado pelo estimador. Os pontos são tratados para produzir um caminho contínuo, com informações de orientação e curvatura necessárias ao cálculo do controle.
+
+Para determinar os erros de seguimento, considera-se a posição do centro do eixo dianteiro, calculada a partir da posição estimada do eixo traseiro e do entre-eixos geométrico do veículo:
+
+\begin{equation}
+\begin{aligned}
+x_f &= x + L\cos(\theta) \\
+y_f &= y + L\sin(\theta)
+\end{aligned}
+\label{eq:posicao_eixo_dianteiro}
+\end{equation}
+
+em que $(x_f,y_f)$ representa a posição do centro do eixo dianteiro, $(x,y)$ corresponde à posição estimada do veículo, $\theta$ é sua orientação e $L$ representa o entre-eixos geométrico.
+
+A posição calculada é projetada sobre a trajetória de referência, permitindo determinar o erro lateral $e$, o erro de orientação $\psi$ e a curvatura local $\kappa$ da trajetória. A partir dessas informações, o controlador calcula o ângulo de esterçamento pela seguinte expressão:
+
+\begin{equation}
+\delta =
+\psi
+- \arctan\left(\frac{ke}{v+k_s}\right)
++ k_{ff}\arctan(L_{ff}\kappa)
+- k_r(r-v\kappa)
+\label{eq:stanley_modificado}
+\end{equation}
+
+em que $k$ representa o ganho de correção lateral, $k_s$ é o parâmetro de suavização em baixas velocidades, $k_{ff}$ corresponde ao ganho antecipativo, $L_{ff}$ é o entre-eixos utilizado na compensação de curvatura, $\kappa$ representa a curvatura da trajetória de referência no ponto de projeção do eixo dianteiro, $k_r$ representa o ganho de amortecimento e $r$ corresponde à velocidade angular medida do veículo.
+
+O primeiro termo corrige o erro de orientação, enquanto o segundo atua sobre o deslocamento lateral em relação à trajetória. O terceiro termo introduz uma ação antecipativa baseada na curvatura do caminho, permitindo considerar o esterçamento necessário à realização das curvas. Por fim, o termo de amortecimento utiliza a diferença entre a velocidade angular medida e aquela prevista pela curvatura da trajetória, contribuindo para reduzir oscilações durante o seguimento.
+
+O comando resultante é limitado à faixa de $\pm20^\circ$ e submetido a uma restrição de taxa de variação de $40^\circ/\mathrm{s}$, evitando alterações excessivamente bruscas na referência enviada ao controlador de esterçamento. Os principais parâmetros utilizados nos ensaios experimentais são apresentados na Tabela~\ref{tab:parametros_stanley}.
+
+\begin{table}[ht]
+    \centering
+    \caption{Parâmetros do controlador Stanley.}
+    \label{tab:parametros_stanley}
+    \begin{tabular}{lc}
+        \hline
+        \textbf{Parâmetro} & \textbf{Valor} \\
+        \hline
+        Ganho lateral ($k$) & 1,5 \\
+        Suavização ($k_s$) & 1,0 m/s \\
+        Ganho antecipativo ($k_{ff}$) & 1,0 \\
+        Entre-eixos geométrico ($L$) & 1,125 m \\
+        Entre-eixos antecipativo ($L_{ff}$) & 1,17 m \\
+        Amortecimento ($k_r$) & 0,2 s \\
+        Limite de esterçamento & $\pm20^\circ$ \\
+        Taxa máxima de esterçamento & $40^\circ/\mathrm{s}$ \\
+        Velocidade de referência & 2,0 m/s \\
+        \hline
+    \end{tabular}
+\end{table}
+
+O controlador utiliza uma referência de velocidade longitudinal constante durante o seguimento da trajetória. A velocidade e o ângulo de esterçamento calculados são publicados em tópicos ROS~2 específicos, posteriormente encaminhados aos controladores de baixo nível executados no ESP32.
+
+\subsection{Gerenciamento da Navegação Autônoma}
+\label{subsec:gerenciamento_navegacao}
+
+A execução do seguimento de trajetória é supervisionada por um gerenciador de modos de operação, responsável por coordenar a condução manual e a navegação autônoma, verificando as condições necessárias ao funcionamento do sistema.
+
+No modo manual, o operador utiliza um gamepad para controlar a velocidade longitudinal e o esterçamento do veículo por meio dos comandos analógicos, além de acionar a frenagem e solicitar a alternância entre os modos de operação. Esse controle permite posicionar o veículo próximo ao início da trajetória de referência, onde o operador solicita a ativação da navegação autônoma.
+
+A partir dessa solicitação, o gerenciador verifica as condições de funcionamento dos subsistemas de controle e localização, incluindo a disponibilidade e a qualidade das estimativas de posicionamento, a liberação do movimento pelo ESP32 e a proximidade do veículo ao início da trajetória de referência.
+
+Após essas verificações, o gerenciador executa uma sequência de preparação que compreende o alinhamento das rodas dianteiras, a reinicialização do estimador de estados e um deslocamento inicial em linha reta para o estabelecimento da orientação de navegação. Durante esse deslocamento, assim que a orientação é estabelecida e as condições de alinhamento com a trajetória de referência são atendidas, o controlador Stanley assume o comando de esterçamento, dando continuidade ao movimento em modo autônomo.
+
+Durante a operação autônoma, o gerenciador monitora continuamente a disponibilidade das informações de localização, a comunicação com os sistemas embarcados e os desvios em relação à trajetória. Condições consideradas inadequadas, como perda de informações essenciais, erros laterais excessivos ou intervenção do operador, provocam a interrupção do seguimento autônomo.
+
+Ao se aproximar do ponto final da trajetória, o gerenciador inicia o procedimento de frenagem, reduzindo progressivamente a velocidade até a parada completa do veículo.

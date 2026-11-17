@@ -1,0 +1,169 @@
+\begin{thebibliography}{20}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+
+\bibitem[{Badue et~al.(2021)Badue, Guidolini, Carneiro et~al.}]{Badue2021}
+Badue, C., Guidolini, R., Carneiro, R.V., et~al. (2021).
+\newblock Self-driving cars: A survey.
+\newblock \emph{Expert Systems with Applications}, 165, 113816.
+\newblock \doi{10.1016/j.eswa.2020.113816}.
+
+\bibitem[{Barry and {The FreeRTOS Team}(2024)}]{Barry2024FreeRTOS}
+Barry, R. and {The FreeRTOS Team} (2024).
+\newblock \emph{Mastering the {FreeRTOS} Real Time Kernel: A Hands-On Tutorial
+  Guide}.
+\newblock FreeRTOS, release version 1.1.0 edition.
+\newblock
+  \urlprefix\url{https://github.com/FreeRTOS/FreeRTOS-Kernel-Book/releases}.
+\newblock Documenta{\c{c}}{\~a}o oficial do FreeRTOS.
+
+\bibitem[{Bisnath(2020)}]{Bisnath2020}
+Bisnath, S. (2020).
+\newblock Relative positioning and real-time kinematic ({RTK}).
+\newblock In \emph{Position, Navigation, and Timing Technologies in the 21st
+  Century}. John Wiley \& Sons.
+\newblock \doi{10.1002/9781119458449.ch19}.
+
+\bibitem[{{Bundesamt f{\"u}r Kartographie und
+  Geod{\"a}sie}(s.d.)}]{BKG2026NTRIP}
+{Bundesamt f{\"u}r Kartographie und Geod{\"a}sie} (s.d.).
+\newblock {Ntrip}: Networked transport of {RTCM} via internet protocol.
+\newblock BKG -- International GNSS Service.
+\newblock \urlprefix\url{https://igs.bkg.bund.de/ntrip/about}.
+\newblock Documenta{\c{c}}{\~a}o t{\'e}cnica online. Acesso em: 7 nov. 2026.
+
+\bibitem[{de~Lima(2015)}]{DeLima2015}
+de~Lima, D.A. (2015).
+\newblock \emph{Sensor-Based Navigation Applied to Intelligent Electric
+  Vehicles}.
+\newblock Ph.D. thesis, Universit{\'e} de Technologie de Compi{\`e}gne.
+\newblock \urlprefix\url{https://theses.hal.science/tel-01213868v1}.
+
+\bibitem[{Fernandes et~al.(2014)Fernandes, Souza, Pessin, Shinzato, Sales,
+  Mendes, Prado, Klaser, Magalhaes, Hata, Pigatto, Branco, Grassi, Osorio, and
+  Wolf}]{Fernandes2014}
+Fernandes, L.C., Souza, J.R., Pessin, G., Shinzato, P.Y., Sales, D.O., Mendes,
+  C.C.T., Prado, M., Klaser, R.L., Magalhaes, A.C., Hata, A.Y., Pigatto, D.F.,
+  Branco, K.R.L.J.C., Grassi, V., Osorio, F.S., and Wolf, D.F. (2014).
+\newblock {CaRINA} intelligent robotic car: Architectural design and
+  applications.
+\newblock \emph{Journal of Systems Architecture}, 60(4), 372--392.
+\newblock \doi{10.1016/j.sysarc.2013.12.003}.
+
+\bibitem[{Hoffmann et~al.(2007)Hoffmann, Tomlin, Montemerlo, and
+  Thrun}]{Hoffmann2007}
+Hoffmann, G.M., Tomlin, C.J., Montemerlo, M., and Thrun, S. (2007).
+\newblock Autonomous automobile trajectory tracking for off-road driving:
+  Controller design, experimental validation and racing.
+\newblock In \emph{Proceedings of the American Control Conference}, 2296--2301.
+\newblock \doi{10.1109/ACC.2007.4282788}.
+
+\bibitem[{Jain(2025)}]{Jain2025}
+Jain, S. (2025).
+\newblock Kinematic vs. dynamic: Choosing the right model for vehicle
+  simulations.
+\newblock LinkedIn.
+\newblock
+  \urlprefix\url{https://www.linkedin.com/pulse/kinematic-vs-dynamic-choosing-right-model-vehicle-simulations-jain-g83gf/}.
+\newblock Publicado em 15 de abril de 2025.
+
+\bibitem[{Liao et~al.(2025)Liao, Zhang, Keung, Xiao, and Dai}]{Liao2025}
+Liao, Y., Zhang, J., Keung, J., Xiao, Y., and Dai, Y. (2025).
+\newblock Advancing autonomous driving system testing: Demands, challenges, and
+  future directions.
+\newblock \emph{Information and Software Technology}, 187, 107859.
+\newblock \doi{10.1016/j.infsof.2025.107859}.
+
+\bibitem[{Lorenzato(2026)}]{Lorenzato2026}
+Lorenzato, V.H.D. (2026).
+\newblock Plataforma de testes aut{\^o}noma {VIDA}: Integra{\c{c}}{\~a}o da
+  instrumenta{\c{c}}{\~a}o para a navega{\c{c}}{\~a}o e controle do
+  ve{\'i}culo.
+\newblock Relat{\'o}rio final de inicia{\c{c}}{\~a}o cient{\'i}fica --
+  pibic/fapemig, Universidade Federal de Lavras, Lavras, MG.
+\newblock Per{\'i}odo de mar{\c{c}}o de 2025 a fevereiro de 2026.
+
+\bibitem[{Macenski et~al.(2022)Macenski, Foote, Gerkey, Lalancette, and
+  Woodall}]{Macenski2022}
+Macenski, S., Foote, T., Gerkey, B., Lalancette, C., and Woodall, W. (2022).
+\newblock {Robot Operating System 2}: Design, architecture, and uses in the
+  wild.
+\newblock \emph{Science Robotics}, 7(66), eabm6074.
+\newblock \doi{10.1126/scirobotics.abm6074}.
+\newblock \urlprefix\url{https://doi.org/10.1126/scirobotics.abm6074}.
+
+\bibitem[{Massera~Filho et~al.(2014)Massera~Filho, Wolf, {Grassi Jr.}, and
+  Os{\'o}rio}]{Massera2014}
+Massera~Filho, C., Wolf, D.F., {Grassi Jr.}, V., and Os{\'o}rio, F.S. (2014).
+\newblock Longitudinal and lateral control for autonomous ground vehicles.
+\newblock In \emph{2014 IEEE Intelligent Vehicles Symposium Proceedings}.
+\newblock \doi{10.1109/IVS.2014.6856431}.
+
+\bibitem[{{McKinsey \& Company}(2026)}]{McKinsey2026}
+{McKinsey \& Company} (2026).
+\newblock Reinventing autonomous driving in the age of generative {AI}.
+\newblock McKinsey \& Company.
+\newblock
+  \urlprefix\url{https://www.mckinsey.com/industries/automotive-and-assembly/our-insights/reinventing-autonomous-driving-in-the-age-of-generative-ai}.
+
+\bibitem[{Sabbagh et~al.(2010)Sabbagh, Freitas, Castro, Santos, Baleeiro,
+  Silva, Iscold, Torres, and Pereira}]{Sabbagh2010}
+Sabbagh, V.B., Freitas, E.J.R., Castro, G.M.M., Santos, M.M., Baleeiro, M.F.,
+  Silva, T.M., Iscold, P., Torres, L.A.B., and Pereira, G.A.S. (2010).
+\newblock Desenvolvimento de um sistema de controle para um carro de passeio
+  autônomo.
+\newblock In \emph{Anais do XVIII Congresso Brasileiro de Automática},
+  928--933. Bonito, MS, Brasil.
+
+\bibitem[{Silva et~al.(2024)Silva, Gomes, and de~Lima}]{Silva2024CIUFLA}
+Silva, W.H.d.S., Gomes, P.H.P., and de~Lima, D.A. (2024).
+\newblock Plataforma de testes aut{\^o}noma {VIDA}: Integra{\c{c}}{\~a}o da
+  instrumenta{\c{c}}{\~a}o para a navega{\c{c}}{\~a}o e controle do
+  ve{\'i}culo.
+\newblock In \emph{Resumos do XXXVII Congresso de Inicia{\c{c}}{\~a}o
+  Cient{\'i}fica da {UFLA}}. Universidade Federal de Lavras.
+\newblock
+  \urlprefix\url{https://conferencia.ufla.br/ciuflasig/generateResumoPDF.php?id=3693}.
+\newblock Resumo simples.
+
+\bibitem[{Snider(2009)}]{Snider2009}
+Snider, J.M. (2009).
+\newblock Automatic steering methods for autonomous automobile path tracking.
+\newblock Technical Report CMU-RI-TR-09-08, Carnegie Mellon University,
+  Robotics Institute.
+
+\bibitem[{Thrun et~al.(2006)Thrun, Montemerlo, Dahlkamp et~al.}]{Thrun2006}
+Thrun, S., Montemerlo, M., Dahlkamp, H., et~al. (2006).
+\newblock {Stanley}: The robot that won the {DARPA} grand challenge.
+\newblock \emph{Journal of Field Robotics}, 23(9), 661--692.
+\newblock \doi{10.1002/rob.20147}.
+
+\bibitem[{{u-blox}(2025)}]{Ublox2025ZEDF9R}
+{u-blox} (2025).
+\newblock \emph{{ZED-F9R}: High Precision Sensor Fusion GNSS Receiver --
+  Integration Manual}.
+\newblock u-blox AG.
+\newblock
+  \urlprefix\url{https://content.u-blox.com/sites/default/files/ZED-F9R_Integrationmanual_UBX-20039643.pdf}.
+\newblock Documento UBX-20039643, revis{\~a}o R10.
+
+\bibitem[{Welch and Bishop(2006)}]{Welch2006}
+Welch, G. and Bishop, G. (2006).
+\newblock An introduction to the kalman filter.
+\newblock Technical Report TR 95-041, University of North Carolina at Chapel
+  Hill.
+\newblock
+  \urlprefix\url{https://www.cs.unc.edu/~welch/media/pdf/kalman_intro.pdf}.
+
+\bibitem[{Åström and Hägglund(2006)}]{AstromHagglund2006}
+Åström, K.J. and Hägglund, T. (2006).
+\newblock \emph{Advanced PID Control}.
+\newblock ISA -- The Instrumentation, Systems, and Automation Society, Research
+  Triangle Park, NC.
+
+\end{thebibliography}

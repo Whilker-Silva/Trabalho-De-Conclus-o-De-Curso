@@ -1,0 +1,223 @@
+%===============================================================================
+% $Id: ifacconf.tex 19 2011-10-27 09:32:13Z jpuente $  
+% Template for IFAC meeting papers
+% Copyright (c) 2007-2008 International Federation of Automatic Control
+%===============================================================================
+\documentclass[a4paper]{ifacconf}
+
+\usepackage{graphicx,amsmath,url}      % Configura figuras 
+\usepackage[round]{natbib}             % Configura bibliografia
+%===============================================================================
+
+
+% ===============================================================
+% Choose the language of the manuscript.
+% If in English, choose 
+% \def\portugues{0} 
+%
+% If in Portuguese or Spanish, choose
+% \def\portugues{1} 
+%
+% Note that, if you are writing in Spanish, you need additional 
+% adjusts in some parts of the text, which have been put in Portuguese only.
+\def\portugues{1} 
+% ===============================================================
+
+% If the above line is commented, it is assumed manuscript in English:
+\ifx\portugues\undefined
+\def\portugues{0}
+\fi
+
+
+\if\portugues0
+   \usepackage[english]{babel}
+  \else
+   \usepackage[brazil,english]{babel}
+\fi
+
+  
+
+\usepackage[T1]{fontenc}
+%\usepackage{inputenc}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{ae}
+
+
+\if\portugues1
+% =====================================================================
+% =====================================================================
+% If the manuscript is in Spanish, please change the texts adequatelly.
+% You may also add other definitions in this part.
+ \newtheorem{teorema}[thm]{{\em Teorema}}{ }
+ \newtheorem{lema}[thm]{{\em Lema}}{ }
+ \newtheorem{corolario}[thm]{{\em Corolário}}{ }
+ \newenvironment{prova}{{\bf Prova.}}{ }
+% ===============================================================
+\fi
+
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,angles,quotes}
+% Permite quebrar URLs longas na bibliografia
+% Permite quebrar URLs longas na bibliografia
+\usepackage{xurl}
+
+% Permite quebrar URLs longas na bibliografia
+\usepackage{xurl}
+
+% Preserva a definição original da classe IFAC
+\makeatletter
+\let\IFACOriginalSsect\@ssect
+\makeatother
+
+% Habilita hyperlinks sem bordas coloridas
+\usepackage[hidelinks]{hyperref}
+
+% Compatibilidade dos marcadores PDF com a classe IFAC
+\providecommand*{\theHpart}{0}
+
+% Restaura a formatação original dos títulos sem numeração
+\makeatletter
+\let\@ssect\IFACOriginalSsect
+\makeatother
+
+% Padroniza a fonte das URLs
+\urlstyle{same}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+
+
+\begin{document}
+	
+	
+\if\portugues1
+
+% =====================================================================
+% =====================================================================
+% USE THIS PART IF THE TEXT IS IN PORTUGUES OR SPANISH
+% =====================================================================
+% If the manuscript is in Spanish, please change the texts adequately.
+% =====================================================================
+% 
+\selectlanguage{brazil}
+	
+\begin{frontmatter}
+
+\title{Seguimento de trajetória em veículo autônomo: implementação e validação experimental com controlador Stanley e localização GNSS} 
+% Title, preferably not more than 10 words.
+
+
+\author[First]{Whilker Henrique Dos Santos Silva} 
+\author[Second]{Danilo Alves De Lima} 
+
+
+\address[First]{Escola de Engenharia - Departamento de Automática, Universidade Federal de Lavras (e-mail: whilker.silva@estudante.ufla.br).}
+\address[Second]{Escola de Engenharia - Departamento de Automática, Universidade Federal de Lavras (e-mail: danilo.delima@ufla.br)}
+
+
+
+\selectlanguage{english}
+\renewcommand{\abstractname}{{\bf Abstract:~}}
+\begin{abstract}                % Abstract of not more than 250 words.
+Autonomous trajectory tracking requires the integration of localization, state estimation, and motion control systems. This work presents the implementation and experimental validation of an autonomous navigation system on the VIDA electric vehicle platform, developed at the Federal University of Lavras. The proposed solution employs a distributed computing architecture consisting of an ESP32 microcontroller, an Odroid N2 embedded computer, and a notebook, integrated through ROS 2. Low-level control is performed using a PI controller for longitudinal velocity and a PID controller for steering angle, while localization combines measurements from wheel encoders, an LVDT sensor, a gyroscope, and a GNSS receiver with RTK corrections through an Extended Kalman Filter (EKF). Trajectory tracking is performed using a modified Stanley controller incorporating curvature feedforward compensation and yaw-rate damping. Experimental validation was conducted on two real-world courses, approximately 89 m and 281 m long, achieving lateral root mean square errors (RMSE) of 0.167 m and 0.129 m, respectively. The results demonstrate the feasibility of the proposed architecture and the platform's capability to autonomously follow predefined trajectories, providing a foundation for future research in ground vehicle navigation and control.
+
+
+\vskip 1mm% não altere esse espaçamento
+\selectlanguage{brazil}
+{\noindent \bf Resumo}: O seguimento autônomo de trajetórias exige a integração entre sistemas de localização, estimação de estados e controle de movimento. Este trabalho apresenta a implementação e a validação experimental de um sistema de navegação autônoma na plataforma elétrica VIDA, desenvolvida pela Universidade Federal de Lavras. A solução utiliza uma arquitetura computacional distribuída, composta por um microcontrolador ESP32, um computador embarcado Odroid N2 e um notebook, integrados por meio do ROS 2. O controle de baixo nível emprega controladores PI para velocidade longitudinal e PID para esterçamento, enquanto a localização combina medições de encoders, sensor LVDT, giroscópio e receptor GNSS com correções RTK por meio de um filtro de Kalman estendido. O seguimento de trajetórias é realizado por um controlador Stanley, incorporando compensação antecipativa de curvatura e amortecimento da velocidade angular. A validação experimental compreendeu dois percursos reais, com comprimentos aproximados de 89 m e 281 m, nos quais foram obtidos erros laterais quadráticos médios de 0,167 m e 0,129 m, respectivamente. Os resultados demonstram a viabilidade da arquitetura desenvolvida e a capacidade da plataforma de executar trajetórias autônomas, estabelecendo uma base para futuras pesquisas em navegação e controle de veículos terrestres.
+\end{abstract}
+
+\selectlanguage{english}
+
+
+\begin{keyword}
+Autonomous vehicles; Trajectory tracking; Stanley controller; Sensor fusion; GNSS RTK; ROS 2.
+
+\vskip 1mm% não altere esse espaçamento
+\selectlanguage{brazil}
+{\noindent\it Palavras-chaves:} Veículos autônomos; Seguimento de trajetórias; Controlador Stanley; Fusão sensorial; GNSS RTK; ROS 2.
+\end{keyword}
+
+
+\selectlanguage{brazil}
+
+
+\end{frontmatter}
+
+% Restaura os hyperlinks internos desativados pelo modelo IFAC
+\endNoHyper
+
+\else
+% ===============================================================
+% ===============================================================
+% USE THIS PART IF THE TEXT IS IN ENGLISH
+% ===============================================================
+% ===============================================================
+% 
+
+\begin{frontmatter}
+
+\title{Style for SBA Conferences \& Symposia: Use Title Case for
+  Paper Title\thanksref{footnoteinfo}} 
+% Title, preferably not more than 10 words.
+
+\thanks[footnoteinfo]{Sponsor and financial support acknowledgment
+goes here. Paper titles should be written in uppercase and lowercase
+letters, not all uppercase.}
+
+\author[First]{First A. Author} 
+\author[Second]{Second B. Author, Jr.} 
+\author[Third]{Third C. Author}
+
+
+\address[First]{Faculdade de Engenharia Elétrica, Universidade do Triângulo, MG, (e-mail: autor1@faceg@univt.br).}
+\address[Second]{Faculdade de Engenharia de Controle \& Automação, Universidade do Futuro, RJ (e-mail: autor2@feca.unifutu.rj)}
+\address[Third]{Electrical Engineering Department, 
+   Seoul National University, Seoul, Korea, (e-mail: author3@snu.ac.kr)}
+   
+\renewcommand{\abstractname}{{\bf Abstract:~}}   
+   
+\begin{abstract}                % Abstract of not more than 250 words.
+These instructions give you guidelines for preparing papers for IFAC
+technical meetings. Please use this document as a template to prepare
+your manuscript. For submission guidelines, follow instructions on
+paper submission system as well as the event website.
+\end{abstract}
+
+\begin{keyword}
+Five to ten keywords, preferably chosen from the IFAC keyword list.
+\end{keyword}
+
+\end{frontmatter}
+\fi
+
+%===============================================================================
+%===============================================================================
+%===============================================================================
+
+\input{Seções/1-Introdução}
+\input{Seções/2-Fundamentação_Teórica}
+\input{Seções/3-Plataforma_Vida}
+\input{Seções/4-Arquitetura_Computacional}
+\input{Seções/5-Controladores_Baixo_Nivel}
+\input{Seções/6-Estimação_de_Estado}
+\input{Seções/7-Seguimento_Trajetória}
+\input{Seções/8-Resultados_experimentais}
+\input{Seções/9-conclusão}
+
+\bibliography{ifacconf}     
+
+\clearpage
+\appendix
+
+\section{Esquema Elétrico do VIDA}
+\label{ap:esquema_eletrico}
+
+O esquema apresentado neste apêndice documenta os circuitos de alimentação, regulação de tensão, distribuição de energia e comando desenvolvidos para a plataforma VIDA.
+
+\end{document}

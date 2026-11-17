@@ -1,0 +1,12 @@
+\section{Conclusão}
+\label{sec:conclusao}
+
+Este trabalho apresentou a implementação e a validação experimental de um sistema de seguimento autônomo de trajetórias na plataforma VIDA, utilizando o controlador Stanley associado à localização GNSS com correções RTK e à estimação de estados por filtro de Kalman estendido. O desenvolvimento envolveu a reformulação de subsistemas eletromecânicos, a implementação de controladores de baixo nível e a integração de uma arquitetura computacional distribuída baseada em ROS 2.
+
+A arquitetura implementada possibilitou a comunicação entre o microcontrolador ESP32, a Odroid N2 e o notebook, permitindo integrar a aquisição de sensores, a estimação de estados e a geração de referências de movimento. Os controladores PI de velocidade longitudinal e PID de esterçamento apresentaram funcionamento adequado durante os ensaios, permitindo executar os comandos necessários ao deslocamento e à orientação do veículo.
+
+A validação experimental foi realizada em dois percursos, com comprimentos de referência de aproximadamente 89 m e 281 m. Em ambos os experimentos, o VIDA concluiu o seguimento autônomo das trajetórias propostas, apresentando erros laterais quadráticos médios de 0,167 m e 0,129 m, respectivamente. Esses resultados demonstram a viabilidade da solução implementada e sua capacidade de realizar o acompanhamento de trajetórias em condições reais de operação.
+
+Entretanto, as métricas de seguimento foram obtidas a partir das estimativas utilizadas pelo próprio sistema de navegação, não constituindo uma avaliação independente da precisão de localização. Além disso, os resultados correspondem aos ensaios realizados, sendo necessários experimentos adicionais para avaliar a repetibilidade e a robustez do sistema em diferentes condições operacionais.
+
+Como trabalhos futuros, destacam-se o aprimoramento dos algoritmos de localização e controle, a realização de ensaios com diferentes velocidades e trajetórias e a integração de sistemas de percepção e planejamento de movimento. A arquitetura modular desenvolvida também permite redistribuir as tarefas computacionais e incorporar algoritmos mais exigentes, contribuindo para a continuidade das pesquisas com a plataforma VIDA.
