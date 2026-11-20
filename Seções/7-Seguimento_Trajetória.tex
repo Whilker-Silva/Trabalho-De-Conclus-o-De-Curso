@@ -1,24 +1,24 @@
 \section{Seguimento de Trajetória}
 \label{sec:seguimento_trajetoria}
 
-O seguimento autônomo de trajetórias do VIDA é realizado por meio de uma implementação do controlador Stanley, executada em um nó ROS~2 no notebook. O algoritmo utiliza os estados estimados pelo EKF e uma trajetória de referência previamente definida para calcular os comandos de esterçamento necessários à correção dos desvios de posição e orientação. A implementação incorpora modificações à formulação original, visando melhorar o comportamento do veículo durante a operação experimental.
+Para validar toda a arquitetura proposta para o veículo VIDA, foi desenvolvido uma aplicação de seguimento autônomo de trajetórias realizado por meio de uma implementação do controlador Stanley, executada em um nó ROS~2 no notebook. O algoritmo utiliza os estados estimados pelo EKF e uma trajetória de referência previamente definida para calcular os comandos de esterçamento necessários à correção dos desvios de posição e orientação. A implementação incorpora modificações à formulação original, visando melhorar o comportamento do veículo durante a operação experimental.
 
 \subsection{Implementação do Controlador Stanley}
 \label{subsec:implementacao_stanley}
 
-As trajetórias de referência são representadas por sequências de pontos geográficos, posteriormente convertidos para o referencial local utilizado pelo estimador. Os pontos são tratados para produzir um caminho contínuo, com informações de orientação e curvatura necessárias ao cálculo do controle.
+As trajetórias de referência são representadas por sequências de pontos geográficos, posteriormente convertidos para o referencial de navegação utilizado pelo estimador. Os pontos são tratados para produzir um caminho contínuo, com informações de orientação e curvatura necessárias ao cálculo do controle.
 
 Para determinar os erros de seguimento, considera-se a posição do centro do eixo dianteiro, calculada a partir da posição estimada do eixo traseiro e do entre-eixos geométrico do veículo:
 
 \begin{equation}
 \begin{aligned}
-x_f &= x + L\cos(\theta) \\
-y_f &= y + L\sin(\theta)
+x_f &= x_r + L\cos(\theta), \\
+y_f &= y_r + L\sin(\theta).
 \end{aligned}
 \label{eq:posicao_eixo_dianteiro}
 \end{equation}
 
-em que $(x_f,y_f)$ representa a posição do centro do eixo dianteiro, $(x,y)$ corresponde à posição estimada do veículo, $\theta$ é sua orientação e $L$ representa o entre-eixos geométrico.
+em que $(x_f,y_f)$ representa a posição do centro do eixo dianteiro, $(x_r,y_r)$ corresponde à posição estimada do veículo, $\theta$ é sua orientação e $L$ representa o entre-eixos geométrico.
 
 A posição calculada é projetada sobre a trajetória de referência, permitindo determinar o erro lateral $e$, o erro de orientação $\psi$ e a curvatura local $\kappa$ da trajetória. A partir dessas informações, o controlador calcula o ângulo de esterçamento pela seguinte expressão:
 
@@ -27,13 +27,13 @@ A posição calculada é projetada sobre a trajetória de referência, permitind
 \psi
 - \arctan\left(\frac{ke}{v+k_s}\right)
 + k_{ff}\arctan(L_{ff}\kappa)
-- k_r(r-v\kappa)
+- k_r(r-v\kappa).
 \label{eq:stanley_modificado}
 \end{equation}
 
 em que $k$ representa o ganho de correção lateral, $k_s$ é o parâmetro de suavização em baixas velocidades, $k_{ff}$ corresponde ao ganho antecipativo, $L_{ff}$ é o entre-eixos utilizado na compensação de curvatura, $\kappa$ representa a curvatura da trajetória de referência no ponto de projeção do eixo dianteiro, $k_r$ representa o ganho de amortecimento e $r$ corresponde à velocidade angular medida do veículo.
 
-O primeiro termo corrige o erro de orientação, enquanto o segundo atua sobre o deslocamento lateral em relação à trajetória. O terceiro termo introduz uma ação antecipativa baseada na curvatura do caminho, permitindo considerar o esterçamento necessário à realização das curvas. Por fim, o termo de amortecimento utiliza a diferença entre a velocidade angular medida e aquela prevista pela curvatura da trajetória, contribuindo para reduzir oscilações durante o seguimento.
+O primeiro termo corrige o erro de orientação, enquanto o segundo atua sobre o deslocamento lateral em relação à trajetória. Nesse termo, o parâmetro $L_{ff}$ foi ajustado experimentalmente para $1{,}17$~m, diferindo do entre-eixos geométrico do veículo ($L = 1{,}125$~m), a fim de representar melhor a relação entre esterçamento e curvatura observada na prática. O terceiro termo introduz uma ação antecipativa baseada na curvatura do caminho, permitindo considerar o esterçamento necessário à realização das curvas. Por fim, o termo de amortecimento utiliza a diferença entre a velocidade angular medida e aquela prevista pela curvatura da trajetória, contribuindo para reduzir oscilações durante o seguimento.
 
 O comando resultante é limitado à faixa de $\pm20^\circ$ e submetido a uma restrição de taxa de variação de $40^\circ/\mathrm{s}$, evitando alterações excessivamente bruscas na referência enviada ao controlador de esterçamento. Os principais parâmetros utilizados nos ensaios experimentais são apresentados na Tabela~\ref{tab:parametros_stanley}.
 

@@ -1024,7 +1024,7 @@
   \if@hasabstract                       % IF abstract/ keywords THEN
    \vskip \@preabstractskip     % Space above rule
    \nointerlineskip
-   \moveright 0.1\textwidth \vbox{\hrule width 0.8\textwidth height 0.4\p@}                 % Rule above abstract/keywords
+   \moveright 0.075\textwidth \vbox{\hrule width 0.85\textwidth height 0.4\p@}                 % Rule above abstract/keywords
     \nointerlineskip
     \vskip 8\p@
     \unvbox\t@abstract                  % print abstract, if any
@@ -1035,7 +1035,7 @@
   \fi                                   % FI
    \vskip \@preabstractskip     % Space above rule
    \nointerlineskip
-   \moveright 0.1\textwidth \vbox{\hrule width 0.8\textwidth height 0.4\p@}                 % Rule above abstract/keywords
+   \moveright 0.075\textwidth \vbox{\hrule width 0.85\textwidth height 0.4\p@}                 % Rule above abstract/keywords
     \nointerlineskip
   \dedicated@fmt                        % print dedication
   \vskip \@belowfmskip                  % Vertical space below frontmatter

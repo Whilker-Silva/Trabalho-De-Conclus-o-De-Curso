@@ -3,10 +3,12 @@
 
 O controle de baixo nível do VIDA tem como objetivo garantir o acompanhamento das referências de velocidade longitudinal e ângulo de esterçamento estabelecidas pelo sistema de navegação ou pela operação manual. Para isso, são empregadas duas malhas de controle, responsáveis por compensar os desvios entre as referências solicitadas e as grandezas medidas pelos sensores embarcados. As ações de controle resultantes são convertidas em comandos para os sistemas de tração, esterçamento e frenagem, respeitando as limitações operacionais e os mecanismos de segurança da plataforma. As estratégias de controle e suas respectivas implementações são apresentadas nas subseções seguintes.
 
+As duas malhas são executadas na mesma tarefa periódica do ESP32, com período de 5~ms (200~Hz). Embora as dinâmicas envolvidas sejam lentas, essa frequência é determinada pelo controle de esterçamento: mesmo na velocidade máxima da direção, a roda se desloca no máximo 0{,}35$^\circ$ entre dois ciclos, valor inferior à faixa da zona morta do controlador, o que permite interromper o acionamento próximo à referência sem ultrapassá-la. Essa taxa também melhora a estimativa da velocidade de esterçamento utilizada pela ação derivativa. Para a malha longitudinal, dominada pela inércia do veículo, uma frequência menor seria suficiente; a execução na mesma tarefa, contudo, simplifica a organização do \textit{firmware} e mantém a coordenação entre tração e frenagem sincronizada com a tarefa de segurança, com custo computacional desprezível.
+
 \subsection{Controle de Esterçamento}
 \label{subsec:controle_esterçamento}
 
-O controle de esterçamento tem como finalidade regular o ângulo das rodas dianteiras a partir de uma referência estabelecida pelo sistema de navegação ou pela operação manual. Para isso, foi implementado um controlador proporcional-integral-derivativo (PID) discreto, executado a uma frequência nominal de 200~Hz. A realimentação é fornecida pelo sensor LVDT, cuja medição de deslocamento linear é convertida em ângulo de esterçamento por meio de uma relação de calibração.
+O controle de esterçamento tem como finalidade regular o ângulo de direção médio das rodas dianteiras, segundo o modelo de bicicleta, a partir de uma referência estabelecida pelo sistema de navegação ou pela operação manual. Para isso, foi implementado um controlador proporcional-integral-derivativo (PID) discreto, executado a uma frequência nominal de 200~Hz. A realimentação é fornecida pelo sensor LVDT, cuja medição de deslocamento linear é convertida em ângulo de esterçamento por meio de uma relação de calibração.
 
 A lei de controle pode ser expressa por:
 
@@ -14,7 +16,7 @@ A lei de controle pode ser expressa por:
 u_{\delta}(t) =
 K_p e_{\delta}(t)
 + K_i \int_0^t e_{\delta}(\tau)\,d\tau
-- K_d \dot{\delta}_{m,f}(t)
+- K_d \dot{\delta}_{m,f}(t),
 \end{equation}
 
 em que $u_{\delta}$ representa o sinal de controle, $K_p$, $K_i$ e $K_d$ são os ganhos proporcional, integral e derivativo, respectivamente, e $e_{\delta}$ corresponde à diferença entre o ângulo de referência e o ângulo medido. O termo $\dot{\delta}_{m,f}$ representa a taxa de variação filtrada do ângulo de esterçamento medido.
@@ -23,7 +25,9 @@ Uma particularidade dessa implementação é a aplicação da ação derivativa 
 
 Antes de ser utilizada pela malha de controle, a referência de esterçamento é submetida a restrições de amplitude e de taxa de variação. O ângulo solicitado é limitado à faixa de $\pm20^\circ$, enquanto sua variação máxima é estabelecida em $40^\circ/\mathrm{s}$. Essas restrições reduzem solicitações bruscas ao mecanismo de direção e contribuem para manter o comando dentro da faixa operacional definida para o veículo.
 
-Além das ações PID, o controlador incorpora recursos destinados a melhorar o comportamento do sistema diante das características do acionamento eletromecânico. Entre eles estão uma zona morta com histerese, a compensação do atrito estático e mecanismos de integração condicionada e anti-windup. A zona morta com histerese contribui para evitar acionamentos sucessivos próximos à condição de equilíbrio, enquanto a compensação do atrito estático auxilia no início do movimento do mecanismo. Os mecanismos associados à ação integral, por sua vez, limitam seu acúmulo em condições nas quais o esforço de controle não pode ser integralmente aplicado.
+Além das ações PID, o controlador incorpora recursos destinados a melhorar o comportamento do sistema diante das características do acionamento eletromecânico. Entre eles estão uma zona morta com histerese, a compensação da zona morta de acionamento do motor e mecanismos de integração condicionada e \textit{anti-windup}. A zona morta com histerese contribui para evitar acionamentos sucessivos próximos à condição de equilíbrio, enquanto a compensação da zona morta de acionamento adiciona ao comando o valor mínimo necessário para vencer o atrito estático e iniciar o movimento do mecanismo. Os mecanismos associados à ação integral, por sua vez, limitam seu acúmulo em condições nas quais o esforço de controle não pode ser integralmente aplicado.
+
+A ação integral foi mantida porque o mecanismo de direção está sujeito a uma carga resistente, decorrente do contato dos pneus com o solo e do atrito do mecanismo, que atua como uma perturbação constante na entrada da planta. Sem essa ação, o erro em regime permaneceria proporcional a essa carga. Para não comprometer a resposta transitória, a integração é habilitada apenas próximo à referência ou quando a direção permanece parada longe dela, sendo reinicializada quando o erro muda de sinal.
 
 O firmware também considera restrições associadas aos limites físicos de esterçamento. Embora a referência de operação seja limitada a $\pm20^\circ$, o mecanismo possui um limite de segurança de $\pm25^\circ$. Dessa forma, são impedidos comandos que possam ampliar o esterçamento quando o ângulo medido já se encontra além da faixa permitida.
 
@@ -36,7 +40,7 @@ A Figura~\ref{fig:controle_esterçamento} apresenta a estrutura da malha fechada
 \begin{figure}[htb]
     \centering
     \includegraphics[width=\columnwidth]{Imagens/Malha de controle esterçamento.png}
-    \caption{Diagrama da malha fechada de controle do ângulo de esterçamento. Fonte: Elaborado pelo autor.}
+    \caption{\textcolor{red}{Diagrama da malha fechada de controle do ângulo de esterçamento. Fonte: Elaborado pelo autor.}}
     \label{fig:controle_esterçamento}
 \end{figure}
 
@@ -66,18 +70,22 @@ Os ganhos do controlador foram inicialmente ajustados com o auxílio de simulaç
 
 Para regular a velocidade longitudinal do VIDA, foi adotada uma estratégia de controle em malha fechada baseada em um controlador proporcional-integral (PI) discreto, executado a uma frequência nominal de 200~Hz. O controlador determina o esforço necessário para acompanhar a velocidade de referência, utilizando as medições dos encoders como realimentação. A ação de controle resultante é utilizada para coordenar os sistemas de tração e frenagem, permitindo tanto a aceleração quanto a desaceleração do veículo.
 
-A realimentação utiliza a média das velocidades medidas pelos encoders instalados nas rodas dianteiras, que não são diretamente acionadas pelo sistema de tração. Essa configuração reduz a influência de eventuais perdas de aderência da roda traseira motriz sobre a medição da velocidade longitudinal. A velocidade utilizada pelo controlador é calculada por:
+A estrutura PI foi adotada porque a manutenção de uma velocidade constante exige um esforço permanente para vencer as resistências ao movimento. A ação integral fornece esse esforço sem erro em regime permanente e compensa variações de carga, como rampas, diferentes condições de piso e a redução da tensão da bateria ao longo da operação.
+
+A realimentação utiliza as velocidades medidas pelos encoders das rodas dianteiras, que não são acionadas pelo sistema de tração, o que reduz a influência de eventuais perdas de aderência da roda traseira motriz sobre a medição. Como as rodas dianteiras são esterçáveis, a média de suas velocidades corresponde à velocidade do eixo dianteiro, orientada segundo o ângulo de esterçamento $\varDelta$. A velocidade longitudinal utilizada pelo controlador é obtida pela projeção dessa velocidade no eixo longitudinal do veículo:
+
 
 \begin{equation}
-v_m = \frac{v_{de} + v_{dd}}{2}
+    v_x = \frac{v_{esq} + v_{dir}}{2}\,\cos\varphi,
+    \label{eq:velocidade_longitudinal}
 \end{equation}
 
-em que $v_m$ representa a velocidade longitudinal medida, enquanto $v_{de}$ e $v_{dd}$ correspondem às velocidades medidas nas rodas dianteiras esquerda e direita, respectivamente. 
+em que $v_x$ é a velocidade longitudinal do veículo, $v_{esq}$ e $v_{dir}$ são as velocidades medidas pelos \textit{encoders} das rodas dianteiras esquerda e direita, respectivamente, e $\varphi$ é o ângulo de esterçamento medido pelo sensor LVDT.
 
 A partir da velocidade medida, o controlador determina o erro em relação à referência recebida e calcula o esforço necessário para sua correção. A lei de controle PI pode ser expressa por:
 
 \begin{equation}
-u_v(t) = K_p e_v(t) + K_i \int_0^t e_v(\tau)\,d\tau
+u_v(t) = K_p e_v(t) + K_i \int_0^t e_v(\tau)\,d\tau,
 \end{equation}
 
 em que $u_v$ representa o esforço de controle longitudinal normalizado, $K_p$ e $K_i$ são os ganhos proporcional e integral, respectivamente, e $e_v$ corresponde à diferença entre a velocidade de referência e a velocidade medida. Valores positivos de $u_v$ são utilizados para gerar comandos de tração, enquanto valores negativos são tratados pela lógica de desaceleração e frenagem.
@@ -99,7 +107,7 @@ A Figura~\ref{fig:controle_velocidade} apresenta a estrutura da malha fechada de
 \begin{figure}[htb]
     \centering
     \includegraphics[width=\columnwidth]{Imagens/Malha de controle longitudinal.png}
-    \caption{Diagrama da malha fechada de controle de velocidade longitudinal. Fonte: Elaborado pelo autor.}
+    \caption{\textcolor{red}{Diagrama da malha fechada de controle de velocidade longitudinal. Fonte: Elaborado pelo autor.}}
     \label{fig:controle_velocidade}
 \end{figure}
 
@@ -117,7 +125,6 @@ Os ganhos do controlador foram inicialmente ajustados com o auxílio de simulaç
         Ganho integral ($K_i$) & 0,025 \\
         Frequência de controle & 200~Hz \\
         Velocidade máxima & $2,5~\mathrm{m/s}$ \\
-        Aceleração padrão & $0,4~\mathrm{m/s^2}$ \\
         Aceleração máxima & $0,8~\mathrm{m/s^2}$ \\
         Desaceleração máxima & $1,0~\mathrm{m/s^2}$ \\
         \hline

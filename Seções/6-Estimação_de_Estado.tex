@@ -14,16 +14,16 @@ O vetor de estados considerado pelo filtro é definido por:
 \begin{equation}
 \mathbf{x} =
 \begin{bmatrix}
-x & y & \theta & \delta & v & b_g
+x_r & y_r & \theta & \delta & v & b_g
 \end{bmatrix}^{T}
 \label{eq:vetor_estados_ekf}
 \end{equation}
 
-em que $x$ e $y$ representam as coordenadas da posição do veículo em um referencial local, $\theta$ corresponde à orientação, $\delta$ ao ângulo de esterçamento, $v$ à velocidade longitudinal e $b_g$ ao viés do giroscópio.
+em que $x_r$ e $y_r$ representam as coordenadas da posição do veículo em um referencial global, $\theta$ corresponde à sua orientação nesse referencial, $\delta$ ao ângulo de esterçamento, $v$ à velocidade longitudinal no eixo traseiro e $b_g$ ao \textit{bias} do giroscópio.
 
-A inclusão do viés do giroscópio no vetor de estados permite considerar erros sistemáticos associados à medição da velocidade angular. Dessa forma, além das variáveis que descrevem o movimento do veículo, o estimador contempla uma componente destinada à compensação de desvios presentes nas medições inerciais.
+A inclusão do \textit{bias} do giroscópio no vetor de estados permite considerar erros sistemáticos associados à medição da velocidade angular. Dessa forma, além das variáveis que descrevem o movimento do veículo, o estimador contempla uma componente destinada à compensação de desvios presentes nas medições inerciais.
 
-A partir desse modelo, a etapa de predição do EKF propaga os estados estimados e suas respectivas incertezas ao longo do tempo. As informações previstas são posteriormente atualizadas por meio das medições dos sensores, conforme os princípios apresentados na Seção~\ref{subsec:fund_ekf}.
+A partir desse modelo, a etapa de predição do EKF propaga os estados estimados e suas respectivas incertezas ao longo do tempo. As informações previstas são posteriormente atualizadas por meio das medições dos sensores, conforme os princípios apresentados na Subseção~\ref{subsec:fund_ekf}.
 
 \subsection{Fusão Sensorial e Correção dos Estados}
 \label{subsec:fusao_sensorial}
@@ -34,27 +34,28 @@ Na etapa de predição, a velocidade longitudinal é obtida pela média das medi
 
 \begin{equation}
 \begin{aligned}
-x_{k+1}^{-} &= x_k + v_k \cos(\theta_k)\cos(\delta_k)\Delta t \\
-y_{k+1}^{-} &= y_k + v_k \sin(\theta_k)\cos(\delta_k)\Delta t
+x_{k+1}^{-} &= x_k + v_k \cos(\theta_k)\cos(\delta_k)\Delta t, \\
+y_{k+1}^{-} &= y_k + v_k \sin(\theta_k)\cos(\delta_k)\Delta t.
 \end{aligned}
 \label{eq:predicao_posicao_ekf}
 \end{equation}
 
-Para a atualização da orientação, a implementação utiliza prioritariamente a velocidade angular medida pelo giroscópio. Durante o movimento, essa medição é corrigida pelo viés estimado, permitindo representar a rotação do veículo sem depender exclusivamente da relação cinemática entre velocidade e esterçamento. A evolução da orientação é calculada por:
+Para a atualização da orientação, a implementação utiliza prioritariamente a velocidade angular medida pelo giroscópio. Durante o movimento, essa medição é corrigida pelo \textit{bias} estimado, permitindo representar a rotação do veículo sem depender exclusivamente da relação cinemática entre velocidade e esterçamento. A evolução da orientação é calculada por:
 
 \begin{equation}
 \theta_{k+1}^{-} = \theta_k + (\omega_{m,k} - b_{g,k})\Delta t
 \label{eq:predicao_orientacao_ekf}
 \end{equation}
 
-em que $\omega_{m,k}$ corresponde à velocidade angular medida pelo giroscópio e $b_{g,k}$ representa o viés estimado. Caso as medições inerciais deixem de estar disponíveis, o estimador utiliza a relação cinemática de bicicleta como alternativa para calcular a velocidade angular, dada por $\dot{\theta}=v\sin(\delta)/L$, mantendo a propagação da orientação durante interrupções temporárias na comunicação com o sensor.
+em que $\omega_{m,k}$ corresponde à velocidade angular medida pelo giroscópio e $b_{g,k}$ representa o \textit{bias} estimado. Caso as medições inerciais deixem de estar disponíveis, o estimador utiliza o modelo cinemático de bicicleta (Equação~\ref{eq:modelo_cinematico}) como alternativa para calcular a velocidade angular, o que mantém a propagação da orientação durante interrupções temporárias na
+comunicação com o sensor.
 
-O viés do giroscópio recebe tratamento específico para reduzir o acúmulo de erros na orientação estimada. Durante a inicialização, seu valor é determinado a partir da média das medições obtidas com o veículo parado. Posteriormente, quando os encoders indicam velocidade inferior a $0,02~\mathrm{m/s}$ por um período mínimo de $0,5~\mathrm{s}$, o estimador considera que a velocidade angular real é nula. Nessa condição, a medição do giroscópio é utilizada na etapa de correção para atualizar o viés, enquanto a integração da orientação é interrompida, evitando a acumulação de desvios durante as paradas.
+O \textit{bias} do giroscópio recebe tratamento específico para reduzir o acúmulo de erros na orientação estimada. Durante a inicialização, seu valor é determinado a partir da média das medições obtidas com o veículo parado. Posteriormente, quando os encoders indicam velocidade inferior a $0,02~\mathrm{m/s}$ por um período mínimo de $0,5~\mathrm{s}$, o estimador considera que a velocidade angular real é nula. Nessa condição, a medição do giroscópio é utilizada na etapa de correção para atualizar o \textit{bias}, enquanto a integração da orientação é interrompida, evitando a acumulação de desvios durante as paradas.
 
 Além da propagação dos estados, o filtro incorpora as medições de velocidade e esterçamento em sua etapa de correção, atualizando as respectivas incertezas. Embora essas grandezas sejam diretamente atualizadas pelas leituras dos sensores durante a predição, sua inclusão no processo de correção permite ajustar a matriz de covariância associada ao estado estimado.
 
 A correção do posicionamento é realizada a partir das coordenadas fornecidas pelo receptor GNSS com correções RTK. A cada nova observação válida, disponibilizada nominalmente a 2~Hz, o filtro compara a posição medida com aquela prevista pelo modelo de movimento. As diferenças identificadas são utilizadas para atualizar a estimativa por meio do ganho de Kalman, considerando as incertezas associadas às medições GNSS. Dessa forma, os desvios acumulados durante a propagação são corrigidos periodicamente, enquanto as relações representadas na matriz de covariância permitem que essas atualizações também influenciem indiretamente outros estados, como a orientação.
 
-A combinação dessas informações permite manter estimativas contínuas de posição e orientação entre as atualizações do GNSS. Durante o deslocamento, a predição utiliza as medições de velocidade, esterçamento e velocidade angular para acompanhar o movimento do veículo, enquanto as observações de posicionamento limitam o acúmulo de desvios. Nas condições de parada, a atualização do viés do giroscópio contribui para reduzir erros sistemáticos na estimação da orientação, proporcionando maior consistência às informações disponibilizadas pelo estimador.
+A combinação dessas informações permite manter estimativas regulares de posição e orientação entre as atualizações do GNSS. Durante o deslocamento, a predição utiliza as medições de velocidade, esterçamento e velocidade angular para acompanhar o movimento do veículo, enquanto as observações de posicionamento limitam o acúmulo de desvios. Nas condições de parada, a atualização do viés do giroscópio contribui para reduzir erros sistemáticos na estimação da orientação, proporcionando maior consistência às informações disponibilizadas pelo estimador.
 
 O estimador utilizado neste trabalho baseia-se no filtro de Kalman estendido apresentado por \citet{DeLima2015}, posteriormente adaptado à plataforma VIDA e implementado como um nó ROS~2 para realizar a fusão das medições dos sensores embarcados e estimar os estados do veículo.

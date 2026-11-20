@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.11.11)  13 NOV 2026 01:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.11.11)  20 NOV 2026 15:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -569,7 +569,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
 )
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 95.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 102.
  (/usr/share/texmf/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
@@ -579,24 +579,24 @@ File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
 ) (./sbaconf.aux)
 \openout1 = `sbaconf.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 102.
+LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 102.
+LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 102.
+LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 102.
+LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 102.
+LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 102.
+LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 102.
+LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 102.
+LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 102.
+LaTeX Font Info:    ... okay on input line 102.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count326
@@ -616,7 +616,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 95.
+Package hyperref Info: Link coloring OFF on input line 102.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
@@ -626,171 +626,195 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count332
 )
-LaTeX Info: Redefining \ref on input line 95.
-LaTeX Info: Redefining \pageref on input line 95.
-LaTeX Info: Redefining \nameref on input line 95.
+LaTeX Info: Redefining \ref on input line 102.
+LaTeX Info: Redefining \pageref on input line 102.
+LaTeX Info: Redefining \nameref on input line 102.
  (./sbaconf.out) (./sbaconf.out)
 \@outlinefile=\write4
 \openout4 = `sbaconf.out'.
 
-LaTeX Font Info:    Calculating math sizes for size <14> on input line 111.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 111.
+LaTeX Font Info:    Calculating math sizes for size <14> on input line 118.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 118.
  (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 111.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 118.
  (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 111.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 118.
  (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 111.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 118.
  (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14> on input line 111.
+(Font)              <14> on input line 118.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9.79996> on input line 111.
+(Font)              <9.79996> on input line 118.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 111.
+(Font)              <7> on input line 118.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 115.
+(Font)              <10> on input line 122.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 115.
+(Font)              <5> on input line 122.
 \c@sv@footnote=\count333
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
-] (./Seções/1-Introdução.tex) (./Seções/2-Fundamentação_Teórica.tex [2
+
+] (./Seções/1-Introdução.tex
+Underfull \vbox (badness 5431) has occurred while \output is active []
+
+) (./Seções/2-Fundamentação_Teórica.tex [2
 
 ]
-<Imagens/Modelo cinemático de bicicleta.png, id=182, 570.13pt x 368.37625pt>
+<Imagens/Modelo cinemático de bicicleta.png, id=197, 1140.26pt x 566.115pt>
 File: Imagens/Modelo cinemático de bicicleta.png Graphic file (type png)
 <use Imagens/Modelo cinemático de bicicleta.png>
-Package pdftex.def Info: Imagens/Modelo cinemático de bicicleta.png  used on input line 36.
-(pdftex.def)             Requested size: 214.03738pt x 138.29251pt.
- [3 <./Imagens/Modelo cinemático de bicicleta.png>]
-<Imagens/Controlador Stanley.png, id=234, 478.03593pt x 331.2375pt>
+Package pdftex.def Info: Imagens/Modelo cinemático de bicicleta.png  used on input line 30.
+(pdftex.def)             Requested size: 214.03738pt x 106.25859pt.
+ [3 <./Imagens/Modelo cinemático de bicicleta.png (PNG copy)>]
+<Imagens/Controlador Stanley.png, id=242, 478.03593pt x 331.2375pt>
 File: Imagens/Controlador Stanley.png Graphic file (type png)
 <use Imagens/Controlador Stanley.png>
-Package pdftex.def Info: Imagens/Controlador Stanley.png  used on input line 134.
+Package pdftex.def Info: Imagens/Controlador Stanley.png  used on input line 127.
 (pdftex.def)             Requested size: 214.03738pt x 148.30745pt.
-) (./Seções/3-Plataforma_Vida.tex
+ [4 <./Imagens/Controlador Stanley.png>]) (./Seções/3-Plataforma_Vida.tex
 Overfull \hbox (2.69276pt too wide) in paragraph at lines 4--5
 []\T1/lmr/m/n/10 O Ve�-culo In-te-li-gente de De-sen-vol-vi-mento Apli-cado (VIDA)
  []
 
-<Imagens/Vida 1.jpg, id=242, 4336.2pt x 3253.15375pt>
+<Imagens/Vida 1.jpg, id=271, 4336.2pt x 3253.15375pt>
 File: Imagens/Vida 1.jpg Graphic file (type jpg)
 <use Imagens/Vida 1.jpg>
-Package pdftex.def Info: Imagens/Vida 1.jpg  used on input line 12.
+Package pdftex.def Info: Imagens/Vida 1.jpg  used on input line 14.
 (pdftex.def)             Requested size: 181.30125pt x 136.01103pt.
-[4 <./Imagens/Controlador Stanley.png> <./Imagens/Vida 1.jpg>]
-<Imagens/Conjunto de esterçamento.jpg, id=257, 3252.15pt x 3252.15pt>
+<Imagens/Conjunto de esterçamento.jpg, id=275, 3252.15pt x 3252.15pt>
 File: Imagens/Conjunto de esterçamento.jpg Graphic file (type jpg)
 <use Imagens/Conjunto de esterçamento.jpg>
-Package pdftex.def Info: Imagens/Conjunto de esterçamento.jpg  used on input line 27.
+Package pdftex.def Info: Imagens/Conjunto de esterçamento.jpg  used on input line 29.
 (pdftex.def)             Requested size: 181.30125pt x 181.27556pt.
-<Imagens/Painel.jpg, id=260, 4609.22pt x 2879.75874pt>
+[5 <./Imagens/Vida 1.jpg> <./Imagens/Conjunto de esterçamento.jpg>]
+<Imagens/Painel.jpg, id=285, 4609.22pt x 2879.75874pt>
 File: Imagens/Painel.jpg Graphic file (type jpg)
 <use Imagens/Painel.jpg>
-Package pdftex.def Info: Imagens/Painel.jpg  used on input line 50.
+Package pdftex.def Info: Imagens/Painel.jpg  used on input line 53.
 (pdftex.def)             Requested size: 214.03738pt x 133.71405pt.
- [5 <./Imagens/Conjunto de esterçamento.jpg> <./Imagens/Painel.jpg>]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 73.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 73.
-) (./Seções/4-Arquitetura_Computacional.tex
-<Imagens/Arquitetura computacional.png, id=272, 3944.7375pt x 3583.3875pt>
+) (./Seções/4-Arquitetura_Computacional.tex [6 <./Imagens/Painel.jpg>]
+<Imagens/Arquitetura computacional.png, id=294, 3944.7375pt x 3583.3875pt>
 File: Imagens/Arquitetura computacional.png Graphic file (type png)
 <use Imagens/Arquitetura computacional.png>
-Package pdftex.def Info: Imagens/Arquitetura computacional.png  used on input line 12.
+Package pdftex.def Info: Imagens/Arquitetura computacional.png  used on input line 15.
 (pdftex.def)             Requested size: 251.80688pt x 228.71815pt.
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 31.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 34.
  (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [6 <./Imagens/Arquitetura computacional.png>]
-<Imagens/fluxograma_esp32.png, id=287, 4363.30125pt x 2962.06625pt>
+)
+<Imagens/fluxograma_esp32.png, id=299, 4363.30125pt x 2962.06625pt>
 File: Imagens/fluxograma_esp32.png Graphic file (type png)
 <use Imagens/fluxograma_esp32.png>
-Package pdftex.def Info: Imagens/fluxograma_esp32.png  used on input line 41.
+Package pdftex.def Info: Imagens/fluxograma_esp32.png  used on input line 44.
 (pdftex.def)             Requested size: 251.80688pt x 170.93669pt.
-) (./Seções/5-Controladores_Baixo_Nivel.tex [7 <./Imagens/fluxograma_esp32.png>]
-<Imagens/Malha de controle esterçamento.png, id=302, 6022.5pt x 1821.80624pt>
+ [7 <./Imagens/Arquitetura computacional.png>]) (./Seções/5-Controladores_Baixo_Nivel.tex [8 <./Imagens/fluxograma_esp32.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+<Imagens/Malha de controle esterçamento.png, id=322, 6022.5pt x 1821.80624pt>
 File: Imagens/Malha de controle esterçamento.png Graphic file (type png)
 <use Imagens/Malha de controle esterçamento.png>
-Package pdftex.def Info: Imagens/Malha de controle esterçamento.png  used on input line 38.
+Package pdftex.def Info: Imagens/Malha de controle esterçamento.png  used on input line 42.
 (pdftex.def)             Requested size: 251.80688pt x 76.16785pt.
- [8 <./Imagens/Malha de controle esterçamento.png>]
-<Imagens/Malha de controle longitudinal.png, id=319, 6022.5pt x 1821.80624pt>
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 53.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 53.
+ [9 <./Imagens/Malha de controle esterçamento.png>]
+<Imagens/Malha de controle longitudinal.png, id=340, 6022.5pt x 1821.80624pt>
 File: Imagens/Malha de controle longitudinal.png Graphic file (type png)
 <use Imagens/Malha de controle longitudinal.png>
-Package pdftex.def Info: Imagens/Malha de controle longitudinal.png  used on input line 101.
+Package pdftex.def Info: Imagens/Malha de controle longitudinal.png  used on input line 109.
 (pdftex.def)             Requested size: 251.80688pt x 76.16785pt.
-) (./Seções/6-Estimação_de_Estado.tex [9 <./Imagens/Malha de controle longitudinal.png>]) (./Seções/7-Seguimento_Trajetória.tex [10]) (./Seções/8-Resultados_experimentais.tex [11]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 26.
+) (./Seções/6-Estimação_de_Estado.tex [10 <./Imagens/Malha de controle longitudinal.png>]) (./Seções/7-Seguimento_Trajetória.tex [11]) (./Seções/8 -Interface_operacao.tex
+Underfull \vbox (badness 4429) has occurred while \output is active []
+
+ [12]
+<Imagens/Painel_de_operacao.png, id=373, 1927.2pt x 876.27374pt>
+File: Imagens/Painel_de_operacao.png Graphic file (type png)
+<use Imagens/Painel_de_operacao.png>
+Package pdftex.def Info: Imagens/Painel_de_operacao.png  used on input line 14.
+(pdftex.def)             Requested size: 507.48112pt x 230.74063pt.
+) (./Seções/9-Resultados_experimentais.tex
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 44.
  (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<Imagens/Resposta PID esterçamento.png, id=351, 542.025pt x 274.626pt>
+<Imagens/Resposta PID esterçamento.png, id=376, 542.025pt x 274.626pt>
 File: Imagens/Resposta PID esterçamento.png Graphic file (type png)
 <use Imagens/Resposta PID esterçamento.png>
-Package pdftex.def Info: Imagens/Resposta PID esterçamento.png  used on input line 34.
+Package pdftex.def Info: Imagens/Resposta PID esterçamento.png  used on input line 48.
 (pdftex.def)             Requested size: 251.80688pt x 127.58243pt.
-<Imagens/Resposta PI velocidadade longitudinal.png, id=353, 542.025pt x 274.626pt>
+ [13]
+<Imagens/Resposta PI velocidadade longitudinal.png, id=389, 542.025pt x 274.626pt>
 File: Imagens/Resposta PI velocidadade longitudinal.png Graphic file (type png)
 <use Imagens/Resposta PI velocidadade longitudinal.png>
-Package pdftex.def Info: Imagens/Resposta PI velocidadade longitudinal.png  used on input line 45.
+Package pdftex.def Info: Imagens/Resposta PI velocidadade longitudinal.png  used on input line 59.
 (pdftex.def)             Requested size: 241.7363pt x 122.47845pt.
- [12 <./Imagens/Resposta PID esterçamento.png> <./Imagens/Resposta PI velocidadade longitudinal.png>]
-<Imagens/Trajetoria_Troia.png, id=364, 246.9225pt x 217.71338pt>
+ [14 <./Imagens/Painel_de_operacao.png (PNG copy)> <./Imagens/Resposta PID esterçamento.png> <./Imagens/Resposta PI velocidadade longitudinal.png>]
+<Imagens/pwm_parcelas_pi_velocidade.png, id=398, 542.025pt x 361.35pt>
+File: Imagens/pwm_parcelas_pi_velocidade.png Graphic file (type png)
+<use Imagens/pwm_parcelas_pi_velocidade.png>
+Package pdftex.def Info: Imagens/pwm_parcelas_pi_velocidade.png  used on input line 68.
+(pdftex.def)             Requested size: 241.7363pt x 161.15588pt.
+<Imagens/Trajetoria_Troia.png, id=400, 246.9225pt x 217.71338pt>
 File: Imagens/Trajetoria_Troia.png Graphic file (type png)
 <use Imagens/Trajetoria_Troia.png>
-Package pdftex.def Info: Imagens/Trajetoria_Troia.png  used on input line 64.
+Package pdftex.def Info: Imagens/Trajetoria_Troia.png  used on input line 85.
 (pdftex.def)             Requested size: 214.03738pt x 188.71812pt.
-<Imagens/Erro_Lateral_Troia.png, id=366, 246.9225pt x 163.51088pt>
+<Imagens/Erro_Lateral_Troia.png, id=402, 246.9225pt x 163.51088pt>
 File: Imagens/Erro_Lateral_Troia.png Graphic file (type png)
 <use Imagens/Erro_Lateral_Troia.png>
-Package pdftex.def Info: Imagens/Erro_Lateral_Troia.png  used on input line 73.
+Package pdftex.def Info: Imagens/Erro_Lateral_Troia.png  used on input line 94.
 (pdftex.def)             Requested size: 214.03738pt x 141.73434pt.
-<Imagens/Autodromo_UFLA.jpg, id=367, 4015.0pt x 2260.445pt>
+<Imagens/Autodromo_UFLA.jpg, id=403, 4015.0pt x 2260.445pt>
 File: Imagens/Autodromo_UFLA.jpg Graphic file (type jpg)
 <use Imagens/Autodromo_UFLA.jpg>
-Package pdftex.def Info: Imagens/Autodromo_UFLA.jpg  used on input line 91.
+Package pdftex.def Info: Imagens/Autodromo_UFLA.jpg  used on input line 112.
 (pdftex.def)             Requested size: 214.03738pt x 120.47905pt.
-<Imagens/Trajetoria_Pista3.png, id=369, 242.70676pt x 217.71338pt>
+ [15 <./Imagens/pwm_parcelas_pi_velocidade.png> <./Imagens/Trajetoria_Troia.png> <./Imagens/Erro_Lateral_Troia.png>]
+<Imagens/Trajetoria_Pista3.png, id=415, 242.70676pt x 217.71338pt>
 File: Imagens/Trajetoria_Pista3.png Graphic file (type png)
 <use Imagens/Trajetoria_Pista3.png>
-Package pdftex.def Info: Imagens/Trajetoria_Pista3.png  used on input line 103.
+Package pdftex.def Info: Imagens/Trajetoria_Pista3.png  used on input line 122.
 (pdftex.def)             Requested size: 214.03738pt x 191.99696pt.
-<Imagens/erro_lateral_Pista3.png, id=371, 246.9225pt x 163.51088pt>
+<Imagens/erro_lateral_Pista3.png, id=417, 246.9225pt x 163.51088pt>
 File: Imagens/erro_lateral_Pista3.png Graphic file (type png)
 <use Imagens/erro_lateral_Pista3.png>
-Package pdftex.def Info: Imagens/erro_lateral_Pista3.png  used on input line 115.
+Package pdftex.def Info: Imagens/erro_lateral_Pista3.png  used on input line 132.
 (pdftex.def)             Requested size: 214.03738pt x 141.73434pt.
- [13 <./Imagens/Trajetoria_Troia.png> <./Imagens/Erro_Lateral_Troia.png> <./Imagens/Autodromo_UFLA.jpg>]) (./Seções/9-conclusão.tex [14 <./Imagens/Trajetoria_Pista3.png> <./Imagens/Erro_Lateral_Pista3.png>]) (./sbaconf.bbl) [15] [16
+ [16 <./Imagens/Autodromo_UFLA.jpg> <./Imagens/Trajetoria_Pista3.png> <./Imagens/Erro_Lateral_Pista3.png>]) (./Seções/10-conclusão.tex) (./sbaconf.bbl [17]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+) [18] [19
 
 
 ] (./sbaconf.aux)
 Package rerunfilecheck Info: File `sbaconf.out' has not changed.
-(rerunfilecheck)             Checksum: 807C14BC68EFE35B4F5A10BD4BE85D88;6409.
+(rerunfilecheck)             Checksum: 32FEC96931120451745B6A2D20900C25;7156.
  ) 
 Here is how much of TeX's memory you used:
- 22520 strings out of 480154
- 421864 string characters out of 5893787
- 718577 words of memory out of 5000000
- 39892 multiletter control sequences out of 15000+600000
+ 22552 strings out of 480154
+ 422758 string characters out of 5893787
+ 705191 words of memory out of 5000000
+ 39911 multiletter control sequences out of 15000+600000
  538030 words of font info for 82 fonts, out of 8000000 for 9000
  61 hyphenation exceptions out of 8191
- 84i,10n,80p,1506b,492s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 84i,10n,80p,2032b,494s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx8.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi7.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb>
-Output written on sbaconf.pdf (16 pages, 13954134 bytes).
+Output written on sbaconf.pdf (19 pages, 14997451 bytes).
 PDF statistics:
- 534 PDF objects out of 1000 (max. 8388607)
- 446 compressed objects within 5 object streams
- 107 named destinations out of 1000 (max. 500000)
- 349 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 576 PDF objects out of 1000 (max. 8388607)
+ 483 compressed objects within 5 object streams
+ 115 named destinations out of 1000 (max. 500000)
+ 383 words of extra memory for PDF output out of 10000 (max. 10000000)
 

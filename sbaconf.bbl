@@ -1,4 +1,4 @@
-\begin{thebibliography}{20}
+\begin{thebibliography}{19}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\urlprefix}{URL }
@@ -37,13 +37,6 @@ Bisnath, S. (2020).
 \newblock \urlprefix\url{https://igs.bkg.bund.de/ntrip/about}.
 \newblock Documenta{\c{c}}{\~a}o t{\'e}cnica online. Acesso em: 7 nov. 2026.
 
-\bibitem[{de~Lima(2015)}]{DeLima2015}
-de~Lima, D.A. (2015).
-\newblock \emph{Sensor-Based Navigation Applied to Intelligent Electric
-  Vehicles}.
-\newblock Ph.D. thesis, Universit{\'e} de Technologie de Compi{\`e}gne.
-\newblock \urlprefix\url{https://theses.hal.science/tel-01213868v1}.
-
 \bibitem[{Fernandes et~al.(2014)Fernandes, Souza, Pessin, Shinzato, Sales,
   Mendes, Prado, Klaser, Magalhaes, Hata, Pigatto, Branco, Grassi, Osorio, and
   Wolf}]{Fernandes2014}
@@ -63,15 +56,6 @@ Hoffmann, G.M., Tomlin, C.J., Montemerlo, M., and Thrun, S. (2007).
 \newblock In \emph{Proceedings of the American Control Conference}, 2296--2301.
 \newblock \doi{10.1109/ACC.2007.4282788}.
 
-\bibitem[{Jain(2025)}]{Jain2025}
-Jain, S. (2025).
-\newblock Kinematic vs. dynamic: Choosing the right model for vehicle
-  simulations.
-\newblock LinkedIn.
-\newblock
-  \urlprefix\url{https://www.linkedin.com/pulse/kinematic-vs-dynamic-choosing-right-model-vehicle-simulations-jain-g83gf/}.
-\newblock Publicado em 15 de abril de 2025.
-
 \bibitem[{Liao et~al.(2025)Liao, Zhang, Keung, Xiao, and Dai}]{Liao2025}
 Liao, Y., Zhang, J., Keung, J., Xiao, Y., and Dai, Y. (2025).
 \newblock Advancing autonomous driving system testing: Demands, challenges, and
@@ -79,13 +63,20 @@ Liao, Y., Zhang, J., Keung, J., Xiao, Y., and Dai, Y. (2025).
 \newblock \emph{Information and Software Technology}, 187, 107859.
 \newblock \doi{10.1016/j.infsof.2025.107859}.
 
+\bibitem[{Lima(2015)}]{DeLima2015}
+Lima, D.A. (2015).
+\newblock \emph{Sensor-Based Navigation Applied to Intelligent Electric
+  Vehicles}.
+\newblock Ph.D. thesis, Universit{\'e} de Technologie de Compi{\`e}gne.
+\newblock \urlprefix\url{https://theses.hal.science/tel-01213868v1}.
+
 \bibitem[{Lorenzato(2026)}]{Lorenzato2026}
 Lorenzato, V.H.D. (2026).
 \newblock Plataforma de testes aut{\^o}noma {VIDA}: Integra{\c{c}}{\~a}o da
   instrumenta{\c{c}}{\~a}o para a navega{\c{c}}{\~a}o e controle do
   ve{\'i}culo.
 \newblock Relat{\'o}rio final de inicia{\c{c}}{\~a}o cient{\'i}fica --
-  pibic/fapemig, Universidade Federal de Lavras, Lavras, MG.
+  {PIBIC/FAPEMIG}, Universidade Federal de Lavras, Lavras, MG.
 \newblock Per{\'i}odo de mar{\c{c}}o de 2025 a fevereiro de 2026.
 
 \bibitem[{Macenski et~al.(2022)Macenski, Foote, Gerkey, Lalancette, and

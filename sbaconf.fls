@@ -983,15 +983,6 @@ INPUT ./Imagens/Painel.jpg
 INPUT Imagens/Painel.jpg
 INPUT ./Imagens/Painel.jpg
 INPUT ./Imagens/Painel.jpg
-INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmr8.tfm
-INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmr6.tfm
-INPUT /usr/share/texmf/fonts/tfm/public/lm/lmmi8.tfm
-INPUT /usr/share/texmf/fonts/tfm/public/lm/lmmi6.tfm
-INPUT /usr/share/texmf/fonts/tfm/public/lm/lmsy8.tfm
-INPUT /usr/share/texmf/fonts/tfm/public/lm/lmsy6.tfm
-INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmbx8.tfm
-INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmbx6.tfm
-INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx8.tfm
 INPUT ./Seções/4-Arquitetura_Computacional.tex
 INPUT ./Seções/4-Arquitetura_Computacional.tex
 INPUT ./Seções/4-Arquitetura_Computacional.tex
@@ -1026,6 +1017,15 @@ INPUT ./Imagens/Malha de controle esterçamento.png
 INPUT Imagens/Malha de controle esterçamento.png
 INPUT ./Imagens/Malha de controle esterçamento.png
 INPUT ./Imagens/Malha de controle esterçamento.png
+INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmr8.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmr6.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/lm/lmmi8.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/lm/lmmi6.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/lm/lmsy8.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/lm/lmsy6.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmbx8.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmbx6.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx8.tfm
 INPUT ./Imagens/Malha de controle longitudinal.png
 INPUT ./Imagens/Malha de controle longitudinal.png
 INPUT Imagens/Malha de controle longitudinal.png
@@ -1045,13 +1045,19 @@ INPUT Seções/7-Seguimento_Trajetória.tex
 INPUT ./Seções/7-Seguimento_Trajetória.tex
 INPUT ./Seções/7-Seguimento_Trajetória.tex
 INPUT Seções/7-Seguimento_Trajetória.tex
-INPUT ./Seções/8-Resultados_experimentais.tex
-INPUT ./Seções/8-Resultados_experimentais.tex
-INPUT ./Seções/8-Resultados_experimentais.tex
-INPUT Seções/8-Resultados_experimentais.tex
-INPUT ./Seções/8-Resultados_experimentais.tex
-INPUT ./Seções/8-Resultados_experimentais.tex
-INPUT Seções/8-Resultados_experimentais.tex
+INPUT ./Seções/8 -Interface_operacao.tex
+INPUT Seções/8 -Interface_operacao.tex
+INPUT ./Seções/8 -Interface_operacao.tex
+INPUT Seções/8 -Interface_operacao.tex
+INPUT ./Imagens/Painel_de_operacao.png
+INPUT ./Imagens/Painel_de_operacao.png
+INPUT Imagens/Painel_de_operacao.png
+INPUT ./Imagens/Painel_de_operacao.png
+INPUT ./Imagens/Painel_de_operacao.png
+INPUT ./Seções/9-Resultados_experimentais.tex
+INPUT Seções/9-Resultados_experimentais.tex
+INPUT ./Seções/9-Resultados_experimentais.tex
+INPUT Seções/9-Resultados_experimentais.tex
 INPUT /usr/share/texmf/tex/latex/lm/ts1lmr.fd
 INPUT /usr/share/texmf/tex/latex/lm/ts1lmr.fd
 INPUT /usr/share/texmf/tex/latex/lm/ts1lmr.fd
@@ -1067,6 +1073,11 @@ INPUT ./Imagens/Resposta PI velocidadade longitudinal.png
 INPUT Imagens/Resposta PI velocidadade longitudinal.png
 INPUT ./Imagens/Resposta PI velocidadade longitudinal.png
 INPUT ./Imagens/Resposta PI velocidadade longitudinal.png
+INPUT ./Imagens/pwm_parcelas_pi_velocidade.png
+INPUT ./Imagens/pwm_parcelas_pi_velocidade.png
+INPUT Imagens/pwm_parcelas_pi_velocidade.png
+INPUT ./Imagens/pwm_parcelas_pi_velocidade.png
+INPUT ./Imagens/pwm_parcelas_pi_velocidade.png
 INPUT ./Imagens/Trajetoria_Troia.png
 INPUT ./Imagens/Trajetoria_Troia.png
 INPUT Imagens/Trajetoria_Troia.png
@@ -1092,13 +1103,13 @@ INPUT ./Imagens/Erro_Lateral_Pista3.png
 INPUT Imagens/Erro_Lateral_Pista3.png
 INPUT ./Imagens/Erro_Lateral_Pista3.png
 INPUT ./Imagens/Erro_Lateral_Pista3.png
-INPUT ./Seções/9-conclusão.tex
-INPUT ./Seções/9-conclusão.tex
-INPUT ./Seções/9-conclusão.tex
-INPUT Seções/9-conclusão.tex
-INPUT ./Seções/9-conclusão.tex
-INPUT ./Seções/9-conclusão.tex
-INPUT Seções/9-conclusão.tex
+INPUT ./Seções/10-conclusão.tex
+INPUT ./Seções/10-conclusão.tex
+INPUT ./Seções/10-conclusão.tex
+INPUT Seções/10-conclusão.tex
+INPUT ./Seções/10-conclusão.tex
+INPUT ./Seções/10-conclusão.tex
+INPUT Seções/10-conclusão.tex
 INPUT ./sbaconf.bbl
 INPUT sbaconf.bbl
 INPUT ./sbaconf.bbl

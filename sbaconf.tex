@@ -90,6 +90,13 @@
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 
+% Largura do bloco Abstract/Resumo/Palavras-chave (padrão da classe: .8\textwidth)
+% e correção do limite de altura do frontmatter na 1ª página (a classe usava
+% um valor ~100pt menor que \textheight, empurrando as palavras-chave para a pág. 2)
+\makeatletter
+\def\@abstractwidth{.85\textwidth}
+\AtBeginDocument{\t@xtheight\textheight \advance\t@xtheight-\splittopskip}
+\makeatother
 
 
 \begin{document}
@@ -108,7 +115,7 @@
 	
 \begin{frontmatter}
 
-\title{Seguimento de trajetória em veículo autônomo: implementação e validação experimental com controlador Stanley e localização GNSS} 
+\title{Integração e validação da plataforma experimental autônoma VIDA por meio de fusão sensorial e controle de trajetória} 
 % Title, preferably not more than 10 words.
 
 
@@ -124,23 +131,24 @@
 \selectlanguage{english}
 \renewcommand{\abstractname}{{\bf Abstract:~}}
 \begin{abstract}                % Abstract of not more than 250 words.
-Autonomous trajectory tracking requires the integration of localization, state estimation, and motion control systems. This work presents the implementation and experimental validation of an autonomous navigation system on the VIDA electric vehicle platform, developed at the Federal University of Lavras. The proposed solution employs a distributed computing architecture consisting of an ESP32 microcontroller, an Odroid N2 embedded computer, and a notebook, integrated through ROS 2. Low-level control is performed using a PI controller for longitudinal velocity and a PID controller for steering angle, while localization combines measurements from wheel encoders, an LVDT sensor, a gyroscope, and a GNSS receiver with RTK corrections through an Extended Kalman Filter (EKF). Trajectory tracking is performed using a modified Stanley controller incorporating curvature feedforward compensation and yaw-rate damping. Experimental validation was conducted on two real-world courses, approximately 89 m and 281 m long, achieving lateral root mean square errors (RMSE) of 0.167 m and 0.129 m, respectively. The results demonstrate the feasibility of the proposed architecture and the platform's capability to autonomously follow predefined trajectories, providing a foundation for future research in ground vehicle navigation and control.
+Autonomous vehicle research requires extensive applied knowledge and experimental capabilities, often limited by access to affordable testing platforms. Commercial vehicles designed for this purpose are expensive and difficult to access, hindering research progress and the training of qualified professionals. To address this challenge, the Land Mobility Laboratory (LMT) at the Federal University of Lavras (UFLA) is developing the Intelligent Vehicle for Applied Development (VIDA), a small-scale electric vehicle for educational and scientific purposes. This work aims to integrate VIDA's subsystems into a unified architecture and validate it through an autonomous navigation task. The proposed solution employs a distributed computing architecture consisting of an ESP32 microcontroller, an Odroid N2 embedded computer, and a laptop, integrated through ROS 2. Low-level control employs proportional and integral (PI) actions for longitudinal velocity and proportional, integral, and derivative (PID) actions for steering. Localization combines measurements from wheel encoders, an LVDT sensor, an IMU, and a GNSS receiver with RTK corrections through an Extended Kalman Filter (EKF). Autonomous navigation is performed using the Stanley controller, incorporating curvature feedforward compensation and yaw-rate damping. Experimental validation involved two real-world routes, achieving lateral root mean square errors (RMSE) of 16.7 cm and 12.9 cm, respectively. The results demonstrate the feasibility of the developed architecture and the platform's ability to follow trajectories autonomously, establishing a foundation for future research on autonomous ground vehicles.
+
 
 
 \vskip 1mm% não altere esse espaçamento
 \selectlanguage{brazil}
-{\noindent \bf Resumo}: O seguimento autônomo de trajetórias exige a integração entre sistemas de localização, estimação de estados e controle de movimento. Este trabalho apresenta a implementação e a validação experimental de um sistema de navegação autônoma na plataforma elétrica VIDA, desenvolvida pela Universidade Federal de Lavras. A solução utiliza uma arquitetura computacional distribuída, composta por um microcontrolador ESP32, um computador embarcado Odroid N2 e um notebook, integrados por meio do ROS 2. O controle de baixo nível emprega controladores PI para velocidade longitudinal e PID para esterçamento, enquanto a localização combina medições de encoders, sensor LVDT, giroscópio e receptor GNSS com correções RTK por meio de um filtro de Kalman estendido. O seguimento de trajetórias é realizado por um controlador Stanley, incorporando compensação antecipativa de curvatura e amortecimento da velocidade angular. A validação experimental compreendeu dois percursos reais, com comprimentos aproximados de 89 m e 281 m, nos quais foram obtidos erros laterais quadráticos médios de 0,167 m e 0,129 m, respectivamente. Os resultados demonstram a viabilidade da arquitetura desenvolvida e a capacidade da plataforma de executar trajetórias autônomas, estabelecendo uma base para futuras pesquisas em navegação e controle de veículos terrestres.
+{\noindent \bf Resumo}: O estudo de veículos autônomos requer amplo conhecimento aplicado e capacidade experimental muitas vezes limitadas à disponibilidade de uma plataforma de testes acessível. Veículos comerciais para esse propósito são caros e de difícil acesso, dificultando o avanço de pesquisas e formação de mão de obra especializada. É com esse intuito que o Laboratório de Mobilidade Terrestre (LMT) da Universidade Federal de Lavras (UFLA) está desenvolvendo o Veículo Inteligente de Desenvolvimento Aplicado (VIDA), um carro elétrico em escala reduzida para fins didáticos e científico. Este trabalho tem como objetivo realizar a integração dos subsistemas que compõem o VIDA em uma arquitetura unificada e validá-la por meio de uma tarefa de navegação autônoma. A solução proposta utiliza uma arquitetura computacional distribuída, composta por um microcontrolador ESP32, um computador embarcado Odroid N2 e um notebook, integrados por meio do framework ROS 2. O controle de baixo nível emprega ações proporcional e integral (PI) na velocidade longitudinal, e ações proporcional, integral e  derivativa (PID) no controle de esterçamento. Enquanto isso, a localização combina medições de sensores diversos, como encoders, LVDT, IMU e receptor GNSS com correções RTK, por meio de um filtro de Kalman estendido (EKF). A tarefa de navegação é realizada através controlador Stanley, incorporando compensação antecipativa de curvatura e amortecimento da velocidade angular. A validação experimental compreendeu dois percursos reais, nos quais foram obtidos os erros quadráticos médios em relação ao caminho desejado de 16,7 cm e 12,9 cm, respectivamente. Os resultados demonstram a viabilidade da arquitetura desenvolvida e a capacidade da plataforma de executar trajetórias autônomas, estabelecendo uma base para futuras pesquisas em veículos autônomos terrestres.
 \end{abstract}
 
 \selectlanguage{english}
 
 
 \begin{keyword}
-Autonomous vehicles; Trajectory tracking; Stanley controller; Sensor fusion; GNSS RTK; ROS 2.
+Autonomous vehicles; Trajectory tracking; Stanley controller; Sensor fusion.
 
-\vskip 1mm% não altere esse espaçamento
+\vskip 1mm
 \selectlanguage{brazil}
-{\noindent\it Palavras-chaves:} Veículos autônomos; Seguimento de trajetórias; Controlador Stanley; Fusão sensorial; GNSS RTK; ROS 2.
+{\noindent\it Palavras-chaves:} Veículos autônomos; Seguimento de trajetórias; Controlador Stanley; Fusão sensorial.
 \end{keyword}
 
 
@@ -200,6 +208,7 @@ Five to ten keywords, preferably chosen from the IFAC keyword list.
 %===============================================================================
 %===============================================================================
 
+\clearpage % Introdução começa sempre na página 2
 \input{Seções/1-Introdução}
 \input{Seções/2-Fundamentação_Teórica}
 \input{Seções/3-Plataforma_Vida}
@@ -207,8 +216,9 @@ Five to ten keywords, preferably chosen from the IFAC keyword list.
 \input{Seções/5-Controladores_Baixo_Nivel}
 \input{Seções/6-Estimação_de_Estado}
 \input{Seções/7-Seguimento_Trajetória}
-\input{Seções/8-Resultados_experimentais}
-\input{Seções/9-conclusão}
+\input{Seções/8 -Interface_operacao.tex}
+\input{Seções/9-Resultados_experimentais.tex}
+\input{Seções/10-conclusão}
 
 \bibliography{ifacconf}     
 

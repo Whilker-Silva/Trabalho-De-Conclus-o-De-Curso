@@ -1,55 +1,48 @@
 \section{Fundamentação teórica}
 \label{sec:fundamentacao}
 
-O desenvolvimento de sistemas de navegação autônoma envolve a integração de diferentes conceitos relacionados à modelagem do movimento, localização e controle de veículos. Nesta seção, são apresentados os fundamentos teóricos necessários à compreensão da solução desenvolvida, abrangendo o modelo cinemático de bicicleta, o posicionamento GNSS com correções RTK, a estimação de estados por filtro de Kalman estendido e o controle de trajetória pelo método Stanley.
+O desenvolvimento de veículos inteligentes envolve a integração de diferentes conceitos relacionados, à percepção do ambiente, localização, planejamento de movimento e controle, sendo necessária uma arquitetura unificada e eficiente para executar todas as tarefas. Nesta seção, são apresentados os fundamentos teóricos necessários à compreensão da solução desenvolvida, abrangendo o modelo cinemático de bicicleta, o posicionamento GNSS (Sistema Global de Navegação por Satélite) com correções RTK (Cinemática em Tempo Real), a estimação de estados por filtro de Kalman estendido, o controle de trajetória pelo método Stanley \citet{Thrun2006}, além de exemplos de veículos autônomos e suas respectivas arquiteturas de sistema.
 
 \subsection{Modelo cinemático de bicicleta}
 \label{subsec:modelo_bicicleta}
 
-A modelagem matemática do movimento de veículos terrestres permite descrever seu comportamento a partir das relações entre posição, orientação, velocidade e esterçamento. Entre as representações utilizadas para essa finalidade, destaca-se o modelo cinemático de bicicleta, que simplifica a geometria de um veículo de quatro rodas por meio de duas rodas equivalentes, posicionadas nos centros dos eixos dianteiro e traseiro \citep{Snider2009}. 
+A modelagem matemática do movimento de veículos terrestres permite descrever seu comportamento a partir das relações entre posição, orientação, velocidade e esterçamento. Entre as representações utilizadas para essa finalidade, destaca-se o modelo cinemático de bicicleta, que simplifica a geometria de direção Ackermann um veículo de quatro rodas por meio de duas rodas equivalentes, posicionadas nos centros dos eixos dianteiro e traseiro \citep{Snider2009}. 
 
-O modelo considera o movimento do veículo em um plano bidimensional, assumindo rolamento sem deslizamento lateral dos pneus. Dessa forma, os efeitos dinâmicos associados às forças laterais, à transferência de carga e à interação entre os pneus e o solo não são representados explicitamente. Essa aproximação é especialmente adequada para descrever o movimento de veículos em condições de baixa velocidade e manobras nas quais os efeitos de deslizamento lateral podem ser desprezados. 
+O modelo considera o movimento do veículo em um plano bidimensional, assumindo rolamento sem deslizamento lateral dos pneus. Dessa forma, os efeitos dinâmicos associados às forças laterais, à transferência de carga e à interação entre os pneus e o solo, não são representados explicitamente. Essa aproximação é especialmente adequada para descrever o movimento de veículos em condições de baixa velocidade e manobras nas quais os efeitos de deslizamento lateral podem ser desprezados. 
 
-Adotando como referência o ponto central do eixo traseiro,
-o movimento do veículo pode ser descrito pelas seguintes
-equações cinemáticas:
+Adotando como referência o ponto central do eixo traseiro e um veículo com tração nas rodas traseiras, o movimento do mesmo pode ser descrito por:
 
 \begin{equation}
-    \dot{x} = v \cos(\theta)
-    \label{eq:modelo_x}
+\label{eq:modelo_cinematico}
+\left\{
+\begin{aligned}
+\dot{x} &= v\cos(\theta) \\
+\dot{y} &= v\sin(\theta) \\
+\dot{\theta} &= \frac{v}{L}\tan(\delta)\\
+\end{aligned}
+\right.
 \end{equation}
 
-\begin{equation}
-    \dot{y} = v \sin(\theta)
-    \label{eq:modelo_y}
-\end{equation}
-
-\begin{equation}
-    \dot{\theta} = \frac{v}{L}\tan(\delta)
-    \label{eq:modelo_theta}
-\end{equation}
-
-em que $x$ e $y$ representam as coordenadas da posição do veículo no referencial global, $\theta$ corresponde ao ângulo de orientação em relação a esse referencial, $v$ é a velocidade longitudinal, $L$ representa a distância entre os eixos dianteiro e traseiro e $\delta$ corresponde ao ângulo de esterçamento equivalente das rodas dianteiras.
+em que $x$ e $y$ representam as coordenadas da posição do veículo no referencial global, $\theta$ corresponde ao ângulo de orientação em relação a esse referencial, $v$ é a velocidade linear, $L$ representa a distância entre os eixos dianteiro e traseiro e $\delta$ corresponde ao ângulo de esterçamento equivalente das rodas dianteiras.
 
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.85\columnwidth]{Imagens/Modelo cinemático de bicicleta.png}
-    \caption{Representação geométrica do modelo cinemático
-    de bicicleta. Fonte: \citet{Jain2025}.}
+    \caption{\textcolor{red}{Representação geométrica do modelo cinemático de bicicleta.}}
     \label{fig:modelo_bicicleta}
 \end{figure}
 
-As equações descrevem a evolução da posição e da orientação do veículo em função da velocidade longitudinal e do ângulo de esterçamento. Em particular, a taxa de variação da orientação depende diretamente da velocidade e da tangente do ângulo de esterçamento, sendo inversamente proporcional à distância entre os eixos \citep{Snider2009,Massera2014}. 
+As equações descrevem as velocidades de translação e de rotação do veículo em função da velocidade longitudinal e do ângulo de esterçamento. A partir da integração dessas relações ao longo do tempo, é possível determinar a evolução da posição e da orientação do veículo. Em particular, a taxa de variação da orientação depende diretamente da velocidade e da tangente do ângulo de esterçamento, sendo inversamente proporcional à distância entre os eixos \citep{Snider2009,Massera2014}. 
 
 Embora simplificado, o modelo cinemático de bicicleta fornece uma representação matemática útil para o estudo da movimentação de veículos terrestres, constituindo uma base para o desenvolvimento de estratégias de localização, estimação de estados e controle de trajetórias.
 
 \subsection{Posicionamento GNSS com RTK}
 
-Os sistemas globais de navegação por satélite (\textit{Global Navigation Satellite Systems} -- GNSS) permitem determinar a posição de um receptor a partir de sinais transmitidos por diferentes constelações de satélites, como GPS, GLONASS, Galileo e BeiDou. Entretanto, a precisão do posicionamento convencional é limitada por fatores como erros de órbita e relógio dos satélites, atrasos atmosféricos e efeitos de multicaminhamento dos sinais. 
+Os sistemas globais de navegação por satélite (\textit{Global Navigation Satellite Systems} -- GNSS) permitem determinar a posição de um receptor a partir de sinais transmitidos por diferentes constelações de satélites, como pelo americano GPS, o russo GLONASS, o europeu Galileo e o chinês BeiDou. Entretanto, a precisão do posicionamento convencional é limitada por fatores como erros de órbita e no relógio dos satélites e receptores, atrasos atmosféricos e efeitos de multicaminhamento dos sinais. 
  
 Para aplicações que exigem maior precisão, destaca-se a técnica RTK (\textit{Real-Time Kinematic}), baseada no posicionamento relativo entre um receptor móvel (\textit{rover}) e uma estação de referência com coordenadas conhecidas. A técnica utiliza observações da fase da portadora dos sinais GNSS e informações de correção para reduzir erros comuns às medições, possibilitando precisão centimétrica em condições favoráveis \citep{Bisnath2020}.  
 
-A transmissão dessas correções pode ser realizada por meio do protocolo NTRIP (\textit{Networked Transport of RTCM via Internet Protocol}), que permite distribuir dados GNSS em tempo real pela internet. Nesse processo, as informações disponibilizadas por estações de referência são encaminhadas ao receptor móvel, frequentemente no formato RTCM, permitindo a aplicação das correções durante o posicionamento \citep{BKG2026NTRIP}. 
+A transmissão dessas correções pode ser realizada por meio do protocolo NTRIP (\textit{Networked Transport of RTCM via Internet Protocol}), que permite distribuir dados GNSS em tempo real pela internet. Nesse processo, as informações disponibilizadas por estações de referência são encaminhadas ao receptor móvel, permitindo a aplicação das correções durante o posicionamento \citep{BKG2026NTRIP}. 
  
 A qualidade da solução RTK depende de fatores como a disponibilidade de sinais GNSS, a qualidade das observações e o recebimento adequado das correções. Entre os estados possíveis estão o RTK \textit{float}, no qual as ambiguidades da fase da portadora ainda não foram resolvidas como valores inteiros, e o RTK \textit{fixed}, no qual essa resolução foi obtida, permitindo maior precisão de posicionamento \citep{Ublox2025ZEDF9R}.
 
@@ -64,7 +57,7 @@ Na etapa de predição, o estado estimado é propagado a partir do modelo de mov
 
 \begin{equation}
     \hat{\mathbf{x}}_{k}^{-} =
-    f(\hat{\mathbf{x}}_{k-1},\mathbf{u}_{k-1})
+    f(\hat{\mathbf{x}}_{k-1},\mathbf{u}_{k-1})\,.
     \label{eq:ekf_predicao}
 \end{equation}
 
@@ -75,7 +68,7 @@ A covariância associada à predição é calculada por:
 \begin{equation}
     \mathbf{P}_{k}^{-} =
     \mathbf{F}_{k}\mathbf{P}_{k-1}
-    \mathbf{F}_{k}^{T}+\mathbf{Q}_{k}
+    \mathbf{F}_{k}^{T}+\mathbf{Q}_{k}\,.
     \label{eq:ekf_cov_predicao}
 \end{equation}
 
@@ -89,7 +82,7 @@ Na etapa de correção, as medições dos sensores são incorporadas à estimati
     \left(
     \mathbf{H}_{k}\mathbf{P}_{k}^{-}
     \mathbf{H}_{k}^{T}+\mathbf{R}_{k}
-    \right)^{-1}
+    \right)^{-1} \,.
     \label{eq:ekf_ganho}
 \end{equation}
 
@@ -101,8 +94,8 @@ A estimativa do estado é então atualizada por:
     \mathbf{K}_{k}
     \left[
     \mathbf{z}_{k}-
-    h(\hat{\mathbf{x}}_{k}^{-})
-    \right]
+    h(\hat{\mathbf{x}}_{k}^{-}) 
+    \right]\,.
     \label{eq:ekf_correcao}
 \end{equation}
 
@@ -116,7 +109,7 @@ Por fim, a matriz de covariância é atualizada pela forma de Joseph, que contri
     (\mathbf{I}-\mathbf{K}_{k}\mathbf{H}_{k})
     \mathbf{P}_{k}^{-}
     (\mathbf{I}-\mathbf{K}_{k}\mathbf{H}_{k})^{T}\\
-    &+\mathbf{K}_{k}\mathbf{R}_{k}\mathbf{K}_{k}^{T}
+    &+\mathbf{K}_{k}\mathbf{R}_{k}\mathbf{K}_{k}^{T}\,.
 \end{aligned}
     \label{eq:ekf_cov_correcao}
 \end{equation}
@@ -125,9 +118,9 @@ Sendo assim, o EKF permite combinar informações de diferentes sensores, ponder
 
 \subsection{Controlador Stanley}
 
-O controlador Stanley é um método de controle lateral não linear utilizado para o seguimento de trajetórias em veículos autônomos. Desenvolvido pela equipe da Universidade de Stanford, o método foi empregado no veículo vencedor do DARPA Grand Challenge de 2005 \citep{Hoffmann2007,Thrun2006}. 
+O controlador Stanley é um método de controle lateral não linear utilizado para o seguimento de trajetórias em veículos autônomos. Desenvolvido pela equipe da Universidade de Stanford, o método foi empregado no veículo vencedor do DARPA Grand Challenge de 2005 \citep{Thrun2006}. 
 
-Sua formulação considera dois erros geométricos: o erro de orientação ($\psi$), definido pela diferença angular entre a direção da trajetória de referência e a orientação do veículo, e o erro lateral ($e$), correspondente ao deslocamento transversal do centro do eixo dianteiro em relação à trajetória desejada \citep{Snider2009}. 
+Sua formulação considera dois erros geométricos: o erro de orientação ($\psi$), definido pela diferença angular entre a direção da trajetória de referência e a orientação do veículo, e o erro lateral ($e$), correspondente ao deslocamento transversal do centro do eixo dianteiro em relação à trajetória desejada \citep{Thrun2006}. 
 
 \begin{figure}[htb]
     \centering
@@ -141,7 +134,7 @@ A lei de controle pode ser expressa, adotando o erro lateral positivo quando o v
 \begin{equation}
     \delta =
     \psi -
-    \arctan\left(\frac{k e}{v}\right)
+    \arctan\left(\frac{k e}{v}\right)\,.
     \label{eq:stanley}
 \end{equation}
 
@@ -149,19 +142,27 @@ em que $\delta$ representa o ângulo de esterçamento comandado, $k$ é um ganho
 
 O primeiro termo atua no alinhamento da orientação do veículo com a trajetória, enquanto o segundo corrige o deslocamento lateral. A influência desse último termo diminui com o aumento da velocidade, para um mesmo erro lateral \citep{Hoffmann2007}. 
 
-Em aplicações práticas, a formulação pode incorporar modificações destinadas a melhorar o comportamento do controlador. Entre elas, destaca-se a introdução de um parâmetro de suavização $k_s$ no denominador, que limita a sensibilidade da correção lateral em velocidades próximas de zero. 
+Em aplicações práticas, a formulação pode incorporar modificações destinadas a melhorar o comportamento do controlador. Entre elas, destaca-se a introdução de um parâmetro de suavização $k_s$ no denominador, que limita a sensibilidade da correção lateral em velocidades próximas de zero \citep{Hoffmann2007}. 
 
 Além disso, pode-se empregar uma ação antecipativa (\textit{feedforward}) baseada na curvatura $\kappa$ da trajetória, utilizando a relação geométrica entre a curvatura e o esterçamento. Essa compensação pode ser expressa por: 
 
 \begin{equation}
     \delta_{ff} =
-    k_{ff}\arctan(L_{ff}\kappa)
+    k_{ff}\arctan(L_{ff}\kappa)\,.
     \label{eq:stanley_feedforward}
 \end{equation}
 
-em que $k_{ff}$ representa o ganho antecipativo e $L_{ff}$ corresponde ao entre-eixos considerado na compensação da curvatura. 
+em que $k_{ff}$ representa o ganho antecipativo e $L_{ff}$ corresponde ao entre-eixos considerado na compensação da curvatura. Também podem ser incorporados termos de amortecimento relacionados à velocidade angular do veículo, com o objetivo de reduzir oscilações do comando de esterçamento \citep{Hoffmann2007}. 
 
-Também podem ser incorporados termos de amortecimento relacionados à velocidade angular do veículo, com o objetivo de reduzir oscilações do comando de esterçamento \citep{Hoffmann2007}. 
+Dessa forma, o método Stanley permite determinar o esterçamento a partir dos desvios geométricos em relação à trajetória, podendo ser complementado por estratégias que considerem a curvatura do percurso e o comportamento da orientação do veículo. 
 
-Dessa forma, o método Stanley permite determinar o esterçamento a partir dos desvios geométricos em relação à trajetória, podendo ser complementado por estratégias que considerem a curvatura do percurso e o comportamento de orientação do veículo. 
+\subsection{Exemplos de Arquiteturas de Veículos Autônomos}
+\label{subsec:arquiteturas_referencia}
 
+O desenvolvimento de veículos autônomos exige a integração de diferentes subsistemas responsáveis por percepção, localização, planejamento e controle. Para organizar essas funções, diferentes plataformas experimentais adotam arquiteturas modulares e distribuídas, permitindo separar responsabilidades, estabelecer mecanismos de comunicação e integrar componentes com diferentes requisitos computacionais.
+
+O veículo Stanley, desenvolvido pela Universidade de Stanford, utilizava uma arquitetura distribuída, organizada em módulos de software responsáveis por funções como percepção do ambiente, localização, planejamento e controle. Essa organização permitia executar diferentes processos de maneira integrada, combinando informações dos sensores com as decisões de navegação e os comandos de atuação do veículo \citep{Thrun2006}.
+
+No Brasil, o projeto CaRINA, desenvolvido pela Universidade de São Paulo (USP), adotou uma arquitetura modular baseada no ROS, permitindo integrar componentes de hardware e software por meio de mecanismos padronizados de comunicação. Essa abordagem favoreceu o desenvolvimento independente dos subsistemas e sua integração em diferentes configurações experimentais \citep{Fernandes2014}.
+
+O veículo IARA, desenvolvido pela Universidade Federal do Espírito Santo (UFES), também apresenta uma arquitetura organizada em subsistemas especializados, abrangendo percepção, localização, tomada de decisão, planejamento de movimento e controle. A integração desses componentes permite transformar as informações obtidas pelos sensores em decisões de navegação e comandos de atuação, possibilitando a operação autônoma do veículo \citep{Badue2021}.
