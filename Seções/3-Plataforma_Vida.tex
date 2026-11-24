@@ -7,14 +7,14 @@ A plataforma foi concebida para apoiar a formação de alunos no contexto dos ve
 
 A plataforma VIDA já se encontrava em desenvolvimento antes do início deste trabalho, contando com uma estrutura mecânica e diferentes subsistemas previamente implementados. Ao longo deste trabalho, foram realizadas modificações e melhorias na plataforma, visando adequá-la às necessidades de integração e navegação autônoma. As subseções seguintes apresentam a configuração atual do veículo, destacando os componentes preexistentes e as alterações realizadas durante o desenvolvimento deste trabalho.
 
-A Figura~\ref{fig:vida_atual} apresenta a plataforma VIDA em sua configuração atual, utilizada neste trabalho.
-
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.72\columnwidth]{Imagens/Vida 1.jpg}
-   \caption{\textcolor{red}{Estado atual da plataforma VIDA, destacando os sensores e hardwares que a compõe. Fonte: Acervo do autor.}}  
+    \includegraphics[width=0.85\columnwidth]{Imagens/Vida 1.jpg}
+    \caption{Vista esquemática da configuração atual da plataforma VIDA. Fonte: Acervo do autor.}
     \label{fig:vida_atual}
 \end{figure}
+
+Na Figura~\ref{fig:vida_atual}, os marcadores 1 a 4 indicam os sensores: os encoders das rodas dianteiras (1), o encoder do eixo traseiro (2), o sensor de deslocamento linear LVDT (3) e o receptor GNSS (4). Os marcadores 5 a 7 correspondem aos atuadores: o motor de esterçamento (5), o motor de tração (6) e o freio (7). Por fim, os marcadores 8 a 11 identificam o hardware de processamento e o painel de comando: o microcontrolador ESP32 (8), a Odroid N2 (9), o notebook (10) e o painel elétrico (11).
 
 \subsection{Estrutura Mecânica}
 
@@ -36,9 +36,14 @@ O sistema de esterçamento também passou por uma modificação, realizada no â
 
 Uma das modificações mais importantes deste trabalho foi no sistema elétrico do VIDA, o qual passou por uma reformulação para atender às necessidades de alimentação, acionamento e integração dos componentes embarcados, além do correto isolamento da parte de acionamento da instrumentação. A arquitetura implementada utiliza quatro baterias de chumbo ácido de 12 V, sendo três conectadas em série para formar um banco de 36 V, destinado aos circuitos de potência, e uma bateria independente de 12 V, responsável pela alimentação dos sistemas eletrônicos e periféricos.
 
-\textcolor{red}{adcionar diagrama simplificado do sistema elétrico e citar apendico do diagrama (subir na nuvem e colocar link)}
+A distribuição de energia foi organizada em um painel elétrico centralizado, que reúne os dispositivos de proteção, os conversores de tensão e os circuitos de comando. Os bancos de alimentação possuem entradas distintas no painel, buscando reduzir a interferência dos acionamentos de potência sobre os circuitos eletrônicos. O esquema elétrico do sistema de alimentação e distribuição de energia é mostrado na Figura~\ref{fig:diagrama_eletrico_simplificado}.
 
-A distribuição de energia foi organizada em um painel elétrico centralizado, que reúne os dispositivos de proteção, os conversores de tensão e os circuitos de comando. Os bancos de alimentação possuem entradas distintas no painel, buscando reduzir a interferência dos acionamentos de potência sobre os circuitos eletrônicos. O esquema elétrico completo do sistema de alimentação e distribuição de energia é apresentado no Apêndice~\ref{ap:esquema_eletrico}.
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.85\columnwidth]{Imagens/Diagrama elétrico simplificado.pdf}
+    \caption{Diagrama simplificado do sistema elétrico do VIDA. Fonte: Elaborado pelo autor.}
+    \label{fig:diagrama_eletrico_simplificado}
+\end{figure}
 
 No circuito auxiliar, a tensão proveniente da bateria de 12 V é inicialmente elevada para 18 V por meio de um conversor CC-CC. Essa tensão é utilizada diretamente na alimentação do sensor LVDT (\textit{Linear Variable Differential Transformer}) e como entrada de um segundo estágio de regulação, responsável por fornecer uma tensão estabilizada de 12 V aos dispositivos periféricos. A partir dessa saída, um terceiro conversor reduz a tensão para 5 V, utilizada na alimentação dos componentes que operam nesse nível de tensão.
 
@@ -50,9 +55,10 @@ A Figura~\ref{fig:painel_eletrico_vida} apresenta a implementação física do p
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.85\columnwidth]{Imagens/Painel.jpg}
+    \includegraphics[width=0.9\columnwidth]{Imagens/Painel.jpg}
     \caption{Vista interna do painel elétrico do VIDA. Fonte: Acervo do autor.}
     \label{fig:painel_eletrico_vida}
+    \vspace{8pt}
 \end{figure}
 
 

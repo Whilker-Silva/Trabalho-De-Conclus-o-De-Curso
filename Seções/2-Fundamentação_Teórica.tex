@@ -28,7 +28,7 @@ em que $x$ e $y$ representam as coordenadas da posição do veículo no referenc
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.85\columnwidth]{Imagens/Modelo cinemático de bicicleta.png}
-    \caption{\textcolor{red}{Representação geométrica do modelo cinemático de bicicleta.}}
+    \caption{Representação geométrica do modelo cinemático de bicicleta. Fonte: \citet{Snider2009}.}
     \label{fig:modelo_bicicleta}
 \end{figure}
 
@@ -57,7 +57,7 @@ Na etapa de predição, o estado estimado é propagado a partir do modelo de mov
 
 \begin{equation}
     \hat{\mathbf{x}}_{k}^{-} =
-    f(\hat{\mathbf{x}}_{k-1},\mathbf{u}_{k-1})\,.
+    f(\hat{\mathbf{x}}_{k-1},\mathbf{u}_{k-1}),
     \label{eq:ekf_predicao}
 \end{equation}
 
@@ -68,7 +68,7 @@ A covariância associada à predição é calculada por:
 \begin{equation}
     \mathbf{P}_{k}^{-} =
     \mathbf{F}_{k}\mathbf{P}_{k-1}
-    \mathbf{F}_{k}^{T}+\mathbf{Q}_{k}\,.
+    \mathbf{F}_{k}^{T}+\mathbf{Q}_{k},
     \label{eq:ekf_cov_predicao}
 \end{equation}
 
@@ -95,7 +95,7 @@ A estimativa do estado é então atualizada por:
     \left[
     \mathbf{z}_{k}-
     h(\hat{\mathbf{x}}_{k}^{-}) 
-    \right]\,.
+    \right],
     \label{eq:ekf_correcao}
 \end{equation}
 
@@ -134,7 +134,7 @@ A lei de controle pode ser expressa, adotando o erro lateral positivo quando o v
 \begin{equation}
     \delta =
     \psi -
-    \arctan\left(\frac{k e}{v}\right)\,.
+    \arctan\left(\frac{k e}{v}\right),
     \label{eq:stanley}
 \end{equation}
 
@@ -148,7 +148,7 @@ Além disso, pode-se empregar uma ação antecipativa (\textit{feedforward}) bas
 
 \begin{equation}
     \delta_{ff} =
-    k_{ff}\arctan(L_{ff}\kappa)\,.
+    k_{ff}\arctan(L_{ff}\kappa),
     \label{eq:stanley_feedforward}
 \end{equation}
 

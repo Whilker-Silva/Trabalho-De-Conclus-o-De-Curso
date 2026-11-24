@@ -220,14 +220,26 @@ Five to ten keywords, preferably chosen from the IFAC keyword list.
 \input{Seções/9-Resultados_experimentais.tex}
 \input{Seções/10-conclusão}
 
-\bibliography{ifacconf}     
+% marcador "Referências" no PDF, sem número, ancorado no início da bibliografia
+\let\oldthebibliography\thebibliography
+\renewcommand{\thebibliography}[1]{\oldthebibliography{#1}\phantomsection\pdfbookmark[1]{Referências}{referencias}}
+\bibliography{ifacconf}
 
-\clearpage
+% ---------------- Apêndices ----------------
+% Seção geral "Apêndices"; cada apêndice é uma subseção "Apêndice A", "Apêndice B", ...
+\section*{Apêndices}
+\phantomsection
+\pdfbookmark[1]{Apêndices}{apendices} % marcador no PDF, sem número
 \appendix
+\makeatletter
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\def\lb@subsection{\appendixname\ \thesubsection\ --\ }
+\makeatother
+\setcounter{subsection}{0}
 
-\section{Esquema Elétrico do VIDA}
-\label{ap:esquema_eletrico}
+\subsection{Repositórios do Projeto VIDA}
+\label{ap:repositorios}
 
-O esquema apresentado neste apêndice documenta os circuitos de alimentação, regulação de tensão, distribuição de energia e comando desenvolvidos para a plataforma VIDA.
+Os códigos-fonte desenvolvidos neste trabalho estão disponíveis em: \url{https://github.com/projeto-VIDA-UFLA}.
 
 \end{document}

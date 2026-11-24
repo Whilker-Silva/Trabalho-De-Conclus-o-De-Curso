@@ -15,7 +15,7 @@ O vetor de estados considerado pelo filtro é definido por:
 \mathbf{x} =
 \begin{bmatrix}
 x_r & y_r & \theta & \delta & v & b_g
-\end{bmatrix}^{T}
+\end{bmatrix}^{T},
 \label{eq:vetor_estados_ekf}
 \end{equation}
 
@@ -43,7 +43,7 @@ y_{k+1}^{-} &= y_k + v_k \sin(\theta_k)\cos(\delta_k)\Delta t.
 Para a atualização da orientação, a implementação utiliza prioritariamente a velocidade angular medida pelo giroscópio. Durante o movimento, essa medição é corrigida pelo \textit{bias} estimado, permitindo representar a rotação do veículo sem depender exclusivamente da relação cinemática entre velocidade e esterçamento. A evolução da orientação é calculada por:
 
 \begin{equation}
-\theta_{k+1}^{-} = \theta_k + (\omega_{m,k} - b_{g,k})\Delta t
+\theta_{k+1}^{-} = \theta_k + (\omega_{m,k} - b_{g,k})\Delta t,
 \label{eq:predicao_orientacao_ekf}
 \end{equation}
 

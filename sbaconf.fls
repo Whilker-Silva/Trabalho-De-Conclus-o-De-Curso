@@ -978,6 +978,11 @@ INPUT ./Imagens/Conjunto de esterçamento.jpg
 INPUT Imagens/Conjunto de esterçamento.jpg
 INPUT ./Imagens/Conjunto de esterçamento.jpg
 INPUT ./Imagens/Conjunto de esterçamento.jpg
+INPUT ./Imagens/Diagrama elétrico simplificado.pdf
+INPUT ./Imagens/Diagrama elétrico simplificado.pdf
+INPUT Imagens/Diagrama elétrico simplificado.pdf
+INPUT ./Imagens/Diagrama elétrico simplificado.pdf
+INPUT ./Imagens/Diagrama elétrico simplificado.pdf
 INPUT ./Imagens/Painel.jpg
 INPUT ./Imagens/Painel.jpg
 INPUT Imagens/Painel.jpg
@@ -995,16 +1000,16 @@ INPUT ./Imagens/Arquitetura computacional.png
 INPUT Imagens/Arquitetura computacional.png
 INPUT ./Imagens/Arquitetura computacional.png
 INPUT ./Imagens/Arquitetura computacional.png
-INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
-INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
-INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
-INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
-INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmtt10.tfm
 INPUT ./Imagens/fluxograma_esp32.png
 INPUT ./Imagens/fluxograma_esp32.png
 INPUT Imagens/fluxograma_esp32.png
 INPUT ./Imagens/fluxograma_esp32.png
 INPUT ./Imagens/fluxograma_esp32.png
+INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
+INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
+INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
+INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmtt10.tfm
 INPUT ./Seções/5-Controladores_Baixo_Nivel.tex
 INPUT ./Seções/5-Controladores_Baixo_Nivel.tex
 INPUT ./Seções/5-Controladores_Baixo_Nivel.tex
@@ -1123,6 +1128,8 @@ INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmbx8.pfb
@@ -1141,3 +1148,5 @@ INPUT /usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb

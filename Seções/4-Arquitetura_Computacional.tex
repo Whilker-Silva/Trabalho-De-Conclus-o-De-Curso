@@ -25,9 +25,18 @@ Adicionalmente, o notebook compartilha com a Odroid, por tradução de endereço
 
 A utilização de containers Docker na Odroid e no notebook padroniza os ambientes de execução, encapsulando as dependências dos componentes ROS~2 e reduzindo problemas de compatibilidade com os sistemas hospedeiros.
 
-Dessa forma, a arquitetura implementada estabelece uma infraestrutura modular para aquisição, controle, localização e navegação, permitindo a comunicação entre componentes executados em diferentes unidades de processamento e preservando a possibilidade de redistribuição e expansão das funções computacionais da plataforma.
-
 \subsection{Nível de Baixo Processamento -- ESP32}
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Imagens/fluxograma_esp32.png}
+    % legenda centralizada apenas nesta figura
+    \makeatletter
+    \long\def\@makecaption#1#2{\vskip 8\p@\par{\centering\@fignumfont{#1}. #2\par}}
+    \makeatother
+    \caption{Diagrama das tarefas FreeRTOS no ESP32. Fonte: Elaborado pelo autor.}
+    \label{fig:arquitetura_tasks_esp32}
+\end{figure*}
 
 O nível de baixo processamento é constituído por um microcontrolador ESP32, responsável pela aquisição dos encoders (velocidade) e LVDT (esterçamento), execução dos controladores de baixo nível, geração dos sinais de acionamento e pela supervisão das condições de segurança. O firmware utiliza o sistema operacional de tempo real FreeRTOS \citep{Barry2024FreeRTOS}, que organiza essas funções em tarefas periódicas distribuídas entre os dois núcleos do processador: o núcleo 1 é dedicado às tarefas de tempo real (aquisição, segurança e controle), enquanto o núcleo 0 concentra a comunicação e a supervisão das demais tarefas.
 
@@ -39,20 +48,13 @@ Embora os algoritmos de controle sejam executados localmente, a liberação do m
 
 A Figura~\ref{fig:arquitetura_tasks_esp32} apresenta a organização das tarefas executadas no ESP32, seus períodos de execução e o fluxo de processamento de cada uma.
 
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=\columnwidth]{Imagens/fluxograma_esp32.png}
-    \caption{\textcolor{red}{Diagrama das tarefas FreeRTOS no ESP32. Fonte: Elaborado pelo autor.}}
-    \label{fig:arquitetura_tasks_esp32}
-\end{figure}
-
 \subsection{Nível Intermediário -- Odroid N2}
 
 O nível intermediário de processamento é constituído por um computador embarcado Odroid N2 com sistema operacional Linux, responsável pela integração do microcontrolador à infraestrutura ROS~2 e pela execução dos componentes de localização e estimação de estados do veículo.
 
 Os ambientes de execução são organizados em dois containers Docker. O primeiro é dedicado ao agente micro-ROS, que estabelece a comunicação com o ESP32 e disponibiliza suas mensagens aos demais nós. O segundo reúne os nós executados no ROS~2 Humble: o driver do receptor GNSS, o cliente NTRIP, o estimador de estados e o nó de habilitação lógica.
 
-A separação dos ambientes em containers isola as dependências do agente micro-ROS e dos demais componentes ROS~2, reduzindo conflitos de configuração efacilitando a manutenção e a atualização dos diferentes módulos.
+A separação dos ambientes em containers isola as dependências do agente micro-ROS e dos demais componentes ROS~2, reduzindo conflitos de configuração e facilitando a manutenção e a atualização dos diferentes módulos.
 
 O receptor GNSS u-blox ZED-F9R está conectado à Odroid via USB e fornece posições geográficas e medições da unidade inercial integrada. O cliente NTRIP, executado como um nó ROS~2, obtém as correções RTK de uma rede pública de estações de referência e as encaminha ao receptor pela mesma conexão USB, permitindo o posicionamento com precisão centimétrica. As posições GNSS são fundidas aos demais dados por meio de um filtro de Kalman estendido (EKF). A implementação do EKF é detalhada na Seção~\ref{sec:estimacao}.
 
@@ -65,10 +67,12 @@ O nível de alto processamento é executado em um notebook, responsável pelas f
 
 O sistema de navegação utiliza as estimativas do EKF para realizar o acompanhamento de uma trajetória previamente gravada com GNSS-RTK. O controlador Stanley, é executado a cada nova estimativa de estado e sua implementação é detalhada na Seção~\ref{sec:seguimento_trajetoria}.
 
-O notebook também executa o gerenciador de modos de operação, responsável por coordenar as transições entre a condução manual e a navegação autônoma, supervisionar as condições operacionais do veículo e encaminhar as referências de controle ao ESP32. O funcionamento desse gerenciador é detalhado na Subseção~\ref{subsec:gerenciamento_navegacao}.
+O notebook também executa o gerenciador de modos de operação, responsável por coordenar as transições entre a condução manual e a navegação autônoma, supervisionar as condições operacionais do veículo e encaminhar as referências de controle ao ESP32. O funcionamento desse gerenciador é descrito na Subseção~\ref{subsec:gerenciamento_navegacao}.
 
 Para a condução manual, o operador utiliza um gamepad conectado ao notebook via bluetooth, cujos comandos são convertidos em referências de velocidade e de esterçamento e transmitidos pela mesma infraestrutura de comunicação utilizada no modo autônomo. Além disso, o notebook disponibiliza ferramentas para gravação e validação de trajetórias de referência e um painel de supervisão para o monitoramento do veículo.
 
 A concentração dessas funções no notebook mantém os componentes de alto nível independentes das tarefas de aquisição e controle executadas nos demais dispositivos, facilitando a incorporação futura de algoritmos mais exigentes computacionalmente.
+
+Os códigos-fonte desenvolvidos para os diferentes níveis da arquitetura computacional, incluindo o firmware do ESP32, o controle de baixo nível, o controle de alto nível e o painel de operação, estão disponíveis em repositórios GitHub, cujos endereços são apresentados no Apêndice~\ref{ap:repositorios}.
 
 

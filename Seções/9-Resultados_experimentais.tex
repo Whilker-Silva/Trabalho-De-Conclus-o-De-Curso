@@ -39,7 +39,7 @@ em que $e_i$ representa o erro lateral registrado em cada amostra e $N$ correspo
 \subsection{Desempenho dos Controladores de Baixo Nível}
 \label{subsec:resultados_baixo_nivel}
 
-Os resultados experimentais dos controladores de baixo nível são apresentados a seguir, iniciando pela malha de esterçamento e, posteriormente, pela malha de velocidade longitudinal.
+Os controladores de baixo nível desempenham um papel fundamental na execução dos comandos de navegação, sendo responsáveis por regular o ângulo de esterçamento e a velocidade longitudinal do veículo. Sua avaliação experimental busca verificar a capacidade de acompanhar as referências estabelecidas, bem como identificar possíveis limitações associadas à dinâmica dos atuadores. Os resultados são apresentados a seguir, iniciando pela malha de esterçamento e, posteriormente, pela malha de velocidade longitudinal.
 
 O controlador PID de esterçamento apresentou capacidade de acompanhar as referências angulares fornecidas pelo controlador Stanley durante o seguimento autônomo de trajetória. Conforme apresentado na Figura~\ref{fig:resposta_esterçamento}, o ângulo medido pelo sensor LVDT acompanhou as variações da referência, apresentando erro quadrático médio (RMS) de 1,68° e atraso estimado de aproximadamente 175~ms, resultante da combinação de fatores como a filtragem do sinal do LVDT, a latência da comunicação entre os dispositivos e o atrito do mecanismo de direção associado à zona morta do controlador. O erro máximo absoluto registrado foi de 4,47°, observado após uma curva mais fechada à direita, quando a referência de esterçamento variou rapidamente de aproximadamente 20° para -20°.
 
@@ -50,13 +50,15 @@ O controlador PID de esterçamento apresentou capacidade de acompanhar as refer�
     \label{fig:resposta_esterçamento}
 \end{figure}
 
-Observa-se também que a resposta apresenta pequenos movimentos em degraus, especialmente durante variações reduzidas da referência. Esse comportamento resulta da interação entre a zona morta implementada no controlador, o atrito estático do mecanismo de direção e a ação integral. Enquanto o erro permanece dentro da zona morta, o acionamento é interrompido e o estado integral é mantido nulo. Quando o erro excede esse limite e o atrito estático impede o movimento, a parcela integral passa a ser acumulada até que o esforço de controle seja suficiente para iniciar o deslocamento, que ocorre de forma rápida até as proximidades da referência. Esse ciclo de adesão e deslizamento (\textit{stick-slip}) é característico de sistemas com atrito estático submetidos a controladores com ação integral. Como o estado integral é reinicializado na zona morta e ao cruzar a referência, além de ser limitado em amplitude, o esforço acumulado não se propaga entre ciclos consecutivos.
+Observa-se também que a resposta apresenta pequenos movimentos em degraus, especialmente durante variações reduzidas da referência. Esse comportamento resulta da interação entre a zona morta implementada no controlador, o atrito estático do mecanismo de direção e a ação integral. Enquanto o erro permanece dentro da zona morta, o acionamento é interrompido e o estado integral é mantido nulo.
+
+Quando o erro excede esse limite e o atrito estático impede o movimento, a parcela integral passa a ser acumulada até que o esforço de controle seja suficiente para iniciar o deslocamento, que ocorre rapidamente até as proximidades da referência. Esse ciclo de adesão e deslizamento (\textit{stick-slip}) é característico de sistemas com atrito estático submetidos a controladores com ação integral. Como o estado integral é reinicializado na zona morta e ao cruzar a referência, além de ser limitado em amplitude, o esforço acumulado não se propaga entre ciclos consecutivos.
 
 por sua vez, o controlador PI de velocidade longitudinal foi avaliado quanto à capacidade de manter a velocidade do veículo próxima à referência de 2,0~m/s durante o seguimento autônomo de trajetória. Conforme apresentado na Figura~\ref{fig:resposta_velocidade}, a velocidade medida apresentou pequenas oscilações em torno da referência. Considerando o regime permanente, a velocidade média foi de 1,998~m/s, com erro quadrático médio (RMS) de 0,063~m/s, equivalente a aproximadamente 3,1\% da referência. O erro máximo absoluto registrado foi de 0,187~m/s.
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.96\columnwidth]{Imagens/Resposta PI velocidadade longitudinal.png}
+    \includegraphics[width=\columnwidth]{Imagens/Resposta PI velocidadade longitudinal.png}
     \caption{Resposta experimental do controlador de velocidade longitudinal. Fonte: Elaborado pelo autor.}
     \label{fig:resposta_velocidade}
 \end{figure}
@@ -65,7 +67,7 @@ As oscilações observadas estão relacionadas à zona morta de acionamento do m
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.96\columnwidth]{Imagens/pwm_parcelas_pi_velocidade.png}
+    \includegraphics[width=\columnwidth]{Imagens/pwm_parcelas_pi_velocidade.png}
     \caption{Análise da saída do controlador PI de velocidade longitudinal e parcelas de controle. Fonte: Elaborado pelo autor.}
     \label{fig:pwm_parcelas_pi_velocidade}
 \end{figure}
@@ -82,7 +84,7 @@ Durante o ensaio, o veículo percorreu aproximadamente 88~m em modo automático,
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.85\columnwidth]{Imagens/Trajetoria_Troia.png}
+    \includegraphics[width=0.9\columnwidth]{Imagens/Trajetoria_Troia.png}
     \caption{Comparação entre a trajetória de referência e a trajetória percorrida pelo veículo no Trajeto 1. Elaborado pelo autor.}
     \label{fig:trajeto_1}
 \end{figure}
@@ -91,7 +93,7 @@ A avaliação do desempenho do controlador Stanley foi realizada a partir do err
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.85\columnwidth]{Imagens/Erro_Lateral_Troia.png}
+    \includegraphics[width=0.9\columnwidth]{Imagens/Erro_Lateral_Troia.png}
     \caption{Evolução do erro lateral de seguimento durante o Trajeto 1.Elaborado pelo autor.}
     \label{fig:erro_lateral_trajeto_1}
 \end{figure}
@@ -109,13 +111,13 @@ O segundo ensaio de seguimento autônomo de trajetória foi realizado no autódr
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.85\columnwidth]{Imagens/Autodromo_UFLA.jpg}
+    \includegraphics[width=\columnwidth]{Imagens/Autodromo_UFLA.jpg}
     \caption{Vista geral do autódromo da Universidade Federal de Lavras, utilizado no ensaio de seguimento autônomo de trajetória do Trajeto 2. Fonte: Acervo pelo autor.}
     \label{fig:pista_trajeto_2}
     
 \end{figure}
 
-Durante o ensaio, o veículo percorreu aproximadamente 281,42~m ao longo de 146,56~s, utilizando uma velocidade de referência de 2,0~m/s. A Figura~\ref{fig:trajeto_2} apresenta a comparação entre a trajetória de referência e o percurso realizado pelo veículo durante o experimento.
+Durante o ensaio, o veículo percorreu de forma autônoma aproximadamente 281,42~m ao longo de 146,56~s, utilizando uma velocidade de referência de 2,0~m/s. A Figura~\ref{fig:trajeto_2} apresenta a comparação entre a trajetória de referência e o percurso realizado pelo veículo durante o experimento.
 
 \begin{figure}[htb]
     \centering
