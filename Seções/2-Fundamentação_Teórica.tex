@@ -1,16 +1,16 @@
 \section{Fundamentação teórica}
 \label{sec:fundamentacao}
 
-O desenvolvimento de veículos inteligentes envolve a integração de diferentes conceitos relacionados, à percepção do ambiente, localização, planejamento de movimento e controle, sendo necessária uma arquitetura unificada e eficiente para executar todas as tarefas. Nesta seção, são apresentados os fundamentos teóricos necessários à compreensão da solução desenvolvida, abrangendo o modelo cinemático de bicicleta, o posicionamento GNSS (Sistema Global de Navegação por Satélite) com correções RTK (Cinemática em Tempo Real), a estimação de estados por filtro de Kalman estendido, o controle de trajetória pelo método Stanley \citet{Thrun2006}, além de exemplos de veículos autônomos e suas respectivas arquiteturas de sistema.
+O desenvolvimento de veículos inteligentes envolve a integração de diferentes conceitos relacionados à percepção do ambiente, à localização, ao planejamento de movimento e ao controle, sendo necessária uma arquitetura unificada e eficiente para executar todas as tarefas. Nesta seção, são apresentados os fundamentos teóricos necessários à compreensão da solução desenvolvida, abrangendo o modelo cinemático de bicicleta, o posicionamento GNSS (Sistema Global de Navegação por Satélite) com correções RTK (Cinemática em Tempo Real), a estimação de estados por filtro de Kalman estendido, o controle de trajetória pelo método Stanley \citep{Thrun2006}, além de exemplos de veículos autônomos e suas respectivas arquiteturas de sistema.
 
 \subsection{Modelo cinemático de bicicleta}
 \label{subsec:modelo_bicicleta}
 
-A modelagem matemática do movimento de veículos terrestres permite descrever seu comportamento a partir das relações entre posição, orientação, velocidade e esterçamento. Entre as representações utilizadas para essa finalidade, destaca-se o modelo cinemático de bicicleta, que simplifica a geometria de direção Ackermann um veículo de quatro rodas por meio de duas rodas equivalentes, posicionadas nos centros dos eixos dianteiro e traseiro \citep{Snider2009}. 
+A modelagem matemática do movimento de veículos terrestres permite descrever seu comportamento a partir das relações entre posição, orientação, velocidade e esterçamento. Entre as representações utilizadas para essa finalidade, destaca-se o modelo cinemático de bicicleta, que simplifica a geometria de direção Ackermann de um veículo de quatro rodas por meio de duas rodas equivalentes, posicionadas nos centros dos eixos dianteiro e traseiro \citep{Snider2009}. 
 
-O modelo considera o movimento do veículo em um plano bidimensional, assumindo rolamento sem deslizamento lateral dos pneus. Dessa forma, os efeitos dinâmicos associados às forças laterais, à transferência de carga e à interação entre os pneus e o solo, não são representados explicitamente. Essa aproximação é especialmente adequada para descrever o movimento de veículos em condições de baixa velocidade e manobras nas quais os efeitos de deslizamento lateral podem ser desprezados. 
+O modelo considera o movimento do veículo em um plano bidimensional, assumindo a condição derolamento sem deslizamento lateral dos pneus. Dessa forma, os efeitos dinâmicos associados às forças laterais, à transferência de carga e à interação entre os pneus e o solo, não são representados explicitamente. Essa aproximação é especialmente adequada para descrever o movimento de veículos em condições de baixa velocidade e manobras nas quais os efeitos de deslizamento lateral podem ser desprezados. 
 
-Adotando como referência o ponto central do eixo traseiro e um veículo com tração nas rodas traseiras, o movimento do mesmo pode ser descrito por:
+Considerando um veículo com tração traseira e adotando o centro do eixo traseiro como ponto de referência, seu movimento pode ser descrito por:
 
 \begin{equation}
 \label{eq:modelo_cinematico}
@@ -38,7 +38,7 @@ Embora simplificado, o modelo cinemático de bicicleta fornece uma representaç�
 
 \subsection{Posicionamento GNSS com RTK}
 
-Os sistemas globais de navegação por satélite (\textit{Global Navigation Satellite Systems} -- GNSS) permitem determinar a posição de um receptor a partir de sinais transmitidos por diferentes constelações de satélites, como pelo americano GPS, o russo GLONASS, o europeu Galileo e o chinês BeiDou. Entretanto, a precisão do posicionamento convencional é limitada por fatores como erros de órbita e no relógio dos satélites e receptores, atrasos atmosféricos e efeitos de multicaminhamento dos sinais. 
+Os sistemas globais de navegação por satélite (\textit{Global Navigation Satellite Systems} -- GNSS) permitem determinar a posição de um receptor a partir de sinais transmitidos por diferentes constelações de satélites, como o GPS, dos Estados Unidos, o GLONASS, da Rússia, o Galileo, da União Europeia, e o BeiDou, da China. Entretanto, a precisão do posicionamento convencional é limitada por fatores como eerros orbitais e erros nos relógios dos satélites e dos receptores, atrasos atmosféricos e efeitos de multicaminhamento dos sinais. 
  
 Para aplicações que exigem maior precisão, destaca-se a técnica RTK (\textit{Real-Time Kinematic}), baseada no posicionamento relativo entre um receptor móvel (\textit{rover}) e uma estação de referência com coordenadas conhecidas. A técnica utiliza observações da fase da portadora dos sinais GNSS e informações de correção para reduzir erros comuns às medições, possibilitando precisão centimétrica em condições favoráveis \citep{Bisnath2020}.  
 
@@ -51,7 +51,7 @@ A qualidade da solução RTK depende de fatores como a disponibilidade de sinais
 
 A estimação de estados desempenha um papel fundamental em sistemas de navegação autônoma, uma vez que as medições dos sensores estão sujeitas a ruídos e incertezas. O filtro de Kalman é um estimador recursivo que combina informações de um modelo matemático com observações do sistema, considerando as incertezas associadas a ambas as fontes \citep{Welch2006}. 
 
-O filtro de Kalman estendido (\textit{Extended Kalman Filter} -- EKF) permite aplicar essa abordagem a sistemas não lineares, por meio da linearização local dos modelos de movimento e observação utilizando matrizes jacobianas. Seu funcionamento é dividido em duas etapas principais: predição e correção \citep{Welch2006,Thrun2006}. 
+O filtro de Kalman estendido (\textit{Extended Kalman Filter} -- EKF) permite aplicar essa abordagem a sistemas não lineares, por meio da linearização local dos modelos de movimento e observação por meio de matrizes jacobianas. Seu funcionamento é dividido em duas etapas principais: predição e correção \citep{Welch2006,Thrun2006}. 
 
 Na etapa de predição, o estado estimado é propagado a partir do modelo de movimento: 
 
@@ -129,7 +129,7 @@ Sua formulação considera dois erros geométricos: o erro de orientação ($\ps
     \label{fig:controlador_stanley}
 \end{figure}
 
-A lei de controle pode ser expressa, adotando o erro lateral positivo quando o veículo está à esquerda da trajetória, por: 
+Adotando-se a convenção de que o erro lateral é positivo quando o veículo se encontra à esquerda da trajetória de referência, a lei de controle pode ser expressa por:
 
 \begin{equation}
     \delta =
@@ -152,7 +152,7 @@ Além disso, pode-se empregar uma ação antecipativa (\textit{feedforward}) bas
     \label{eq:stanley_feedforward}
 \end{equation}
 
-em que $k_{ff}$ representa o ganho antecipativo e $L_{ff}$ corresponde ao entre-eixos considerado na compensação da curvatura. Também podem ser incorporados termos de amortecimento relacionados à velocidade angular do veículo, com o objetivo de reduzir oscilações do comando de esterçamento \citep{Hoffmann2007}. 
+em que $k_{ff}$ representa o ganho antecipativo e $L_{ff}$ corresponde à distância entre eixos considerada na compensação da curvatura. Também podem ser incorporados termos de amortecimento relacionados à velocidade angular do veículo, com o objetivo de reduzir oscilações do comando de esterçamento \citep{Hoffmann2007}. 
 
 Dessa forma, o método Stanley permite determinar o esterçamento a partir dos desvios geométricos em relação à trajetória, podendo ser complementado por estratégias que considerem a curvatura do percurso e o comportamento da orientação do veículo. 
 

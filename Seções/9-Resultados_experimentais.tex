@@ -12,9 +12,9 @@ Os ensaios foram realizados com a plataforma VIDA, utilizando os subsistemas de 
 
 As trajetórias de referência foram obtidas a partir de coordenadas geográficas registradas pelo receptor GNSS durante a condução manual do veículo. Os pontos coletados foram posteriormente processados por meio de suavização e reamostragem, resultando em trajetórias com espaçamento uniforme de 0,25~m, armazenadas em arquivos CSV e utilizadas pelo sistema de navegação autônoma.
 
-A preparação e o acompanhamento dos experimentos foram realizados com o auxílio do painel de operação e monitoramento apresentado na Subseção~\ref{subsec:painel_operacao}. Por meio dessa interface, foi possível selecionar as trajetórias de referência, gerenciar a inicialização dos programas de navegação e acompanhar, em tempo real, as condições de segurança, localização e controle do veículo durante a execução dos percursos.
+A preparação e o acompanhamento dos experimentos foram realizados com o auxílio do painel de operação e monitoramento apresentado na Seção~\ref{subsec:painel_operacao}. Por meio dessa interface, foi possível selecionar as trajetórias de referência, gerenciar a inicialização dos programas de navegação e acompanhar, em tempo real, as condições de segurança, localização e controle do veículo durante a execução dos percursos.
 
-O desempenho dos controladores de baixo nível foi avaliado pela comparação entre as referências de velocidade longitudinal e ângulo de esterçamento e as respectivas respostas medidas durante os ensaios.
+O desempenho dos controladores de baixo nível foi avaliado por meio da comparação entre as referências de velocidade longitudinal e ângulo de esterçamento e as respectivas respostas medidas durante os ensaios.
 
 Em ambos os experimentos, foi utilizada uma referência de velocidade longitudinal de 2,0~m/s. Para a avaliação quantitativa do desempenho do seguimento, foram considerados o erro médio absoluto (MAE), a raiz do erro quadrático médio (RMSE) e o erro máximo absoluto, calculados a partir dos erros laterais registrados durante a navegação autônoma:
 
@@ -41,7 +41,7 @@ em que $e_i$ representa o erro lateral registrado em cada amostra e $N$ correspo
 
 Os controladores de baixo nível desempenham um papel fundamental na execução dos comandos de navegação, sendo responsáveis por regular o ângulo de esterçamento e a velocidade longitudinal do veículo. Sua avaliação experimental busca verificar a capacidade de acompanhar as referências estabelecidas, bem como identificar possíveis limitações associadas à dinâmica dos atuadores. Os resultados são apresentados a seguir, iniciando pela malha de esterçamento e, posteriormente, pela malha de velocidade longitudinal.
 
-O controlador PID de esterçamento apresentou capacidade de acompanhar as referências angulares fornecidas pelo controlador Stanley durante o seguimento autônomo de trajetória. Conforme apresentado na Figura~\ref{fig:resposta_esterçamento}, o ângulo medido pelo sensor LVDT acompanhou as variações da referência, apresentando erro quadrático médio (RMS) de 1,68° e atraso estimado de aproximadamente 175~ms, resultante da combinação de fatores como a filtragem do sinal do LVDT, a latência da comunicação entre os dispositivos e o atrito do mecanismo de direção associado à zona morta do controlador. O erro máximo absoluto registrado foi de 4,47°, observado após uma curva mais fechada à direita, quando a referência de esterçamento variou rapidamente de aproximadamente 20° para -20°.
+O controlador PID de esterçamento apresentou capacidade de acompanhar as referências angulares fornecidas pelo controlador Stanley durante o seguimento autônomo de trajetória. Conforme apresentado na Figura~\ref{fig:resposta_esterçamento}, o ângulo medido pelo sensor LVDT acompanhou as variações da referência, apresentando RMSE de 1,68° e atraso estimado de aproximadamente 175 ms. Esse atraso pode estar associado à combinação de fatores como a filtragem do sinal do LVDT, a latência da comunicação entre os dispositivos, o atrito do mecanismo de direção e a zona morta do controlador. O erro máximo absoluto registrado foi de 4,47°, observado após uma curva mais fechada à direita, quando a referência de esterçamento variou rapidamente de aproximadamente 20° para -20°.
 
 \begin{figure}[htb]
     \centering
@@ -52,9 +52,9 @@ O controlador PID de esterçamento apresentou capacidade de acompanhar as refer�
 
 Observa-se também que a resposta apresenta pequenos movimentos em degraus, especialmente durante variações reduzidas da referência. Esse comportamento resulta da interação entre a zona morta implementada no controlador, o atrito estático do mecanismo de direção e a ação integral. Enquanto o erro permanece dentro da zona morta, o acionamento é interrompido e o estado integral é mantido nulo.
 
-Quando o erro excede esse limite e o atrito estático impede o movimento, a parcela integral passa a ser acumulada até que o esforço de controle seja suficiente para iniciar o deslocamento, que ocorre rapidamente até as proximidades da referência. Esse ciclo de adesão e deslizamento (\textit{stick-slip}) é característico de sistemas com atrito estático submetidos a controladores com ação integral. Como o estado integral é reinicializado na zona morta e ao cruzar a referência, além de ser limitado em amplitude, o esforço acumulado não se propaga entre ciclos consecutivos.
+Quando o erro excede esse limite e o atrito estático impede o movimento, aa parcela integral aumenta progressivamente até que o esforço de controle seja suficiente para iniciar o deslocamento, que ocorre rapidamente até as proximidades da referência. Esse ciclo de adesão e deslizamento (\textit{stick-slip}) é característico de sistemas com atrito estático submetidos a controladores com ação integral. Como o estado integral é reinicializado na zona morta e ao cruzar a referência, além de ser limitado em amplitude, o esforço acumulado não se propaga entre ciclos consecutivos.
 
-por sua vez, o controlador PI de velocidade longitudinal foi avaliado quanto à capacidade de manter a velocidade do veículo próxima à referência de 2,0~m/s durante o seguimento autônomo de trajetória. Conforme apresentado na Figura~\ref{fig:resposta_velocidade}, a velocidade medida apresentou pequenas oscilações em torno da referência. Considerando o regime permanente, a velocidade média foi de 1,998~m/s, com erro quadrático médio (RMS) de 0,063~m/s, equivalente a aproximadamente 3,1\% da referência. O erro máximo absoluto registrado foi de 0,187~m/s.
+Por sua vez, o controlador PI de velocidade longitudinal foi avaliado quanto à capacidade de manter a velocidade do veículo próxima à referência de 2,0~m/s durante o seguimento autônomo de trajetória. Conforme apresentado na Figura~\ref{fig:resposta_velocidade}, a velocidade medida apresentou pequenas oscilações em torno da referência. Em regime permanente, a velocidade média foi de 1,998 m/s, com RMSE de 0,063 m/s, equivalente a aproximadamente 3,2\% da velocidade de referência. O erro máximo absoluto registrado foi de 0,187~m/s.
 
 \begin{figure}[htb]
     \centering
@@ -63,7 +63,7 @@ por sua vez, o controlador PI de velocidade longitudinal foi avaliado quanto à 
     \label{fig:resposta_velocidade}
 \end{figure}
 
-As oscilações observadas estão relacionadas à zona morta de acionamento do motor, que exige um sinal PWM mínimo de aproximadamente 7,8\% para produzir o acionamento do módulo de converção de potência. Entretanto, o acionamento médio necessário para manter a velocidade de referência corresponde a aproximadamente 7,5\% do PWM. Dessa forma, o menor acionamento disponível produz uma aceleração superior à necessária, fazendo com que a velocidade ultrapasse a referência. O controlador PI então interrompe a tração, permitindo que o veículo desacelere naturalmente devido às resistências ao movimento. Quando a velocidade retorna a valores inferiores à referência, a tração é restabelecida, produzindo oscilações periódicas em torno da velocidade desejada. A análise da saída do controlador confirma esse comportamento: em regime, o PWM de tração permaneceu entre 20 e 26, distante do limite de saturação de 50, e o freio não foi acionado. A parcela integral manteve-se aproximadamente constante, enquanto a oscilação do esforço foi conduzida pela parcela proporcional, indicando que o fenômeno decorre da zona morta do acionamento, e não do acúmulo da ação integral. A Figura~\ref{fig:pwm_parcelas_pi_velocidade} apresenta o comportamento do PWM aplicado e das parcelas proporcional e integral do controlador durante o regime permanente.
+As oscilações observadas estão relacionadas à zona morta de acionamento do motor, que exige um sinal PWM mínimo de aproximadamente 7,8\% para produzir o acionamento do módulo de conversão de potência. Entretanto, o acionamento médio necessário para manter a velocidade de referência corresponde a aproximadamente 7,5\% do PWM. Dessa forma, o menor acionamento disponível produz uma aceleração superior à necessária, fazendo com que a velocidade ultrapasse a referência. O controlador PI então interrompe a tração, permitindo que o veículo desacelere naturalmente devido às resistências ao movimento. Quando a velocidade retorna a valores inferiores à referência, a tração é restabelecida, produzindo oscilações periódicas em torno da velocidade desejada. A análise da saída do controlador confirma esse comportamento: em regime, o PWM de tração permaneceu entre 20 e 26, distante do limite de saturação de 50, e o freio não foi acionado. A parcela integral manteve-se aproximadamente constante, enquanto a oscilação do esforço de controlefoi conduzida pela parcela proporcional, indicando que o fenômeno decorre da zona morta do acionamento, e não do acúmulo da ação integral. A Figura~\ref{fig:pwm_parcelas_pi_velocidade} apresenta o comportamento do PWM aplicado e das parcelas proporcional e integral do controlador durante o regime permanente.
 
 \begin{figure}[htb]
     \centering
@@ -79,26 +79,26 @@ Apesar dessas oscilações, o controlador apresentou desempenho satisfatório na
 
 O primeiro ensaio de seguimento autônomo de trajetória foi realizado em um estacionamento localizado nas proximidades do Departamento de Engenharia de Alimentos da Universidade Federal de Lavras (UFLA). O local apresenta uma área aberta, favorável à recepção dos sinais GNSS e à realização dos experimentos com a plataforma VIDA.
 
-Durante o ensaio, o veículo percorreu aproximadamente 88~m em modo automático, ao longo de 46,4~s, mantendo velocidade média de 1,97~m/s, próxima à referência de 2,0~m/s. A Figura~\ref{fig:trajeto_1} apresenta a comparação entre a trajetória de referência e o percurso realizado pelo veículo.
+Durante o ensaio, o veículo percorreu aproximadamente 89~m em modo automático, ao longo de 46,4~s, mantendo velocidade média de 1,97~m/s, próxima à referência de 2,0~m/s. A Figura~\ref{fig:trajeto_1} apresenta a comparação entre a trajetória de referência e o percurso realizado pelo veículo.
 
 
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.9\columnwidth]{Imagens/Trajetoria_Troia.png}
-    \caption{Comparação entre a trajetória de referência e a trajetória percorrida pelo veículo no Trajeto 1. Elaborado pelo autor.}
+    \caption{Comparação entre a trajetória de referência e a trajetória percorrida pelo veículo no Trajeto 1. Fonte: Elaborado pelo autor.}
     \label{fig:trajeto_1}
 \end{figure}
 
-A avaliação do desempenho do controlador Stanley foi realizada a partir do erro lateral de seguimento. A Figura~\ref{fig:erro_lateral_trajeto_1} apresenta a evolução desse erro durante o percurso.
+A avaliação do desempenho do controlador Stanley foi realizada a partir da raiz do erro lateral de seguimento. A Figura~\ref{fig:erro_lateral_trajeto_1} apresenta a evolução desse erro durante o percurso.
 
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.9\columnwidth]{Imagens/Erro_Lateral_Troia.png}
-    \caption{Evolução do erro lateral de seguimento durante o Trajeto 1.Elaborado pelo autor.}
+    \caption{Evolução do erro lateral de seguimento durante o Trajeto 1. Fonte: Elaborado pelo autor.}
     \label{fig:erro_lateral_trajeto_1}
 \end{figure}
 
-Durante o ensaio, o erro lateral apresentou valor quadrático médio (RMS) de 0,167~m e valor máximo absoluto de 0,33~m. Observa-se também que o erro lateral apresenta, em alguns trechos, um padrão em dente de serra, em vez de uma variação suave. Esse comportamento está associado ao processo de fusão de sensores do estimador de estados. Entre duas medições consecutivas do receptor GNSS, recebidas a 2~Hz, a posição do veículo é propagada pelo modelo de predição a partir da odometria, do ângulo de esterçamento e do giroscópio, acumulando um pequeno desvio que faz o erro lateral variar gradualmente. A cada nova medição GNSS, a etapa de correção reposiciona a estimativa, produzindo uma variação abrupta do erro. A análise dos registros confirma essa relação: o erro lateral apresenta uma componente periódica de 2~Hz, coincidente com a taxa do GNSS, e as variações abruptas ocorrem, em média, cerca de 12~ms após a chegada de cada medição. Como essas variações ocorrem sempre no mesmo sentido, elas indicam um pequeno desvio sistemático do modelo de predição em relação às medições GNSS, possivelmente associado a erros de escala na velocidade medida ou de calibração do ângulo de esterçamento. 
+Durante o ensaio, o erro lateral apresentou raiz do erro quadrático médio (RMSE) de 0,167~m e valor máximo absoluto de 0,33~m. Observa-se também que o erro lateral apresenta, em alguns trechos, um padrão em dentes de serra, em vez de uma variação suave. Esse comportamento está associado ao processo de fusão de sensores do estimador de estados. Entre duas medições consecutivas do receptor GNSS, recebidas a 2~Hz, a posição do veículo é propagada pelo modelo de predição a partir da odometria, do ângulo de esterçamento e do giroscópio, acumulando um pequeno desvio que faz o erro lateral variar gradualmente. A cada nova medição GNSS, a etapa de correção reposiciona a estimativa, produzindo uma variação abrupta do erro. A análise dos registros confirma essa relação: o erro lateral apresenta uma componente periódica de 2~Hz, coincidente com a frequência de atualização do receptor GNSS, e as variações abruptas ocorrem, em média, cerca de 12~ms após a chegada de cada medição. Como essas variações ocorrem sempre no mesmo sentido, elas indicam um pequeno desvio sistemático do modelo de predição em relação às medições GNSS, possivelmente associado a erros de escala na velocidade medida ou de calibração do ângulo de esterçamento. 
 
 Os resultados indicam que o controlador Stanley foi capaz de conduzir a plataforma VIDA ao longo da trajetória estabelecida, mantendo desvios laterais relativamente pequenos durante o percurso. Dessa forma, o ensaio demonstrou o funcionamento integrado dos sistemas de localização, navegação e controle no seguimento autônomo de trajetória.
 
@@ -112,7 +112,7 @@ O segundo ensaio de seguimento autônomo de trajetória foi realizado no autódr
 \begin{figure}[htb]
     \centering
     \includegraphics[width=\columnwidth]{Imagens/Autodromo_UFLA.jpg}
-    \caption{Vista geral do autódromo da Universidade Federal de Lavras, utilizado no ensaio de seguimento autônomo de trajetória do Trajeto 2. Fonte: Acervo pelo autor.}
+    \caption{Vista geral do autódromo da Universidade Federal de Lavras, utilizado no ensaio de seguimento autônomo de trajetória do Trajeto 2. Fonte: Acervo do autor.}
     \label{fig:pista_trajeto_2}
     
 \end{figure}
@@ -122,7 +122,7 @@ Durante o ensaio, o veículo percorreu de forma autônoma aproximadamente 281,42
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.85\columnwidth]{Imagens/Trajetoria_Pista3.png}
-    \caption{Comparação entre a trajetória de referência e a trajetória percorrida pelo veículo no Trajeto 2. Elaborado pelo autor.}
+    \caption{Comparação entre a trajetória de referência e a trajetória percorrida pelo veículo no Trajeto 2. Fonte: Elaborado pelo autor.}
     \label{fig:trajeto_2}
     
 \end{figure}
@@ -132,11 +132,11 @@ Observa-se que o veículo foi capaz de acompanhar a trajetória estabelecida ao 
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.85\columnwidth]{Imagens/erro_lateral_Pista3.png}
-    \caption{Evolução do erro lateral de seguimento durante o Trajeto 2. Elaborado pelo autor.}
+    \caption{Evolução do erro lateral de seguimento durante o Trajeto 2. Fonte: Elaborado pelo autor.}
     \label{fig:erro_lateral_trajeto_2}
 \end{figure}
 
-Durante o experimento, o erro lateral médio absoluto (MAE) foi de 0,108~m, enquanto o erro quadrático médio (RMSE) apresentou valor de 0,129~m. O maior erro absoluto registrado foi de aproximadamente 0,366~m.
+Durante o experimento, o erro lateral médio absoluto (MAE) foi de 0,108~m, enquanto a raiz do erro quadrático médio (RMSE) apresentou valor de 0,129~m. O maior erro absoluto registrado foi de aproximadamente 0,366~m.
 
 Esses resultados demonstram que o controlador Stanley foi capaz de manter o veículo próximo à trajetória de referência, mesmo diante das diferentes condições geométricas do percurso. Ao final do trajeto, o sistema de navegação identificou a conclusão da trajetória e realizou a transição para a condição de parada, evidenciando o funcionamento integrado dos sistemas de localização, navegação e controle da plataforma VIDA.
 
@@ -162,21 +162,21 @@ Os resultados quantitativos obtidos nos dois experimentos são apresentados na T
     \end{tabular}
 \end{table}
 
-A comparação demonstra que o sistema foi capaz de executar autonomamente dois percursos com diferentes comprimentos e características geométricas. O segundo experimento apresentou um comprimento de referência aproximadamente 3,15 vezes superior ao primeiro, mantendo valores reduzidos de erro lateral ao longo da execução.
+A comparação demonstra que o sistema foi capaz de executar autonomamente dois percursos com diferentes comprimentos e características geométricas. O segundo experimento apresentou uma trajetória de referência com comprimento correspondente a aproximadamente 3,15 vezes o comprimento da primeira, mantendo valores reduzidos de erro lateral ao longo da execução.
 
 No Trajeto 1, o RMSE lateral foi de 0,167~m, enquanto no Trajeto 2 foi de 0,129~m, representando uma redução aproximada de 22,8\% nessa métrica. De maneira semelhante, o MAE lateral diminuiu de 0,143~m para 0,108~m.
 
 Entretanto, essa diferença não deve ser interpretada isoladamente como uma melhoria intrínseca do controlador, uma vez que os experimentos foram realizados em trajetórias distintas e podem apresentar diferenças de geometria, condições de superfície, alinhamento inicial e qualidade das estimativas de localização.
 
 É importante destacar que as métricas de erro lateral foram calculadas a partir das estimativas utilizadas pelo próprio sistema de navegação. Dessa forma, representam o desempenho de seguimento avaliado no referencial do controlador, não constituindo uma medição independente da trajetória física efetivamente 
-percorrida. Apesar dessa limitação, os experimentos representam uma validação funcional do sistema desenvolvido, demonstrando a execução de trajetórias autônomas com valores de RMSE lateral inferiores a 0,17~m nas condições avaliadas.
+percorrida. Apesar dessa limitação, os experimentos representam uma validação funcional do sistema desenvolvido, demonstrando a capacidade de seguimento autônomo de trajetórias com valores de RMSE lateral inferiores a 0,17 m nas condições avaliadas.
 
 \subsection{Validação da Arquitetura Computacional}
 \label{subsec:validacao_arquitetura}
 
-A análise dos registros de comunicação permitiu avaliar o comportamento da arquitetura computacional durante os experimentos, considerando os diferentes requisitos temporais de cada nível de processamento. No ESP32, as tarefas de aquisição, controle e segurança, executadas sob o FreeRTOS, operaram sem acionar o supervisor de tarefas, responsável por bloquear o movimento caso alguma delas permaneça mais de 50~ms sem execução. Os tópicos publicados pelo ESP32 por meio do micro-ROS mantiveram entre 93\% e 95\% da frequência nominal de 50~Hz, com intervalos máximos de 40~ms entre mensagens.
+A análise dos registros de comunicação permitiu avaliar o comportamento da arquitetura computacional durante os experimentos, considerando os diferentes requisitos temporais de cada nível de processamento. No ESP32, as tarefas de aquisição, controle e segurança, executadas sob o FreeRTOS, operaram sem que fosse necessária a intervenção do supervisor de tarefas, responsável por bloquear o movimento caso alguma delas permaneça mais de 50~ms sem execução. Os tópicos publicados pelo ESP32 por meio do micro-ROS mantiveram entre 93\% e 95\% da frequência nominal de 50~Hz, com intervalos máximos de 40~ms entre mensagens.
 
-Na Odroid e no notebook, os tópicos executados em ambiente Linux, com requisitos de tempo real flexível (\textit{soft real-time}), apresentaram frequências próximas à nominal de 50~Hz, com intervalos máximos de 27~ms, enquanto as medições GNSS foram recebidas regularmente a 2~Hz. Os intervalos observados nos tópicos de comando permaneceram inferiores ao limite de 200~ms adotado pelo ESP32 para identificar referências inválidas, indicando que as variações temporais não comprometeram a operação durante os ensaios.
+Na Odroid e no notebook, os tópicos publicados pelos nós executados em ambiente Linux, com requisitos de tempo real flexível (\textit{soft real-time}), apresentaram frequências de publicação próximas à nominal de 50~Hz, com intervalos máximos de 27~ms, enquanto as medições GNSS foram recebidas regularmente a 2~Hz. Os intervalos observados nos tópicos de comando permaneceram inferiores ao limite de 200~ms adotado pelo ESP32 para identificar referências inválidas, indicando que as variações temporais não comprometeram a operação durante os ensaios.
 
 A sequência de modos de operação, compreendendo as etapas de preparação, navegação autônoma e parada, também foi executada automaticamente durante os experimentos, enquanto o painel de operação permitiu acompanhar os estados dos subsistemas e o progresso dos percursos. Esses resultados demonstram o funcionamento integrado dos três níveis de processamento e indicam que a distribuição das tarefas foi adequada às condições experimentais, concentrando as funções com requisitos temporais mais rigorosos no microcontrolador e distribuindo as demais entre a Odroid e o notebook.
 

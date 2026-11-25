@@ -23,7 +23,7 @@ em que $x_r$ e $y_r$ representam as coordenadas da posição do veículo em um r
 
 A inclusão do \textit{bias} do giroscópio no vetor de estados permite considerar erros sistemáticos associados à medição da velocidade angular. Dessa forma, além das variáveis que descrevem o movimento do veículo, o estimador contempla uma componente destinada à compensação de desvios presentes nas medições inerciais.
 
-A partir desse modelo, a etapa de predição do EKF propaga os estados estimados e suas respectivas incertezas ao longo do tempo. As informações previstas são posteriormente atualizadas por meio das medições dos sensores, conforme os princípios apresentados na Subseção~\ref{subsec:fund_ekf}.
+A partir desse modelo, a etapa de predição do EKF propaga os estados estimados e suas respectivas incertezas ao longo do tempo. As estimativas obtidas na etapa de predição são posteriormente atualizadas por meio das medições dos sensores, conforme os princípios apresentados na Subseção~\ref{subsec:fund_ekf}.
 
 \subsection{Fusão Sensorial e Correção dos Estados}
 \label{subsec:fusao_sensorial}
@@ -34,8 +34,8 @@ Na etapa de predição, a velocidade longitudinal é obtida pela média das medi
 
 \begin{equation}
 \begin{aligned}
-x_{k+1}^{-} &= x_k + v_k \cos(\theta_k)\cos(\delta_k)\Delta t, \\
-y_{k+1}^{-} &= y_k + v_k \sin(\theta_k)\cos(\delta_k)\Delta t.
+x_{k+1}^{-} &= x_k + v_k \cos(\theta_k)\Delta t, \\
+y_{k+1}^{-} &= y_k + v_k \sin(\theta_k)\Delta t.
 \end{aligned}
 \label{eq:predicao_posicao_ekf}
 \end{equation}
@@ -56,6 +56,6 @@ Além da propagação dos estados, o filtro incorpora as medições de velocidad
 
 A correção do posicionamento é realizada a partir das coordenadas fornecidas pelo receptor GNSS com correções RTK. A cada nova observação válida, disponibilizada nominalmente a 2~Hz, o filtro compara a posição medida com aquela prevista pelo modelo de movimento. As diferenças identificadas são utilizadas para atualizar a estimativa por meio do ganho de Kalman, considerando as incertezas associadas às medições GNSS. Dessa forma, os desvios acumulados durante a propagação são corrigidos periodicamente, enquanto as relações representadas na matriz de covariância permitem que essas atualizações também influenciem indiretamente outros estados, como a orientação.
 
-A combinação dessas informações permite manter estimativas regulares de posição e orientação entre as atualizações do GNSS. Durante o deslocamento, a predição utiliza as medições de velocidade, esterçamento e velocidade angular para acompanhar o movimento do veículo, enquanto as observações de posicionamento limitam o acúmulo de desvios. Nas condições de parada, a atualização do viés do giroscópio contribui para reduzir erros sistemáticos na estimação da orientação, proporcionando maior consistência às informações disponibilizadas pelo estimador.
+A combinação dessas informações permite manter estimativas regulares de posição e orientação entre as atualizações do GNSS. Durante o deslocamento, a predição utiliza as medições de velocidade, esterçamento e velocidade angular para acompanhar o movimento do veículo, enquanto as observações de posicionamento limitam o acúmulo de desvios. Nas condições de parada, a atualização do bias do giroscópio contribui para reduzir erros sistemáticos na estimação da orientação, proporcionando maior consistência às informações disponibilizadas pelo estimador.
 
 O estimador utilizado neste trabalho baseia-se no filtro de Kalman estendido apresentado por \citet{DeLima2015}, posteriormente adaptado à plataforma VIDA e implementado como um nó ROS~2 para realizar a fusão das medições dos sensores embarcados e estimar os estados do veículo.

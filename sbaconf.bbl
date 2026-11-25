@@ -32,7 +32,7 @@ Bisnath, S. (2020).
 \bibitem[{{Bundesamt f{\"u}r Kartographie und
   Geod{\"a}sie}(s.d.)}]{BKG2026NTRIP}
 {Bundesamt f{\"u}r Kartographie und Geod{\"a}sie} (s.d.).
-\newblock {Ntrip}: Networked transport of {RTCM} via internet protocol.
+\newblock {NTRIP}: Networked transport of {RTCM} via internet protocol.
 \newblock BKG -- International GNSS Service.
 \newblock \urlprefix\url{https://igs.bkg.bund.de/ntrip/about}.
 \newblock Documenta{\c{c}}{\~a}o t{\'e}cnica online. Acesso em: 7 nov. 2026.

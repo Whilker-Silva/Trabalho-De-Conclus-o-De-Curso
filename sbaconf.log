@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.11.11)  24 NOV 2026 17:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.11.11)  24 NOV 2026 21:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -676,7 +676,7 @@ File: Imagens/Modelo cinemático de bicicleta.png Graphic file (type png)
 Package pdftex.def Info: Imagens/Modelo cinemático de bicicleta.png  used on input line 30.
 (pdftex.def)             Requested size: 214.03738pt x 106.25859pt.
  [3 <./Imagens/Modelo cinemático de bicicleta.png (PNG copy)>]
-<Imagens/Controlador Stanley.png, id=253, 478.03593pt x 331.2375pt>
+<Imagens/Controlador Stanley.png, id=252, 478.03593pt x 331.2375pt>
 File: Imagens/Controlador Stanley.png Graphic file (type png)
 <use Imagens/Controlador Stanley.png>
 Package pdftex.def Info: Imagens/Controlador Stanley.png  used on input line 127.
@@ -727,9 +727,6 @@ File: Imagens/Malha de controle esterçamento.png Graphic file (type png)
 <use Imagens/Malha de controle esterçamento.png>
 Package pdftex.def Info: Imagens/Malha de controle esterçamento.png  used on input line 13.
 (pdftex.def)             Requested size: 440.16728pt x 133.12695pt.
-
-Underfull \vbox (badness 6741) has occurred while \output is active []
-
  [9]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <8> on input line 58.
@@ -746,7 +743,10 @@ File: Imagens/Painel_de_operacao.png Graphic file (type png)
 <use Imagens/Painel_de_operacao.png>
 Package pdftex.def Info: Imagens/Painel_de_operacao.png  used on input line 6.
 (pdftex.def)             Requested size: 507.48112pt x 230.74063pt.
-) (./Seções/9-Resultados_experimentais.tex [13] [14 <./Imagens/Painel_de_operacao.png (PNG copy)>]
+) (./Seções/9-Resultados_experimentais.tex [13]
+Underfull \vbox (badness 6063) has occurred while \output is active []
+
+ [14 <./Imagens/Painel_de_operacao.png (PNG copy)>]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 44.
  (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -766,53 +766,49 @@ File: Imagens/pwm_parcelas_pi_velocidade.png Graphic file (type png)
 <use Imagens/pwm_parcelas_pi_velocidade.png>
 Package pdftex.def Info: Imagens/pwm_parcelas_pi_velocidade.png  used on input line 70.
 (pdftex.def)             Requested size: 251.80688pt x 167.87163pt.
- [15 <./Imagens/Resposta PID esterçamento.png> <./Imagens/Resposta PI velocidadade longitudinal.png> <./Imagens/pwm_parcelas_pi_velocidade.png>]
-<Imagens/Trajetoria_Troia.png, id=446, 246.9225pt x 217.71338pt>
+ [15 <./Imagens/Resposta PID esterçamento.png> <./Imagens/Resposta PI velocidadade longitudinal.png>]
+<Imagens/Trajetoria_Troia.png, id=445, 246.9225pt x 217.71338pt>
 File: Imagens/Trajetoria_Troia.png Graphic file (type png)
 <use Imagens/Trajetoria_Troia.png>
 Package pdftex.def Info: Imagens/Trajetoria_Troia.png  used on input line 87.
 (pdftex.def)             Requested size: 226.62465pt x 199.81372pt.
-<Imagens/Erro_Lateral_Troia.png, id=448, 246.9225pt x 163.51088pt>
+<Imagens/Erro_Lateral_Troia.png, id=447, 246.9225pt x 163.51088pt>
 File: Imagens/Erro_Lateral_Troia.png Graphic file (type png)
 <use Imagens/Erro_Lateral_Troia.png>
 Package pdftex.def Info: Imagens/Erro_Lateral_Troia.png  used on input line 96.
 (pdftex.def)             Requested size: 226.62465pt x 150.06755pt.
-<Imagens/Autodromo_UFLA.jpg, id=449, 4015.0pt x 1758.57pt>
+<Imagens/Autodromo_UFLA.jpg, id=448, 4015.0pt x 1758.57pt>
 File: Imagens/Autodromo_UFLA.jpg Graphic file (type jpg)
 <use Imagens/Autodromo_UFLA.jpg>
 Package pdftex.def Info: Imagens/Autodromo_UFLA.jpg  used on input line 114.
 (pdftex.def)             Requested size: 251.80688pt x 110.28603pt.
-<Imagens/Trajetoria_Pista3.png, id=451, 242.70676pt x 217.71338pt>
+<Imagens/Trajetoria_Pista3.png, id=450, 242.70676pt x 217.71338pt>
 File: Imagens/Trajetoria_Pista3.png Graphic file (type png)
 <use Imagens/Trajetoria_Pista3.png>
 Package pdftex.def Info: Imagens/Trajetoria_Pista3.png  used on input line 124.
 (pdftex.def)             Requested size: 214.03738pt x 191.99696pt.
- [16 <./Imagens/Trajetoria_Troia.png> <./Imagens/Erro_Lateral_Troia.png> <./Imagens/Autodromo_UFLA.jpg>]
-<Imagens/erro_lateral_Pista3.png, id=463, 246.9225pt x 163.51088pt>
+<Imagens/erro_lateral_Pista3.png, id=452, 246.9225pt x 163.51088pt>
 File: Imagens/erro_lateral_Pista3.png Graphic file (type png)
 <use Imagens/erro_lateral_Pista3.png>
 Package pdftex.def Info: Imagens/erro_lateral_Pista3.png  used on input line 134.
 (pdftex.def)             Requested size: 214.03738pt x 141.73434pt.
- [17 <./Imagens/Trajetoria_Pista3.png> <./Imagens/Erro_Lateral_Pista3.png>]) (./Seções/10-conclusão.tex) (./sbaconf.bbl
+ [16 <./Imagens/pwm_parcelas_pi_velocidade.png> <./Imagens/Trajetoria_Troia.png> <./Imagens/Erro_Lateral_Troia.png>] [17 <./Imagens/Autodromo_UFLA.jpg> <./Imagens/Trajetoria_Pista3.png> <./Imagens/Erro_Lateral_Pista3.png>]) (./Seções/10-conclusão.tex)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [18]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-) [19] (./sbaconf.aux)
+ [18] (./sbaconf.bbl) [19] (./sbaconf.aux)
 Package rerunfilecheck Info: File `sbaconf.out' has not changed.
 (rerunfilecheck)             Checksum: B1433D5AF032C6C0698CA00DFD5173B6;7296.
  ) 
 Here is how much of TeX's memory you used:
- 22568 strings out of 480154
- 423247 string characters out of 5893787
- 714256 words of memory out of 5000000
- 39921 multiletter control sequences out of 15000+600000
+ 22569 strings out of 480154
+ 423256 string characters out of 5893787
+ 716286 words of memory out of 5000000
+ 39922 multiletter control sequences out of 15000+600000
  538030 words of font info for 82 fonts, out of 8000000 for 9000
  61 hyphenation exceptions out of 8191
- 84i,10n,80p,2032b,494s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 84i,10n,80p,2057b,494s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx8.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi7.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on sbaconf.pdf (19 pages, 14123331 bytes).
+Output written on sbaconf.pdf (19 pages, 14124064 bytes).
 PDF statistics:
  623 PDF objects out of 1000 (max. 8388607)
  520 compressed objects within 6 object streams
