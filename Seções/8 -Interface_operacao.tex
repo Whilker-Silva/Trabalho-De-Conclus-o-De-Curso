@@ -1,9 +1,9 @@
 \section{Interface de Operação}
 \label{subsec:painel_operacao}
 
-\begin{figure*}[t]
+\begin{figure*}[b]
     \centering
-    \includegraphics[width=0.98\textwidth]{Imagens/Painel_de_operacao.png}
+    \includegraphics[width=0.999\textwidth]{Imagens/Painel_de_operacao.png}
     % legenda centralizada apenas nesta figura
     \makeatletter
     \long\def\@makecaption#1#2{\vskip 8\p@\par{\centering\@fignumfont{#1}. #2\par}}
@@ -13,12 +13,12 @@
     \vspace{8pt}
 \end{figure*}
 
-Para facilitar a operação e o acompanhamento dos subsistemas da plataforma VIDA, foi desenvolvida uma interface web de supervisão, executada em um contêiner Docker no notebook de operação. O painel utiliza um servidor HTTP e uma conexão WebSocket para atualizar periodicamente as informações fornecidas por um nó ROS 2, responsável por assinar os tópicos de interesse e encaminhar os dados à interface exibida no navegador. Dessa forma, a supervisão do veículo dispensa ferramentas de visualização específicas do ROS~2 e pode ser realizada pelo próprio operador durante os ensaios.
+Para facilitar a operação e o acompanhamento dos subsistemas da plataforma VIDA, foi desenvolvida uma interface web de supervisão, executada em um contêiner Docker no notebook de operação. O painel utiliza um servidor HTTP e uma conexão WebSocket para atualizar periodicamente as informações fornecidas por um nó ROS 2, responsável por assinar os tópicos de interesse e encaminhar os dados à interface exibida no navegador. Dessa forma, a supervisão do veículo dispensa ferramentas de visualização específicas do ROS~2 e pode ser realizada pelo próprio operador durante os ensaios. Por ser acessada pelo navegador, a interface não exige a instalação de programas adicionais no computador de operação.
 
-A interface reúne, em uma única tela, informações essenciais à operação do veículo, incluindo o estado dos sistemas de segurança, as condições de posicionamento GNSS/RTK e o estado do estimador de Kalman. Também permite visualizar a posição e a orientação do veículo sobre a trajetória de referência, acompanhar o progresso da navegação e consultar registros de eventos, erros e indicadores de comunicação dos subsistemas.
+A interface reúne, em uma única tela, informações essenciais à operação do veículo, incluindo o estado dos sistemas de segurança, as condições de posicionamento GNSS/RTK e o estado do estimador de Kalman. Também permite visualizar a posição e a orientação do veículo sobre a trajetória de referência, acompanhar o progresso da navegação e consultar registros de eventos, erros e indicadores de comunicação dos subsistemas. Grandezas como a tensão da bateria, a velocidade e o ângulo de esterçamento medidos e a frequência de recebimento de cada tópico também são exibidas, permitindo identificar rapidamente falhas de comunicação.
 
 A Figura~\ref{fig:painel_operacao} apresenta a interface desenvolvida, destacando a visualização da trajetória e os principais indicadores de operação e monitoramento. A centralização dessas funções em uma única interface reduz a necessidade de comandos em terminal durante os experimentos e facilita a identificação de falhas, contribuindo para a segurança e a agilidade dos ensaios.
 
-Além do monitoramento, o painel disponibiliza funcionalidades para iniciar e encerrar os programas de navegação, selecionar e registrar trajetórias e realizar a gravação e reprodução de dados experimentais.
+Além do monitoramento, o painel disponibiliza funcionalidades para iniciar e encerrar os programas de navegação, selecionar e registrar trajetórias e realizar a gravação e reprodução de dados experimentais. Também oferece um comando de parada, que permite ao operador interromper o seguimento autônomo diretamente pela interface.
 
 

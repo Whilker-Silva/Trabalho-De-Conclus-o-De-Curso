@@ -69,7 +69,7 @@ No modo manual, o operador utiliza um \textit{gamepad} para controlar a velocida
 
 A partir dessa solicitação, o gerenciador verifica as condições de funcionamento dos subsistemas, incluindo a disponibilidade e a qualidade das estimativas de posicionamento, a liberação do movimento pelo ESP32 e a proximidade do veículo ao início da trajetória de referência.
 
-Após essas verificações, o gerenciador executa uma sequência de preparação que compreende o alinhamento das rodas dianteiras, a reinicialização do estimador de estados e um deslocamento inicial em linha reta para a determinação da orientação de navegação. Durante esse deslocamento, assim que a orientação é estabelecida e as condições de alinhamento com a trajetória de referência são atendidas, o controlador Stanley assume o comando de esterçamento, dando continuidade ao percurso em modo autônomo.
+Após essas verificações, o gerenciador executa uma sequência de preparação que compreende o alinhamento das rodas dianteiras, a reinicialização do estimador de estados e um deslocamento inicial em linha reta para a determinação da orientação de navegação. Estabelecida a orientação e atendidas as condições de alinhamento com a trajetória de referência, o controlador Stanley assume o comando de esterçamento.
 
 Durante a operação autônoma, o gerenciador monitora continuamente a disponibilidade das informações de localização, a comunicação com os sistemas embarcados e os desvios em relação à trajetória. Condições operacionais inadequadas, como perda de informações essenciais, erros laterais excessivos ou intervenção do operador, provocam a interrupção do seguimento autônomo.
 

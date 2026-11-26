@@ -84,7 +84,7 @@ No ensaio, o veículo percorreu aproximadamente 89~m em modo automático, ao lon
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.9\columnwidth]{Imagens/Trajetoria_Troia.png}
+    \includegraphics[width=\columnwidth]{Imagens/Trajetoria_Troia.png}
     \caption{Comparação entre a trajetória de referência e a trajetória percorrida pelo veículo no Trajeto 1. Fonte: Elaborado pelo autor.}
     \label{fig:trajeto_1}
 \end{figure}
@@ -93,21 +93,21 @@ A avaliação do desempenho do controlador Stanley foi realizada a partir do err
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.9\columnwidth]{Imagens/Erro_Lateral_Troia.png}
+    \includegraphics[width=0.85\columnwidth]{Imagens/Erro_Lateral_Troia.png}
     \caption{Evolução do erro lateral de seguimento durante o Trajeto 1. Fonte: Elaborado pelo autor.}
     \label{fig:erro_lateral_trajeto_1}
 \end{figure}
 
 O erro lateral apresentou raiz do erro quadrático médio (RMSE) de 0,167~m e valor máximo absoluto de 0,33~m. Observa-se também que o erro lateral apresenta, em alguns trechos, um padrão em dentes de serra, em vez de uma variação suave. Esse comportamento está associado ao processo de fusão de sensores do estimador de estados. Entre duas medições consecutivas do receptor GNSS, recebidas a 2~Hz, a posição do veículo é propagada pelo modelo de predição a partir da odometria, do ângulo de esterçamento e do giroscópio, acumulando um pequeno desvio que faz o erro lateral variar gradualmente. A cada nova medição GNSS, a etapa de correção reposiciona a estimativa, produzindo uma variação abrupta do erro. A análise dos registros confirma essa relação: o erro lateral apresenta uma componente periódica de 2~Hz, coincidente com a frequência de atualização do receptor GNSS, e as variações abruptas ocorrem, em média, cerca de 12~ms após a chegada de cada medição. Como essas variações ocorrem sempre no mesmo sentido, elas indicam um pequeno desvio sistemático do modelo de predição em relação às medições GNSS, possivelmente associado a erros de escala na velocidade medida ou de calibração do ângulo de esterçamento. 
 
-Os resultados indicam que o controlador Stanley foi capaz de conduzir a plataforma VIDA ao longo da trajetória estabelecida, mantendo desvios laterais relativamente pequenos durante o percurso. Dessa forma, o ensaio demonstrou o funcionamento integrado dos subsistemas de localização, navegação e controle no seguimento automático de trajetória.
+Os resultados indicam que o controlador Stanley foi capaz de conduzir a plataforma VIDA ao longo da trajetória estabelecida, mantendo desvios laterais relativamente pequenos durante o percurso. Dessa forma, o ensaio demonstrou o funcionamento integrado dos subsistemas de localização, navegação e controle no seguimento automático de trajetória. A partir desse resultado, foi realizado um segundo ensaio em um percurso mais extenso, apresentado a seguir.
 
 
 
 \subsection{Seguimento de Trajetória: Trajeto 2}
 \label{subsec:trajeto_2}
 
-O segundo ensaio de seguimento autônomo de trajetória foi realizado no autódromo da Universidade Federal de Lavras (UFLA), utilizando um percurso mais extenso e com diferentes características geométricas em relação ao primeiro experimento. A trajetória apresenta curvas e mudanças de direção, permitindo avaliar o desempenho do controlador Stanley em meio à execução de manobras sucessivas.
+O segundo ensaio de seguimento autônomo de trajetória foi realizado no autódromo da Universidade Federal de Lavras (UFLA), utilizando um percurso mais extenso e com diferentes características geométricas em relação ao primeiro experimento. A trajetória apresenta curvas e mudanças de direção, permitindo avaliar o desempenho do controlador Stanley em meio à execução de manobras sucessivas. Assim como no Trajeto 1, foram mantidos os parâmetros do controlador apresentados na Tabela~\ref{tab:parametros_stanley}, de modo que os dois ensaios fossem realizados sob a mesma configuração.
 
 \begin{figure}[htb]
     \centering
@@ -121,7 +121,7 @@ O veículo percorreu de forma autônoma aproximadamente 281,42~m ao longo de 146
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.85\columnwidth]{Imagens/Trajetoria_Pista3.png}
+    \includegraphics[width=\columnwidth]{Imagens/Trajetoria_Pista3.png}
     \caption{Comparação entre a trajetória de referência e a trajetória percorrida pelo veículo no Trajeto 2. Fonte: Elaborado pelo autor.}
     \label{fig:trajeto_2}
     

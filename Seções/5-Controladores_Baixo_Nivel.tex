@@ -8,9 +8,9 @@ As duas malhas são executadas na mesma tarefa periódica do ESP32, com período
 \subsection{Controle de Esterçamento}
 \label{subsec:controle_esterçamento}
 
-\begin{figure*}[t]
+\begin{figure*}[b]
     \centering
-    \includegraphics[width=0.85\textwidth]{Imagens/Malha de controle esterçamento.png}
+    \includegraphics[width=0.95\textwidth]{Imagens/Malha de controle esterçamento.png}
     % legenda centralizada apenas nesta figura
     \makeatletter
     \long\def\@makecaption#1#2{\vskip 8\p@\par{\centering\@fignumfont{#1}. #2\par}}
@@ -34,7 +34,7 @@ em que $u_{\delta}$ representa o sinal de controle, $K_p$, $K_i$ e $K_d$ são os
 
 Uma particularidade dessa implementação é a aplicação da ação derivativa sobre a medição, em vez de ser diretamente sobre o erro de controle. Essa estratégia evita que alterações abruptas da referência produzam picos na parcela derivativa, fenômeno conhecido como \textit{derivative kick}, contribuindo para uma resposta mais suave do sistema de acionamento \citep{AstromHagglund2006}. 
 
-Antes de ser utilizada pela malha de controle, a referência de esterçamento é submetida a restrições de amplitude e de taxa de variação. O ângulo solicitado é limitado à faixa de $\pm20^\circ$, enquanto sua variação máxima é estabelecida em $40^\circ/\mathrm{s}$. Essas restrições reduzem solicitações bruscas ao mecanismo de direção e contribuem para manter o comando dentro da faixa operacional definida para o veículo.
+Antes de ser utilizada pela malha de controle, a referência de esterçamento é submetida a restrições de amplitude e de taxa de variação. O ângulo solicitado é limitado à faixa de $\pm20^\circ$, enquanto sua variação máxima é $40^\circ/\mathrm{s}$. Essas restrições reduzem solicitações bruscas ao mecanismo de direção e contribuem para manter o comando dentro da faixa operacional definida para o veículo.
 
 Além das ações PID, o controlador incorpora recursos destinados a melhorar o comportamento do sistema diante das características do acionamento eletromecânico. Entre eles estão uma zona morta com histerese, a compensação da zona morta de acionamento do motor e mecanismos de integração condicionada e \textit{anti-windup}. A zona morta contribui para evitar acionamentos sucessivos próximos à condição de equilíbrio, enquanto a compensação da zona morta de acionamento adiciona ao comando o valor mínimo necessário para vencer o atrito estático e iniciar o movimento do mecanismo. Os mecanismos associados à ação integral limitam seu acúmulo em condições nas quais o esforço de controle não pode ser totalmente aplicado.
 
@@ -73,9 +73,9 @@ Os ganhos do controlador foram inicialmente ajustados com o auxílio de simulaç
 \subsection{Controle de Velocidade Longitudinal}
 \label{subsec:controle_velocidade}
 
-\begin{figure*}[t]
+\begin{figure*}[b]
     \centering
-    \includegraphics[width=0.85\textwidth]{Imagens/Malha de controle longitudinal.png}
+    \includegraphics[width=0.95\textwidth]{Imagens/Malha de controle longitudinal.png}
     % legenda centralizada apenas nesta figura
     \makeatletter
     \long\def\@makecaption#1#2{\vskip 8\p@\par{\centering\@fignumfont{#1}. #2\par}}

@@ -489,6 +489,17 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/xurl/xurl.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/xurl/xurl.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/xurl/xurl.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/sttools/stfloats.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/sttools/stfloats.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/sttools/stfloats.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/sttools/stfloats.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/sttools/stfloats.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/sttools/stfloats.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/sttools/stfloats.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/sttools/stfloats.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/sttools/stfloats.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/sttools/stfloats.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/sttools/stfloats.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
@@ -960,11 +971,11 @@ INPUT ./Imagens/Arquitetura computacional.png
 INPUT Imagens/Arquitetura computacional.png
 INPUT ./Imagens/Arquitetura computacional.png
 INPUT ./Imagens/Arquitetura computacional.png
-INPUT ./Imagens/fluxograma_esp32.png
-INPUT ./Imagens/fluxograma_esp32.png
-INPUT Imagens/fluxograma_esp32.png
-INPUT ./Imagens/fluxograma_esp32.png
-INPUT ./Imagens/fluxograma_esp32.png
+INPUT ./Imagens/fluxograma_esp32_v3.pdf
+INPUT ./Imagens/fluxograma_esp32_v3.pdf
+INPUT Imagens/fluxograma_esp32_v3.pdf
+INPUT ./Imagens/fluxograma_esp32_v3.pdf
+INPUT ./Imagens/fluxograma_esp32_v3.pdf
 INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
 INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
 INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
@@ -1082,6 +1093,7 @@ INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb
@@ -1102,5 +1114,8 @@ INPUT /usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb

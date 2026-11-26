@@ -118,13 +118,13 @@ Sendo assim, o EKF permite combinar informações de diferentes sensores, ponder
 
 \subsection{Controlador Stanley}
 
-O controlador Stanley é um método de controle lateral não linear utilizado para o seguimento de trajetórias em veículos autônomos. Desenvolvido pela equipe da Universidade de Stanford, o método foi empregado no veículo vencedor do DARPA Grand Challenge de 2005 \citep{Thrun2006}. 
+O controlador Stanley é um método de controle lateral não linear utilizado para o seguimento de trajetórias em veículos autônomos. Desenvolvido pela equipe da Universidade de Stanford, o método foi empregado no veículo vencedor do DARPA Grand Challenge de 2005 \citep{Thrun2006}. Diferentemente de métodos geométricos como o \textit{Pure Pursuit}, que utilizam um ponto de antecipação situado à frente do veículo, o controlador Stanley adota como referência o centro do eixo dianteiro, dispensando a escolha de uma distância de antecipação e apresentando bom desempenho em trajetórias com curvas acentuadas \citep{Snider2009}.
 
-Sua formulação considera dois erros geométricos: o erro de orientação ($\psi$), definido pela diferença angular entre a direção da trajetória de referência e a orientação do veículo, e o erro lateral ($e$), correspondente ao deslocamento transversal do centro do eixo dianteiro em relação à trajetória desejada \citep{Thrun2006}. 
+Sua formulação considera dois erros geométricos: o erro de orientação ($\psi$), definido pela diferença angular entre a direção da trajetória de referência e a orientação do veículo, e o erro lateral ($e$), correspondente ao deslocamento transversal do centro do eixo dianteiro em relação à trajetória desejada \citep{Thrun2006}. A partir desses erros, o controlador busca simultaneamente alinhar o veículo à direção da trajetória e conduzir o eixo dianteiro de volta ao caminho desejado. Essas grandezas geométricas estão ilustradas na Figura~\ref{fig:controlador_stanley}.
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.5\columnwidth]{Imagens/Controlador Stanley.png}
+    \includegraphics[width=\columnwidth]{Imagens/Controlador Stanley.png}
     \caption{Representação geométrica do controlador Stanley. Fonte: \citet{Hoffmann2007}.}
     \label{fig:controlador_stanley}
 \end{figure}
