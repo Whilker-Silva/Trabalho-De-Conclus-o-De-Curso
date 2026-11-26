@@ -8,7 +8,7 @@ O desenvolvimento de veículos inteligentes envolve a integração de diferentes
 
 A modelagem matemática do movimento de veículos terrestres permite descrever seu comportamento a partir das relações entre posição, orientação, velocidade e esterçamento. Entre as representações utilizadas para essa finalidade, destaca-se o modelo cinemático de bicicleta, que simplifica a geometria de direção Ackermann de um veículo de quatro rodas por meio de duas rodas equivalentes, posicionadas nos centros dos eixos dianteiro e traseiro \citep{Snider2009}. 
 
-O modelo considera o movimento do veículo em um plano bidimensional, assumindo a condição derolamento sem deslizamento lateral dos pneus. Dessa forma, os efeitos dinâmicos associados às forças laterais, à transferência de carga e à interação entre os pneus e o solo, não são representados explicitamente. Essa aproximação é especialmente adequada para descrever o movimento de veículos em condições de baixa velocidade e manobras nas quais os efeitos de deslizamento lateral podem ser desprezados. 
+O modelo considera o movimento do veículo em um plano bidimensional, assumindo a condição de rolamento sem deslizamento lateral dos pneus. Dessa forma, os efeitos dinâmicos associados às forças laterais, à transferência de carga e à interação entre os pneus e o solo não são representados explicitamente. Essa aproximação é especialmente adequada para descrever o movimento de veículos em condições de baixa velocidade e manobras nas quais os efeitos de deslizamento lateral podem ser desprezados. 
 
 Considerando um veículo com tração traseira e adotando o centro do eixo traseiro como ponto de referência, seu movimento pode ser descrito por:
 
@@ -27,7 +27,7 @@ em que $x$ e $y$ representam as coordenadas da posição do veículo no referenc
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.85\columnwidth]{Imagens/Modelo cinemático de bicicleta.png}
+    \includegraphics[width=0.9\columnwidth]{Imagens/Modelo cinemático de bicicleta.png}
     \caption{Representação geométrica do modelo cinemático de bicicleta. Fonte: \citet{Snider2009}.}
     \label{fig:modelo_bicicleta}
 \end{figure}
@@ -38,7 +38,7 @@ Embora simplificado, o modelo cinemático de bicicleta fornece uma representaç�
 
 \subsection{Posicionamento GNSS com RTK}
 
-Os sistemas globais de navegação por satélite (\textit{Global Navigation Satellite Systems} -- GNSS) permitem determinar a posição de um receptor a partir de sinais transmitidos por diferentes constelações de satélites, como o GPS, dos Estados Unidos, o GLONASS, da Rússia, o Galileo, da União Europeia, e o BeiDou, da China. Entretanto, a precisão do posicionamento convencional é limitada por fatores como eerros orbitais e erros nos relógios dos satélites e dos receptores, atrasos atmosféricos e efeitos de multicaminhamento dos sinais. 
+Os sistemas globais de navegação por satélite (\textit{Global Navigation Satellite Systems} -- GNSS) permitem determinar a posição de um receptor a partir de sinais transmitidos por diferentes constelações de satélites, como o GPS, dos Estados Unidos, o GLONASS, da Rússia, o Galileo, da União Europeia, e o BeiDou, da China. Entretanto, a precisão do posicionamento convencional é limitada por fatores como erros orbitais e erros nos relógios dos satélites e dos receptores, atrasos atmosféricos e efeitos de multicaminhamento dos sinais. 
  
 Para aplicações que exigem maior precisão, destaca-se a técnica RTK (\textit{Real-Time Kinematic}), baseada no posicionamento relativo entre um receptor móvel (\textit{rover}) e uma estação de referência com coordenadas conhecidas. A técnica utiliza observações da fase da portadora dos sinais GNSS e informações de correção para reduzir erros comuns às medições, possibilitando precisão centimétrica em condições favoráveis \citep{Bisnath2020}.  
 
@@ -46,12 +46,12 @@ A transmissão dessas correções pode ser realizada por meio do protocolo NTRIP
  
 A qualidade da solução RTK depende de fatores como a disponibilidade de sinais GNSS, a qualidade das observações e o recebimento adequado das correções. Entre os estados possíveis estão o RTK \textit{float}, no qual as ambiguidades da fase da portadora ainda não foram resolvidas como valores inteiros, e o RTK \textit{fixed}, no qual essa resolução foi obtida, permitindo maior precisão de posicionamento \citep{Ublox2025ZEDF9R}.
 
-\subsection{Filtro de Kalman Estendido}
+\subsection{Filtro de Kalman estendido}
 \label{subsec:fund_ekf}
 
 A estimação de estados desempenha um papel fundamental em sistemas de navegação autônoma, uma vez que as medições dos sensores estão sujeitas a ruídos e incertezas. O filtro de Kalman é um estimador recursivo que combina informações de um modelo matemático com observações do sistema, considerando as incertezas associadas a ambas as fontes \citep{Welch2006}. 
 
-O filtro de Kalman estendido (\textit{Extended Kalman Filter} -- EKF) permite aplicar essa abordagem a sistemas não lineares, por meio da linearização local dos modelos de movimento e observação por meio de matrizes jacobianas. Seu funcionamento é dividido em duas etapas principais: predição e correção \citep{Welch2006,Thrun2006}. 
+O filtro de Kalman estendido (\textit{Extended Kalman Filter} -- EKF) permite aplicar essa abordagem a sistemas não lineares, por meio da linearização local dos modelos de movimento e observação por meio de matrizes jacobianas. Seu funcionamento é dividido em duas etapas principais: predição e correção \citep{Welch2006,Thrun2006,Thrun2005Robotics}. 
 
 Na etapa de predição, o estado estimado é propagado a partir do modelo de movimento: 
 
@@ -124,7 +124,7 @@ Sua formulação considera dois erros geométricos: o erro de orientação ($\ps
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.85\columnwidth]{Imagens/Controlador Stanley.png}
+    \includegraphics[width=0.5\columnwidth]{Imagens/Controlador Stanley.png}
     \caption{Representação geométrica do controlador Stanley. Fonte: \citet{Hoffmann2007}.}
     \label{fig:controlador_stanley}
 \end{figure}
@@ -156,12 +156,16 @@ em que $k_{ff}$ representa o ganho antecipativo e $L_{ff}$ corresponde à distâ
 
 Dessa forma, o método Stanley permite determinar o esterçamento a partir dos desvios geométricos em relação à trajetória, podendo ser complementado por estratégias que considerem a curvatura do percurso e o comportamento da orientação do veículo. 
 
-\subsection{Exemplos de Arquiteturas de Veículos Autônomos}
+\subsection{Exemplos de arquiteturas de veículos autônomos}
 \label{subsec:arquiteturas_referencia}
 
-O desenvolvimento de veículos autônomos exige a integração de diferentes subsistemas responsáveis por percepção, localização, planejamento e controle. Para organizar essas funções, diferentes plataformas experimentais adotam arquiteturas modulares e distribuídas, permitindo separar responsabilidades, estabelecer mecanismos de comunicação e integrar componentes com diferentes requisitos computacionais.
+O desenvolvimento de veículos autônomos exige a integração de diferentes subsistemas responsáveis por percepção, localização, planejamento e controle. Para organizar essas funções, diferentes plataformas experimentais adotam arquiteturas modulares e distribuídas, permitindo separar responsabilidades, estabelecer mecanismos de comunicação e integrar componentes com diferentes requisitos computacionais e temporais.
 
-O veículo Stanley, desenvolvido pela Universidade de Stanford, utilizava uma arquitetura distribuída, organizada em módulos de software responsáveis por funções como percepção do ambiente, localização, planejamento e controle. Essa organização permitia executar diferentes processos de maneira integrada, combinando informações dos sensores com as decisões de navegação e os comandos de atuação do veículo \citep{Thrun2006}.
+Quanto aos requisitos temporais, as tarefas que compõem essa estrutura podem ser classificadas em \textit{hard real-time} (tempo real rígido), \textit{firm real-time} (tempo real firme) e \textit{soft real-time} (tempo real flexível) \citep{Buttazzo2011}. No \textit{hard real-time}, encontram-se os sistemas nos quais o descumprimento de um prazo de execução pode provocar uma falha grave ou uma condição insegura, exigindo garantias quanto ao atendimento das restrições temporais, como nos controles de frenagem e direção e no acionamento de mecanismos de segurança \citep{Bonci2026}. No \textit{firm real-time}, um resultado atrasado perde sua validade, mas atrasos ocasionais podem ser tolerados pelo sistema. Dependendo dos requisitos da aplicação, essa categoria pode contemplar tarefas como a detecção e o rastreamento de obstáculos, a fusão de dados de sensores e a estimação da posição de veículos e pedestres.
+
+Por fim, no \textit{soft real-time}, o cumprimento dos prazos de execução (\textit{deadlines}) é desejável, mas atrasos ocasionais podem ser tolerados, ainda que comprometam a qualidade do serviço. Destacam-se, nessa categoria, as interfaces gráficas e a visualização de informações, a atualização de mapas e de informações de navegação não críticas, além da telemetria e dos relatórios operacionais. A organização das arquiteturas computacionais considerando diferentes requisitos temporais e computacionais tem evoluído com o aumento da complexidade dos subsistemas embarcados e das tarefas executadas, conforme evidenciado por diferentes trabalhos disponíveis na literatura \citep{Kato2018,Hong2024,Bonci2026}.
+
+Como exemplo de arquitetura distribuída, o veículo Stanley, desenvolvido pela Universidade de Stanford, utilizava módulos de software responsáveis por funções como percepção do ambiente, localização, planejamento e controle. Essa organização permitia executar diferentes processos de maneira integrada, combinando informações dos sensores com as decisões de navegação e os comandos de atuação do veículo \citep{Thrun2006}.
 
 No Brasil, o projeto CaRINA, desenvolvido pela Universidade de São Paulo (USP), adotou uma arquitetura modular baseada no ROS, permitindo integrar componentes de hardware e software por meio de mecanismos padronizados de comunicação. Essa abordagem favoreceu o desenvolvimento independente dos subsistemas e sua integração em diferentes configurações experimentais \citep{Fernandes2014}.
 

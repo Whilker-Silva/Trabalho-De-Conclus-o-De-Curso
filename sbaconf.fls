@@ -249,28 +249,6 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/ae/ae.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/ae/ae.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/ae/ae.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/ae/ae.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/ae/ae.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/ae/ae.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/ae/ae.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/ae/ae.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/ae/ae.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/ae/ae.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/ae/ae.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
@@ -511,7 +489,6 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/xurl/xurl.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/xurl/xurl.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/xurl/xurl.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/url/url.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/xurl/xurl.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
@@ -778,23 +755,6 @@ INPUT /usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 INPUT /usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 INPUT /usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 INPUT /usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/ae/t1aer.fd
-INPUT /usr/share/texlive/texmf-dist/tex/latex/ae/t1aer.fd
-INPUT /usr/share/texlive/texmf-dist/tex/latex/ae/t1aer.fd
-INPUT /usr/share/texlive/texmf-dist/tex/latex/ae/t1aer.fd
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/ae/aer10.tfm
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 INPUT /usr/share/texmf/tex/latex/lm/lmodern.sty
 INPUT /usr/share/texmf/tex/latex/lm/lmodern.sty
 INPUT /usr/share/texmf/tex/latex/lm/lmodern.sty
@@ -1063,11 +1023,6 @@ INPUT ./Seções/9-Resultados_experimentais.tex
 INPUT Seções/9-Resultados_experimentais.tex
 INPUT ./Seções/9-Resultados_experimentais.tex
 INPUT Seções/9-Resultados_experimentais.tex
-INPUT /usr/share/texmf/tex/latex/lm/ts1lmr.fd
-INPUT /usr/share/texmf/tex/latex/lm/ts1lmr.fd
-INPUT /usr/share/texmf/tex/latex/lm/ts1lmr.fd
-INPUT /usr/share/texmf/tex/latex/lm/ts1lmr.fd
-INPUT /usr/share/texmf/fonts/tfm/public/lm/ts1-lmr10.tfm
 INPUT ./Imagens/Resposta PID esterçamento.png
 INPUT ./Imagens/Resposta PID esterçamento.png
 INPUT Imagens/Resposta PID esterçamento.png
@@ -1122,7 +1077,6 @@ INPUT sbaconf.bbl
 INPUT sbaconf.aux
 INPUT ./sbaconf.out
 INPUT ./sbaconf.out
-INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc

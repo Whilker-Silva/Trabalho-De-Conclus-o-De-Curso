@@ -1,4 +1,4 @@
-\begin{thebibliography}{19}
+\begin{thebibliography}{26}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\urlprefix}{URL }
@@ -6,6 +6,12 @@
   \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
   \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
   \urlstyle{rm}\Url}\fi
+
+\bibitem[{Aström and Hägglund(2006)}]{AstromHagglund2006}
+Aström, K.J. and Hägglund, T. (2006).
+\newblock \emph{Advanced PID Control}.
+\newblock ISA -- The Instrumentation, Systems, and Automation Society, Research
+  Triangle Park, NC.
 
 \bibitem[{Badue et~al.(2021)Badue, Guidolini, Carneiro et~al.}]{Badue2021}
 Badue, C., Guidolini, R., Carneiro, R.V., et~al. (2021).
@@ -29,6 +35,15 @@ Bisnath, S. (2020).
   Century}. John Wiley \& Sons.
 \newblock \doi{10.1002/9781119458449.ch19}.
 
+\bibitem[{Bonci et~al.(2026)Bonci, Brunella, Colletta, Di~Biase, Dragoni, and
+  Libofsha}]{Bonci2026}
+Bonci, A., Brunella, F., Colletta, M., Di~Biase, A., Dragoni, A.F., and
+  Libofsha, A. (2026).
+\newblock {ROS 2}-based architecture for autonomous driving systems: Design and
+  implementation.
+\newblock \emph{Sensors}, 26(2), 463.
+\newblock \doi{10.3390/s26020463}.
+
 \bibitem[{{Bundesamt f{\"u}r Kartographie und
   Geod{\"a}sie}(s.d.)}]{BKG2026NTRIP}
 {Bundesamt f{\"u}r Kartographie und Geod{\"a}sie} (s.d.).
@@ -36,6 +51,13 @@ Bisnath, S. (2020).
 \newblock BKG -- International GNSS Service.
 \newblock \urlprefix\url{https://igs.bkg.bund.de/ntrip/about}.
 \newblock Documenta{\c{c}}{\~a}o t{\'e}cnica online. Acesso em: 7 nov. 2026.
+
+\bibitem[{Buttazzo(2011)}]{Buttazzo2011}
+Buttazzo, G.C. (2011).
+\newblock \emph{Hard Real-Time Computing Systems: Predictable Scheduling
+  Algorithms and Applications}.
+\newblock Springer, 3 edition.
+\newblock \doi{10.1007/978-1-4614-0676-1}.
 
 \bibitem[{Fernandes et~al.(2014)Fernandes, Souza, Pessin, Shinzato, Sales,
   Mendes, Prado, Klaser, Magalhaes, Hata, Pigatto, Branco, Grassi, Osorio, and
@@ -55,6 +77,23 @@ Hoffmann, G.M., Tomlin, C.J., Montemerlo, M., and Thrun, S. (2007).
   Controller design, experimental validation and racing.
 \newblock In \emph{Proceedings of the American Control Conference}, 2296--2301.
 \newblock \doi{10.1109/ACC.2007.4282788}.
+
+\bibitem[{Hong and Moon(2024)}]{Hong2024}
+Hong, D. and Moon, C. (2024).
+\newblock Autonomous driving system architecture with integrated {ROS2} and
+  adaptive {AUTOSAR}.
+\newblock \emph{Electronics}, 13(7), 1303.
+\newblock \doi{10.3390/electronics13071303}.
+
+\bibitem[{Kato et~al.(2018)Kato, Tokunaga, Maruyama, Maeda, Hirabayashi,
+  Kitsukawa, Monrroy, Ando, Fujii, and Azumi}]{Kato2018}
+Kato, S., Tokunaga, S., Maruyama, Y., Maeda, S., Hirabayashi, M., Kitsukawa,
+  Y., Monrroy, A., Ando, T., Fujii, Y., and Azumi, T. (2018).
+\newblock {Autoware} on board: Enabling autonomous vehicles with embedded
+  systems.
+\newblock In \emph{2018 ACM/IEEE 9th International Conference on Cyber-Physical
+  Systems (ICCPS)}, 287--296.
+\newblock \doi{10.1109/ICCPS.2018.00035}.
 
 \bibitem[{Liao et~al.(2025)Liao, Zhang, Keung, Xiao, and Dai}]{Liao2025}
 Liao, Y., Zhang, J., Keung, J., Xiao, Y., and Dai, Y. (2025).
@@ -102,6 +141,15 @@ Massera~Filho, C., Wolf, D.F., {Grassi Jr.}, V., and Os{\'o}rio, F.S. (2014).
 \newblock
   \urlprefix\url{https://www.mckinsey.com/industries/automotive-and-assembly/our-insights/reinventing-autonomous-driving-in-the-age-of-generative-ai}.
 
+\bibitem[{Rocha et~al.(2022)Rocha, Vitor, Santos, and
+  Almeida}]{Rocha2022MicroROS}
+Rocha, G.T.F.d., Vitor, G.B., Santos, R.F.d., and Almeida, W.G.d. (2022).
+\newblock An{\'a}lise de desempenho da comunica{\c{c}}{\~a}o entre o {ROS 2} e
+  o {MicroROS}.
+\newblock \emph{Congresso Brasileiro de Autom{\'a}tica -- CBA}, 3(1).
+\newblock \doi{10.20906/CBA2022/3659}.
+\newblock \urlprefix\url{https://doi.org/10.20906/CBA2022/3659}.
+
 \bibitem[{Sabbagh et~al.(2010)Sabbagh, Freitas, Castro, Santos, Baleeiro,
   Silva, Iscold, Torres, and Pereira}]{Sabbagh2010}
 Sabbagh, V.B., Freitas, E.J.R., Castro, G.M.M., Santos, M.M., Baleeiro, M.F.,
@@ -128,6 +176,11 @@ Snider, J.M. (2009).
 \newblock Technical Report CMU-RI-TR-09-08, Carnegie Mellon University,
   Robotics Institute.
 
+\bibitem[{Thrun et~al.(2005)Thrun, Burgard, and Fox}]{Thrun2005Robotics}
+Thrun, S., Burgard, W., and Fox, D. (2005).
+\newblock \emph{Probabilistic Robotics}.
+\newblock MIT Press, Cambridge, MA.
+
 \bibitem[{Thrun et~al.(2006)Thrun, Montemerlo, Dahlkamp et~al.}]{Thrun2006}
 Thrun, S., Montemerlo, M., Dahlkamp, H., et~al. (2006).
 \newblock {Stanley}: The robot that won the {DARPA} grand challenge.
@@ -151,10 +204,12 @@ Welch, G. and Bishop, G. (2006).
 \newblock
   \urlprefix\url{https://www.cs.unc.edu/~welch/media/pdf/kalman_intro.pdf}.
 
-\bibitem[{Åström and Hägglund(2006)}]{AstromHagglund2006}
-Åström, K.J. and Hägglund, T. (2006).
-\newblock \emph{Advanced PID Control}.
-\newblock ISA -- The Instrumentation, Systems, and Automation Society, Research
-  Triangle Park, NC.
+\bibitem[{Zhao et~al.(2024)Zhao, Zhao, Deng, Wang, Zhang, Zheng, Cao, Nan,
+  Lian, and Burke}]{Zhao2024}
+Zhao, J., Zhao, W., Deng, B., Wang, Z., Zhang, F., Zheng, W., Cao, W., Nan, J.,
+  Lian, Y., and Burke, A.F. (2024).
+\newblock Autonomous driving system: A comprehensive survey.
+\newblock \emph{Expert Systems with Applications}, 242, 122836.
+\newblock \doi{10.1016/j.eswa.2023.122836}.
 
 \end{thebibliography}

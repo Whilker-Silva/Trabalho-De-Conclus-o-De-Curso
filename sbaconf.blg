@@ -3,44 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: sbaconf.aux
 The style file: ifacconf.bst
 Database file #1: ifacconf.bib
-You've used 19 entries,
+You've used 26 entries,
             2921 wiz_defined-function locations,
-            738 strings with 9846 characters,
-and the built_in function-call counts, 12059 in all, are:
-= -- 956
-> -- 588
-< -- 12
-+ -- 219
-- -- 198
-* -- 861
-:= -- 1908
-add.period$ -- 81
-call.type$ -- 19
-change.case$ -- 172
-chr.to.int$ -- 19
-cite$ -- 19
-duplicate$ -- 893
-empty$ -- 854
-format.name$ -- 247
-if$ -- 2368
+            790 strings with 11586 characters,
+and the built_in function-call counts, 17219 in all, are:
+= -- 1331
+> -- 902
+< -- 14
++ -- 334
+- -- 306
+* -- 1279
+:= -- 2717
+add.period$ -- 109
+call.type$ -- 26
+change.case$ -- 244
+chr.to.int$ -- 26
+cite$ -- 26
+duplicate$ -- 1257
+empty$ -- 1201
+format.name$ -- 376
+if$ -- 3374
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 197
-newline$ -- 125
-num.names$ -- 76
-pop$ -- 411
+missing$ -- 285
+newline$ -- 167
+num.names$ -- 104
+pop$ -- 584
 preamble$ -- 1
-purify$ -- 140
+purify$ -- 204
 quote$ -- 0
-skip$ -- 296
+skip$ -- 405
 stack$ -- 0
-substring$ -- 403
-swap$ -- 460
+substring$ -- 551
+swap$ -- 672
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 168
+type$ -- 225
 warning$ -- 0
-while$ -- 70
+while$ -- 97
 width$ -- 0
-write$ -- 294
+write$ -- 398

@@ -1,22 +1,23 @@
 \section{A Plataforma VIDA}
 \label{sec:plataforma}
 
-O Veículo Inteligente de Desenvolvimento Aplicado (VIDA) é uma plataforma experimental de pequeno porte, desenvolvida pelo Laboratório de Mobilidade Terrestre (LMT), da Universidade Federal de Lavras (UFLA). Iniciado em 2019, o projeto tem como finalidade disponibilizar um veículo elétrico para o desenvolvimento, a integração e a validação de tecnologias relacionadas à condução autônoma. 
+O Veículo Inteligente de Desenvolvimento Aplicado (VIDA) é uma plataforma experimental de pequeno porte, desenvolvida pelo Laboratório de Mobilidade Terrestre (LMT), da Universidade Federal de Lavras (UFLA). Iniciado em 2019, o projeto tem como finalidade disponibilizar um veículo elétrico para o desenvolvimento, a integração e a validação de tecnologias relacionadas à condução autônoma. Seu chassi modular e sua arquitetura computacional distribuída permitem que novos sensores, atuadores e algoritmos sejam incorporados de forma progressiva, conforme a evolução das pesquisas.
 
-A plataforma foi concebida para apoiar a formação de alunos no contexto dos veículos autônomos e auxiliar em pesquisas nas áreas de instrumentação, localização, navegação e controle de veículos terrestres. Sua utilização permite avaliar algoritmos e sistemas embarcados em condições reais de operação, contribuindo para a aproximação entre o desenvolvimento teórico e a validação experimental.
+A plataforma foi concebida para apoiar a formação de alunos no contexto dos veículos autônomos e auxiliar em pesquisas nas áreas de instrumentação, localização, navegação e controle de veículos terrestres. Sua utilização permite avaliar algoritmos e sistemas embarcados em condições reais de operação, contribuindo para a aproximação entre o desenvolvimento teórico e a validação experimental. Além disso, por ser inteiramente desenvolvido na universidade, o veículo permite que os alunos participem das etapas de projeto mecânico, elétrico e computacional, acompanhando a integração de todos os subsistemas.
 
 Antes do início deste trabalho, a plataforma VIDA já contava com uma estrutura mecânica e diferentes subsistemas previamente implementados. Durante o desenvolvimento da solução proposta, foram realizadas modificações e melhorias na plataforma, visando adequá-la às necessidades de integração e navegação autônoma. As subseções seguintes apresentam a configuração atual do veículo, destacando os componentes preexistentes e as alterações realizadas durante o desenvolvimento deste trabalho.
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.85\columnwidth]{Imagens/Vida 1.jpg}
+    \includegraphics[width=0.82\columnwidth]{Imagens/Vida 1.jpg}
     \caption{Vista esquemática da configuração atual da plataforma VIDA. Fonte: Acervo do autor.}
     \label{fig:vida_atual}
+    \vspace{8pt}
 \end{figure}
 
-Na Figura~\ref{fig:vida_atual}, os marcadores 1 a 4 indicam os sensores: os encoders das rodas dianteiras (1), o encoder do eixo traseiro (2), o sensor de deslocamento linear LVDT (3) e o receptor GNSS (4). Os marcadores 5 a 7 correspondem aos atuadores: o motor de esterçamento (5), o motor de tração (6) e o freio (7). Por fim, os marcadores 8 a 11 identificam o hardware de processamento e o painel de comando: o microcontrolador ESP32 (8), a Odroid N2 (9), o notebook (10) e o painel elétrico (11).
+Na Figura~\ref{fig:vida_atual}, os marcadores 1 a 4 indicam os sensores: os \textit{encoders} das rodas dianteiras (1), o \textit{encoder} do eixo traseiro (2), o sensor de deslocamento linear LVDT (3) e o receptor GNSS (4). Os marcadores 5 a 7 correspondem aos atuadores: o motor de esterçamento (5), o motor de tração (6) e o freio (7). Por fim, os marcadores 8 a 11 identificam o hardware de processamento e o painel de comando: o microcontrolador ESP32 (8), a Odroid N2 (9), o notebook (10) e o painel elétrico (11).
 
-\subsection{Estrutura Mecânica}
+\subsection{Estrutura mecânica}
 
 A estrutura mecânica do VIDA foi desenvolvida em etapas anteriores do projeto, sendo constituída por um chassi metálico modular, com quatro rodas, tração traseira e esterçamento nas rodas dianteiras. Essa configuração permite a instalação de diferentes componentes e instrumentos, conforme as necessidades das pesquisas desenvolvidas na plataforma. Todo o projeto da estrutura foi validado quanto à sua resistência a esforços mecânicos por meio do método dos elementos finitos.
 
@@ -26,13 +27,13 @@ O sistema de esterçamento também passou por uma modificação, realizada no â
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.72\columnwidth]{Imagens/Conjunto de esterçamento.jpg}
+    \includegraphics[width=0.70\columnwidth]{Imagens/Conjunto de esterçamento.jpg}
    \caption{Novo conjunto de esterçamento do VIDA adaptado para este projeto. Fonte: Acervo do autor.}
     \label{fig:estercamento_vida}
 \end{figure}
 
 
-\subsection{Sistema Elétrico}
+\subsection{Sistema elétrico}
 
 Uma das principais contribuições deste trabalho consistiu na reformulação do sistema elétrico do VIDA, com o objetivo de atender às necessidades de alimentação, acionamento e integração dos componentes embarcados, além de separar os circuitos de potência e de instrumentação. A arquitetura implementada utiliza quatro baterias de chumbo-ácido de 12 V, sendo três conectadas em série para formar um banco de 36 V, destinado aos circuitos de potência, e uma bateria independente de 12 V, responsável pela alimentação dos sistemas eletrônicos e periféricos.
 
@@ -40,7 +41,7 @@ A distribuição de energia foi organizada em um painel elétrico centralizado, 
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.85\columnwidth]{Imagens/Diagrama elétrico simplificado.pdf}
+    \includegraphics[width=0.8\columnwidth]{Imagens/Diagrama elétrico simplificado.pdf}
     \caption{Diagrama simplificado do sistema elétrico do VIDA. Fonte: Elaborado pelo autor.}
     \label{fig:diagrama_eletrico_simplificado}
 \end{figure}
@@ -49,7 +50,7 @@ No circuito auxiliar, a tensão proveniente da bateria de 12 V é inicialmente e
 
 O circuito principal de 36 V alimenta os sistemas de potência e de comando. Parte dessa alimentação é convertida para 12 V, destinada aos dispositivos de operação, sinalização e acionamento dos relés auxiliares. O barramento de potência é interrompido por um relé principal normalmente aberto, cuja saída fornece 36 V ao sistema de tração e alimenta um conversor CC-CC, responsável por fornecer 24 V ao motor de esterçamento.
 
-O painel dispõe de chave seccionadora geral, disjuntores de proteção, botões de acionamento, dispositivos de parada de emergência local e romota, além dos sinalizadores luminosos. A lógica de comando utiliza relés auxiliares para controlar a habilitação do barramento de potência e disponibilizar um sinal lógico de 5 V aos sistemas de controle quando o veículo está habilitado.
+O painel dispõe de chave seccionadora geral, disjuntores de proteção, botões de acionamento, dispositivos de parada de emergência local e remota, além dos sinalizadores luminosos. A lógica de comando utiliza relés auxiliares para controlar a habilitação do barramento de potência e disponibilizar um sinal lógico de 5 V aos sistemas de controle quando o veículo está habilitado.
 
 A Figura~\ref{fig:painel_eletrico_vida} apresenta a implementação física do painel, destacando a organização dos conversores, dispositivos de proteção, relés e bornes de distribuição, bem como os elementos de comando instalados na porta. 
 
@@ -64,11 +65,11 @@ A Figura~\ref{fig:painel_eletrico_vida} apresenta a implementação física do p
 
 \subsection{Instrumentação}
 
-A instrumentação do VIDA é composta por sensores destinados à aquisição de informações relacionadas ao movimento, à orientação e à localização do veículo. Para o desenvolvimento deste trabalho, foram utilizados três encoders incrementais, um sensor de deslocamento linear LVDT e um receptor GNSS com sensores inerciais integrados.
+A instrumentação do VIDA é composta por sensores destinados à aquisição de informações relacionadas ao movimento, à orientação e à localização do veículo. Para o desenvolvimento deste trabalho, foram utilizados três \textit{encoders} incrementais, um sensor de deslocamento linear LVDT e um receptor GNSS com sensores inerciais integrados.
 
-Os encoders incrementais são responsáveis pela medição da rotação das rodas, permitindo estimar o deslocamento e a velocidade longitudinal do veículo. Dois sensores estão instalados nas rodas dianteiras (eixo sem tração), enquanto o terceiro está instalado no eixo traseiro (eixo de tração). Todos possuem dois canais de saída em quadratura, permitindo a identificação do sentido de rotação. A aquisição dos sinais utiliza decodificação em quadratura completa, com resoluções configuradas de 720 contagens por revolução para os encoders dianteiros e 1440 para o traseiro.
+Os \textit{encoders} incrementais são responsáveis pela medição da rotação das rodas, permitindo estimar o deslocamento e a velocidade longitudinal do veículo. Dois sensores estão instalados nas rodas dianteiras (eixo sem tração), enquanto o terceiro está instalado no eixo traseiro (eixo de tração). Todos possuem dois canais de saída em quadratura, permitindo a identificação do sentido de rotação. A aquisição dos sinais utiliza decodificação em quadratura completa, com resoluções configuradas de 720 contagens por revolução para os \textit{encoders} dianteiros e 1440 para o traseiro.
 
-Os encoders dianteiros são utilizados como referência para a estimação da velocidade longitudinal, enquanto o encoder traseiro desempenha uma função complementar de supervisão. Discrepâncias significativas entre as velocidades obtidas por meio dos encoders podem indicar falhas nos sensores, problemas no acionamento ou situações de patinagem das rodas motrizes.
+Os \textit{encoders} dianteiros são utilizados como referência para a estimação da velocidade longitudinal, enquanto o \textit{encoder} traseiro desempenha uma função complementar de supervisão. Discrepâncias significativas entre as velocidades obtidas por meio dos \textit{encoders} podem indicar falhas nos sensores, problemas no acionamento ou situações de patinagem das rodas motrizes.
 
 O sensor LVDT é utilizado para medir o deslocamento linear do mecanismo de direção. Por meio de uma relação de calibração, essa medição permite determinar o ângulo de esterçamento das rodas dianteiras, fornecendo a realimentação necessária ao sistema de controle de direção.
 

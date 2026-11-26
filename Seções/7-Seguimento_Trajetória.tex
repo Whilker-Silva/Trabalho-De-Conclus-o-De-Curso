@@ -1,7 +1,7 @@
 \section{Seguimento de Trajetória}
 \label{sec:seguimento_trajetoria}
 
-Para validar a arquitetura proposta para o veículo VIDA, foi desenvolvida uma aplicação de seguimento autônomo de trajetórias baseada no controlador Stanley, implementada como um nó ROS 2 executado no notebook. O algoritmo utiliza os estados estimados pelo EKF e uma trajetória de referência previamente definida para calcular os comandos de esterçamento necessários à correção dos desvios de posição e orientação. A implementação incorpora modificações à formulação original, visando melhorar o comportamento do veículo durante a operação experimental.
+Para validar a arquitetura proposta para o veículo VIDA, foi desenvolvida uma aplicação de seguimento autônomo de trajetórias baseada no controlador Stanley \citep{Thrun2006,Hoffmann2007}, implementada como um nó ROS 2 executado no notebook. O algoritmo utiliza os estados estimados pelo EKF e uma trajetória de referência previamente definida para calcular os comandos de esterçamento necessários à correção dos desvios de posição e orientação. A implementação incorpora modificações à formulação original, visando melhorar o comportamento do veículo durante a operação experimental.
 
 \subsection{Implementação do Controlador Stanley}
 \label{subsec:implementacao_stanley}
@@ -13,7 +13,7 @@ Para determinar os erros de seguimento, considera-se a posição do centro do ei
 \begin{equation}
 \begin{aligned}
 x_f &= x_r + L\cos(\theta), \\
-y_f &= y_r + L\sin(\theta).
+y_f &= y_r + L\sin(\theta),
 \end{aligned}
 \label{eq:posicao_eixo_dianteiro}
 \end{equation}
@@ -27,7 +27,7 @@ A posição calculada é projetada sobre a trajetória de referência, permitind
 \psi
 - \arctan\left(\frac{ke}{v+k_s}\right)
 + k_{ff}\arctan(L_{ff}\kappa)
-- k_r(r-v\kappa).
+- k_r(r-v\kappa),
 \label{eq:stanley_modificado}
 \end{equation}
 
@@ -58,18 +58,18 @@ O comando resultante é limitado à faixa de $\pm20^\circ$ e submetido a uma res
     \end{tabular}
 \end{table}
 
-O controlador utiliza uma referência de velocidade longitudinal constante durante o seguimento da trajetória. A velocidade e o ângulo de esterçamento calculados são publicados em tópicos ROS~2 específicos, posteriormente encaminhados aos controladores de baixo nível executados no ESP32.
+O controlador utiliza uma referência de velocidade constante durante o seguimento da trajetória. A velocidade e o ângulo de esterçamento calculados são publicados em tópicos ROS~2 específicos, posteriormente encaminhados aos controladores de baixo nível executados no ESP32.
 
 \subsection{Gerenciamento da Navegação Autônoma}
 \label{subsec:gerenciamento_navegacao}
 
-A execução do seguimento de trajetória é supervisionada por um gerenciador de modos de operação, responsável por coordenar a condução manual e a navegação autônoma, verificando as condições necessárias ao funcionamento do sistema.
+A execução do seguimento de trajetória é supervisionada por um gerenciador de modos de operação, responsável por coordenar a condução manual e a navegação autônoma, verificando as condições necessárias para o funcionamento.
 
-No modo manual, o operador utiliza um gamepad para controlar a velocidade longitudinal e o esterçamento do veículo por meio dos comandos analógicos, além de acionar a frenagem e solicitar a alternância entre os modos de operação. Esse controle permite posicionar o veículo próximo ao início da trajetória de referência, momento em que o operador solicita a ativação da navegação autônoma.
+No modo manual, o operador utiliza um \textit{gamepad} para controlar a velocidade longitudinal e o esterçamento do veículo por meio dos comandos analógicos, além de acionar a frenagem e solicitar a alternância entre os modos de operação. Esse controle permite posicionar o veículo próximo ao início da trajetória de referência, momento em que o operador solicita a ativação da navegação autônoma.
 
-A partir dessa solicitação, o gerenciador verifica as condições de funcionamento dos subsistemas de controle e localização, incluindo a disponibilidade e a qualidade das estimativas de posicionamento, a liberação do movimento pelo ESP32 e a proximidade do veículo ao início da trajetória de referência.
+A partir dessa solicitação, o gerenciador verifica as condições de funcionamento dos subsistemas, incluindo a disponibilidade e a qualidade das estimativas de posicionamento, a liberação do movimento pelo ESP32 e a proximidade do veículo ao início da trajetória de referência.
 
-Após essas verificações, o gerenciador executa uma sequência de preparação que compreende o alinhamento das rodas dianteiras, a reinicialização do estimador de estados e um deslocamento inicial em linha reta para o determinação da orientação de navegação. Durante esse deslocamento, assim que a orientação é estabelecida e as condições de alinhamento com a trajetória de referência são atendidas, o controlador Stanley assume o comando de esterçamento, dando continuidade ao percuso em modo autônomo.
+Após essas verificações, o gerenciador executa uma sequência de preparação que compreende o alinhamento das rodas dianteiras, a reinicialização do estimador de estados e um deslocamento inicial em linha reta para a determinação da orientação de navegação. Durante esse deslocamento, assim que a orientação é estabelecida e as condições de alinhamento com a trajetória de referência são atendidas, o controlador Stanley assume o comando de esterçamento, dando continuidade ao percurso em modo autônomo.
 
 Durante a operação autônoma, o gerenciador monitora continuamente a disponibilidade das informações de localização, a comunicação com os sistemas embarcados e os desvios em relação à trajetória. Condições operacionais inadequadas, como perda de informações essenciais, erros laterais excessivos ou intervenção do operador, provocam a interrupção do seguimento autônomo.
 

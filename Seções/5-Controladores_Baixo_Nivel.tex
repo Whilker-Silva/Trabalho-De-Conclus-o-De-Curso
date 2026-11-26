@@ -36,11 +36,11 @@ Uma particularidade dessa implementação é a aplicação da ação derivativa 
 
 Antes de ser utilizada pela malha de controle, a referência de esterçamento é submetida a restrições de amplitude e de taxa de variação. O ângulo solicitado é limitado à faixa de $\pm20^\circ$, enquanto sua variação máxima é estabelecida em $40^\circ/\mathrm{s}$. Essas restrições reduzem solicitações bruscas ao mecanismo de direção e contribuem para manter o comando dentro da faixa operacional definida para o veículo.
 
-Além das ações PID, o controlador incorpora recursos destinados a melhorar o comportamento do sistema diante das características do acionamento eletromecânico. Entre eles estão uma zona morta com histerese, a compensação da zona morta de acionamento do motor e mecanismos de integração condicionada e \textit{anti-windup}. A zona morta contribui para evitar acionamentos sucessivos próximos à condição de equilíbrio, enquanto a compensação da zona morta de acionamento adiciona ao comando o valor mínimo necessário para vencer o atrito estático e iniciar o movimento do mecanismo. Os mecanismos associados à ação integral, limitam seu acúmulo em condições nas quais o esforço de controle não pode ser totalmente aplicado.
+Além das ações PID, o controlador incorpora recursos destinados a melhorar o comportamento do sistema diante das características do acionamento eletromecânico. Entre eles estão uma zona morta com histerese, a compensação da zona morta de acionamento do motor e mecanismos de integração condicionada e \textit{anti-windup}. A zona morta contribui para evitar acionamentos sucessivos próximos à condição de equilíbrio, enquanto a compensação da zona morta de acionamento adiciona ao comando o valor mínimo necessário para vencer o atrito estático e iniciar o movimento do mecanismo. Os mecanismos associados à ação integral limitam seu acúmulo em condições nas quais o esforço de controle não pode ser totalmente aplicado.
 
 A ação integral foi mantida porque o mecanismo de direção está sujeito a uma carga resistente, decorrente do contato dos pneus com o solo e do atrito do mecanismo, que atua como uma perturbação constante na entrada da planta. Sem essa ação, o erro em regime permaneceria proporcional a essa carga. Para não comprometer a resposta transitória, a integração é habilitada apenas próximo à referência ou quando a direção permanece imóvel e afastada dela, sendo reinicializada quando o erro muda de sinal.
 
-O firmware também considera restrições associadas aos limites físicos de esterçamento. Embora a referência de operação seja limitada a $\pm20^\circ$, o mecanismo possui um limite de segurança de $\pm25^\circ$. Dessa forma, são impedidos comandos que possam ampliar o esterçamento quando o ângulo medido já se encontra além da faixa permitida.
+O \textit{firmware} também considera restrições associadas aos limites físicos de esterçamento. Embora a referência de operação seja limitada a $\pm20^\circ$, o mecanismo possui um limite de segurança de $\pm25^\circ$. Dessa forma, são impedidos comandos que possam ampliar o esterçamento quando o ângulo medido já se encontra além da faixa permitida.
 
 A Figura~\ref{fig:controle_esterçamento} apresenta a estrutura da malha fechada de controle de esterçamento, reunindo os elementos descritos anteriormente. O diagrama destaca o processamento da referência, a atuação do controlador PID, os mecanismos de compensação e limitação dos comandos, o acionamento do motor de direção e a realimentação fornecida pelo sensor LVDT.
 
@@ -84,11 +84,11 @@ Os ganhos do controlador foram inicialmente ajustados com o auxílio de simulaç
     \label{fig:controle_velocidade}
 \end{figure*}
 
-Para regular a velocidade longitudinal do VIDA, foi adotada uma estratégia de controle em malha fechada baseada em um controlador proporcional-integral (PI), executado a uma frequência nominal de 200~Hz. O controlador determina o esforço necessário para acompanhar a velocidade de referência, utilizando as medições dos encoders como realimentação. A ação de controle resultante é empregada para coordenar os sistemas de tração e frenagem, permitindo tanto a aceleração quanto a desaceleração do veículo.
+Para regular a velocidade longitudinal do VIDA, foi adotada uma estratégia de controle em malha fechada baseada em um controlador proporcional-integral (PI), executado a uma frequência nominal de 200~Hz. O controlador determina o esforço necessário para acompanhar a velocidade de referência, utilizando as medições dos \textit{encoders} como realimentação. A ação de controle resultante é empregada para coordenar os sistemas de tração e frenagem, permitindo tanto a aceleração quanto a desaceleração do veículo.
 
 A estrutura PI foi adotada porque a manutenção de uma velocidade constante exige um esforço permanente para vencer as resistências ao movimento. A ação integral fornece esse esforço sem erro em regime permanente e compensa perturbações decorrentes de inclinações do terreno, diferentes condições de aderência do piso e variações da tensão de alimentação ao longo da operação.
 
-A realimentação utiliza as velocidades medidas pelos encoders das rodas dianteiras, que não são acionadas pelo sistema de tração, o que reduz a influência de eventuais perdas de aderência da roda traseira motriz sobre a medição. Como as rodas dianteiras são esterçáveis, a média de suas velocidades corresponde à velocidade do eixo dianteiro, orientada segundo o ângulo de esterçamento $\delta$. A velocidade longitudinal utilizada pelo controlador é obtida pela projeção dessa velocidade no eixo longitudinal do veículo:
+A realimentação utiliza as velocidades medidas pelos \textit{encoders} das rodas dianteiras, que não são acionadas pelo sistema de tração, o que reduz a influência de eventuais perdas de aderência da roda traseira motriz sobre a medição. Como as rodas dianteiras são esterçáveis, a média de suas velocidades corresponde à velocidade do eixo dianteiro, orientada segundo o ângulo de esterçamento $\delta$. A velocidade longitudinal utilizada pelo controlador é obtida pela projeção dessa velocidade no eixo longitudinal do veículo:
 
 
 \begin{equation}
@@ -106,22 +106,22 @@ u_v(t) = K_p e_v(t) + K_i \int_0^t e_v(\tau)\,d\tau,
 
 em que $u_v$ representa o esforço de controle longitudinal normalizado, $K_p$ e $K_i$ são os ganhos proporcional e integral, respectivamente, e $e_v$ corresponde à diferença entre a velocidade de referência e a velocidade medida. Valores positivos de $u_v$ são utilizados para gerar comandos de tração, enquanto valores negativos são tratados pela lógica de desaceleração e frenagem.
 
-Antes de ser aplicada ao controlador, a referência de velocidade é submetida a restrições de amplitude e de taxa de variação. A velocidade máxima permitida é de $2{,}5\,\mathrm{m/s}$, enquanto rampas de aceleração e desaceleração estabelecem transições graduais entre diferentes condições de movimento. A aceleração padrão é definida em $0,4~\mathrm{m/s^2}$, podendo ser alterada por meio de um valor enviado pelo ROS 2 juntamente com a referência de velocidade. A desaceleração máxima é limitada a $1,0~\mathrm{m/s^2}$. 
+Antes de ser aplicada ao controlador, a referência de velocidade é submetida a restrições de amplitude e de taxa de variação. A velocidade máxima permitida é de $2{,}5\,\mathrm{m/s}$, enquanto rampas de aceleração e desaceleração estabelecem transições graduais entre diferentes condições de movimento. A aceleração padrão é definida em $0{,}4~\mathrm{m/s^2}$, podendo ser alterada por meio de um valor enviado pelo ROS 2 juntamente com a referência de velocidade. A desaceleração máxima é limitada a $1{,}0~\mathrm{m/s^2}$. 
 
 Para evitar o acúmulo excessivo da ação integral em condições de saturação, o controlador incorpora um mecanismo de \textit{anti-windup} baseado em integração condicionada. Além disso, o estado integral é reinicializado quando o sistema não possui permissão de movimento, evitando que erros acumulados durante períodos de desabilitação produzam comandos inadequados após uma nova habilitação.
 
 O esforço de controle calculado é encaminhado a uma lógica de acionamento responsável pela coordenação dos sistemas de tração e frenagem. Para esforços positivos, é gerado um comando destinado ao motor de tração, considerando a compensação da zona morta de acionamento. Para esforços negativos, a estratégia permite inicialmente a desaceleração em roda livre e, quando necessário, o acionamento progressivo do freio mecânico por meio do servomotor.
 
-A condição de parada recebe tratamento específico. Quando a referência de velocidade atinge valores próximos de zero, a ação PI é desabilitada e o sistema passa a comandar o freio mecânico, mantendo-o aplicado durante a condição de parada. Essa estratégia evita acionamentos sucessivos do sistema de tração provocados por pequenas oscilações na velocidade medida. Adicionalmente, durante a operação manual, o operador pode solicitar a aplicação imediata do freio por meio do gatilho do gamepad, independentemente do esforço calculado pelo controlador PI.
+A condição de parada recebe tratamento específico. Quando a referência de velocidade atinge valores próximos de zero, a ação PI é desabilitada e o sistema passa a comandar o freio mecânico, mantendo-o aplicado durante a condição de parada. Essa estratégia evita acionamentos sucessivos do sistema de tração provocados por pequenas oscilações na velocidade medida. Adicionalmente, durante a operação manual, o operador pode solicitar a aplicação imediata do freio por meio do gatilho do \textit{gamepad}, independentemente do esforço calculado pelo controlador PI.
 
-A Figura~\ref{fig:controle_velocidade} apresenta a estrutura da malha fechada de controle longitudinal, reunindo os elementos descritos anteriormente. O diagrama destaca o processamento da referência, a atuação do controlador PI, os mecanismos de limitação e compensação, a distribuição dos comandos entre os sistemas de tração e frenagem e a realimentação fornecida pelos encoders.
+A Figura~\ref{fig:controle_velocidade} apresenta a estrutura da malha fechada de controle longitudinal, reunindo os elementos descritos anteriormente. O diagrama destaca o processamento da referência, a atuação do controlador PI, os mecanismos de limitação e compensação, a distribuição dos comandos entre os sistemas de tração e frenagem e a realimentação fornecida pelos \textit{encoders}.
 
 % -----------------------------------------------------------
 % FIGURA: DIAGRAMA DA MALHA FECHADA DE VELOCIDADE
 % Manter o caminho original da imagem no seu projeto.
 % -----------------------------------------------------------
 
-Assim como no controle de esterçamento, a sintonia dos ganhos partiu de valores obtidos em simulação, que foram em seguida ajustados com base em testes realizados diretamente no veículo. Os parâmetros finais da malha longitudinal, empregados nos ensaios de validação, estão reunidos na Tabela~\ref{tab:parametros_controle_velocidade}.
+Assim como no controle de esterçamento, a sintonia dos ganhos partiu de valores obtidos em simulação, que foram em seguida ajustados com base em testes realizados no veículo. Os parâmetros da malha longitudinal, empregados nos ensaios de validação, estão reunidos na Tabela~\ref{tab:parametros_controle_velocidade}.
 
 \begin{table}[htb]
     \centering
@@ -134,9 +134,9 @@ Assim como no controle de esterçamento, a sintonia dos ganhos partiu de valores
         Ganho proporcional ($K_p$) & 0,10 \\
         Ganho integral ($K_i$) & 0,025 \\
         Frequência de controle & 200~Hz \\
-        Velocidade máxima & $2,5~\mathrm{m/s}$ \\
-        Aceleração máxima & $0,8~\mathrm{m/s^2}$ \\
-        Desaceleração máxima & $1,0~\mathrm{m/s^2}$ \\
+        Velocidade máxima & $2{,}5~\mathrm{m/s}$ \\
+        Aceleração máxima & $0{,}8~\mathrm{m/s^2}$ \\
+        Desaceleração máxima & $1{,}0~\mathrm{m/s^2}$ \\
         \hline
     \end{tabular}
 \end{table}

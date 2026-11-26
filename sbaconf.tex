@@ -42,7 +42,6 @@
 
 \usepackage[utf8]{inputenc}
 
-\usepackage{ae}
 
 
 \if\portugues1
@@ -61,10 +60,6 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,angles,quotes}
 % Permite quebrar URLs longas na bibliografia
-% Permite quebrar URLs longas na bibliografia
-\usepackage{xurl}
-
-% Permite quebrar URLs longas na bibliografia
 \usepackage{xurl}
 
 % Preserva a definição original da classe IFAC
@@ -74,6 +69,14 @@
 
 % Habilita hyperlinks sem bordas coloridas
 \usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle    = {Seguimento de trajetória em veículo autônomo: implementação e validação experimental com controlador Stanley e localização GNSS},
+  pdfauthor   = {Whilker Henrique dos Santos Silva; Danilo Alves de Lima},
+  pdfsubject  = {Trabalho de Conclusão de Curso -- Engenharia de Controle e Automação, UFLA},
+  pdfkeywords = {Veículos autônomos; Seguimento de trajetórias; Controlador Stanley; Fusão sensorial},
+  pdflang     = {pt-BR}
+}
 
 % Compatibilidade dos marcadores PDF com a classe IFAC
 \providecommand*{\theHpart}{0}
@@ -86,8 +89,6 @@
 % Padroniza a fonte das URLs
 \urlstyle{same}
 
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 
 % Largura do bloco Abstract/Resumo/Palavras-chave (padrão da classe: .8\textwidth)
@@ -115,7 +116,10 @@
 	
 \begin{frontmatter}
 
-\title{Integração e validação da plataforma experimental autônoma VIDA por meio de fusão sensorial e controle de trajetória} 
+%\title{Integração e validação da plataforma experimental autônoma VIDA por meio de fusão sensorial e controle de trajetória} 
+
+\title{Seguimento de trajetória em veículo autônomo: implementação e validação experimental com controlador Stanley e localização GNSS} 
+
 % Title, preferably not more than 10 words.
 
 
@@ -131,13 +135,13 @@
 \selectlanguage{english}
 \renewcommand{\abstractname}{{\bf Abstract:~}}
 \begin{abstract}                % Abstract of not more than 250 words.
-Autonomous vehicle research requires multidisciplinary knowledge and experimental capabilities, often limited by access to affordable testing platforms. Commercial vehicles designed for this purpose are expensive and difficult to access, hindering research progress and the training of qualified professionals. To address this challenge, the Land Mobility Laboratory (LMT) at the Federal University of Lavras (UFLA) is developing the Intelligent Vehicle for Applied Development (VIDA), a small-scale electric vehicle for educational and scientific purposes. This work aims to integrate VIDA's subsystems into a unified architecture and validate the resulting architecture through an autonomous navigation task. The proposed solution employs a distributed computing architecture consisting of an ESP32 microcontroller, an Odroid N2 embedded computer, and a laptop, integrated through ROS 2. Low-level control employs proportional and integral (PI) actions for longitudinal velocity and proportional, integral, and derivative (PID) actions for steering. Localization combines measurements from wheel encoders, an LVDT sensor, an IMU, and a GNSS receiver with RTK corrections using an extended Kalman filter (EKF). Autonomous navigation is performed using the Stanley controller, incorporating curvature feedforward compensation and yaw-rate damping. Experimental validation involved two experimental trials in real-world environments, achieving llateral root mean square tracking errors (RMSE) of 16.7 cm and 12.9 cm, respectively. The results demonstrate the feasibility of the developed architecture and the platform's ability to follow trajectories autonomously, establishing a foundation for future research on autonomous ground vehicles.
+Autonomous vehicle research requires multidisciplinary knowledge and experimental capabilities, often limited by access to affordable testing platforms. Commercial vehicles designed for this purpose are expensive and difficult to access, hindering research progress and the training of qualified professionals. To address this challenge, the Land Mobility Laboratory (LMT) at the Federal University of Lavras (UFLA) is developing the Intelligent Vehicle for Applied Development (VIDA), a small-scale electric vehicle for educational and scientific purposes. This work aims to integrate VIDA's subsystems into a unified architecture and validate the resulting architecture through an autonomous navigation task. The proposed solution employs a distributed computing architecture consisting of an ESP32 microcontroller, an Odroid N2 embedded computer, and a laptop, integrated through ROS 2. Low-level control employs proportional and integral (PI) actions for longitudinal velocity and proportional, integral, and derivative (PID) actions for steering. Localization combines measurements from wheel encoders, an LVDT sensor, an IMU, and a GNSS receiver with RTK corrections using an extended Kalman filter (EKF). Autonomous navigation is performed using the Stanley controller, incorporating curvature feedforward compensation and yaw-rate damping. Experimental validation involved two experimental trials in real-world environments, achieving lateral root mean square tracking errors (RMSE) of 16.7 cm and 12.9 cm, respectively. The results demonstrate the feasibility of the developed architecture and the platform's ability to follow trajectories autonomously, establishing a foundation for future research on autonomous ground vehicles.
 
 
 
 \vskip 1mm% não altere esse espaçamento
 \selectlanguage{brazil}
-{\noindent \bf Resumo}: O estudo de veículos autônomos requer amplo conhecimento aplicado e capacidade experimental, muitas vezes limitadas à disponibilidade de uma plataforma de testes acessível. Veículos comerciais para esse propósito são caros e de difícil acesso, dificultando o avanço de pesquisas e a formação de mão de obra especializada. É com esse intuito que o Laboratório de Mobilidade Terrestre (LMT) da Universidade Federal de Lavras (UFLA) está desenvolvendo o Veículo Inteligente de Desenvolvimento Aplicado (VIDA), um carro elétrico em escala reduzida para fins didáticos e científicos. Este trabalho tem como objetivo realizar a integração dos subsistemas que compõem o VIDA em uma arquitetura unificada e validá-la por meio de uma tarefa de navegação autônoma. A solução proposta utiliza uma arquitetura computacional distribuída, composta por um microcontrolador ESP32, um computador embarcado Odroid N2 e um notebook, integrados por meio do framework ROS 2. O controle de baixo nível emprega ações proporcional e integral (PI) na velocidade longitudinal, e ações proporcional, integral e  derivativa (PID) no controle de esterçamento. Enquanto isso, a localização combina medições de sensores diversos, como encoders, LVDT, IMU e receptor GNSS com correções RTK, por meio de um filtro de Kalman estendido (EKF). A tarefa de navegação é realizada por meio do controlador Stanley, incorporando compensação antecipativa de curvatura e amortecimento da velocidade angular. A validação experimental compreendeu dois percursos reais, nos quais foram obtidos as raízes dos erros quadráticos médios em relação ao caminho desejado de 16,7 cm e 12,9 cm, respectivamente. Os resultados demonstram a viabilidade da arquitetura desenvolvida e a capacidade da plataforma de seguir trajetórias de forma autônoma, estabelecendo uma base para futuras pesquisas em veículos autônomos terrestres.
+{\noindent \bf Resumo}: O estudo de veículos autônomos requer amplo conhecimento aplicado e capacidade experimental, muitas vezes limitadas à disponibilidade de uma plataforma de testes acessível. Veículos comerciais para esse propósito são caros e de difícil acesso, dificultando o avanço de pesquisas e a formação de mão de obra especializada. É com esse intuito que o Laboratório de Mobilidade Terrestre (LMT) da Universidade Federal de Lavras (UFLA) está desenvolvendo o Veículo Inteligente de Desenvolvimento Aplicado (VIDA), um carro elétrico em escala reduzida para fins didáticos e científicos. Este trabalho tem como objetivo realizar a integração dos subsistemas que compõem o VIDA em uma arquitetura unificada e validá-la por meio de uma tarefa de navegação autônoma. A solução proposta utiliza uma arquitetura computacional distribuída, composta por um microcontrolador ESP32, um computador embarcado Odroid N2 e um notebook, integrados por meio do \textit{framework} ROS 2. O controle de baixo nível emprega ações proporcional e integral (PI) na velocidade longitudinal, e ações proporcional, integral e derivativa (PID) no controle de esterçamento. Enquanto isso, a localização combina medições de sensores diversos, como \textit{encoders}, LVDT, IMU e receptor GNSS com correções RTK, por meio de um filtro de Kalman estendido (EKF). A tarefa de navegação é realizada por meio do controlador Stanley, incorporando compensação antecipativa de curvatura e amortecimento da velocidade angular. A validação experimental compreendeu dois percursos reais, nos quais foram obtidas as raízes dos erros quadráticos médios em relação ao caminho desejado de 16,7 cm e 12,9 cm, respectivamente. Os resultados demonstram a viabilidade da arquitetura desenvolvida e a capacidade da plataforma de seguir trajetórias de forma autônoma, estabelecendo uma base para futuras pesquisas em veículos autônomos terrestres.
 \end{abstract}
 
 \selectlanguage{english}

@@ -1,14 +1,14 @@
 \section{Arquitetura Computacional}
 \label{sec:arquitetura}
 
-A arquitetura computacional do VIDA foi desenvolvida de forma distribuída e modular, sendo composta por três níveis de processamento: um microcontrolador ESP32, um computador embarcado Odroid N2 e um notebook. Essa organização distribui as funções de aquisição, controle, localização e navegação entre dispositivos com capacidades computacionais distintas, estabelecendo uma infraestrutura escalável e capaz de incorporar novos subsistemas. Embora os algoritmos atualmente implementados sejam computacionalmente leves, a manutenção de um nível adicional de processamento (o notebook) permite validar a comunicação entre dispositivos e prepara a plataforma para aplicações futuras mais exigentes, como percepção visual, planejamento de movimento e inteligência artificial.
+A arquitetura computacional do VIDA foi desenvolvida de forma distribuída e modular, sendo composta por três níveis de processamento: um microcontrolador ESP32, um computador embarcado Odroid N2 e um notebook. Essa organização distribui as funções de aquisição, controle, localização e navegação entre dispositivos com capacidades computacionais distintas, estabelecendo uma infraestrutura escalável e capaz de incorporar novos subsistemas. Embora os algoritmos atualmente implementados sejam computacionalmente leves, a manutenção de um nível adicional de processamento (o notebook) permite validar a comunicação entre dispositivos e prepara a plataforma para aplicações futuras mais exigentes, como percepção visual, planejamento de movimento e inteligência artificial \citep{Kato2018,Hong2024,Bonci2026}.
 
-A distribuição das tarefas também considera seus requisitos temporais. No ESP32, o sistema operacional FreeRTOS permite a execução periódica e o gerenciamento de prioridades das tarefas de aquisição, controle e segurança, que apresentam maior criticidade temporal. Por sua vez, a Odroid N2 e o notebook executam, em ambiente Linux, os componentes ROS 2 associados à localização, estimação de estados e navegação, caracterizados por requisitos de tempo real flexível (\textit{soft real-time}). Essa separação permite concentrar as funções com requisitos temporais mais rigorosos no microcontrolador, enquanto os demais dispositivos realizam o processamento e a comunicação necessários à navegação autônoma. Assim, eventuais atrasos no processamento em Linux podem degradar o desempenho da navegação, mas seus efeitos sobre a segurança operacional são mitigados pelos mecanismos de supervisão implementados no ESP32, que verificam a validade das referências recebidas e conduzem o veículo a uma condição de parada quando necessário.
+A distribuição das tarefas também considera seus requisitos temporais. No ESP32, o sistema FreeRTOS permite a execução periódica e o gerenciamento de prioridades das tarefas de aquisição, controle e segurança, que apresentam maior criticidade temporal. Por sua vez, a Odroid N2 e o notebook executam, em ambiente Linux, os componentes ROS 2 associados à localização, estimação de estados e navegação, caracterizados por requisitos de tempo real flexível (\textit{Firm e Soft real-time}). Essa separação permite concentrar as funções com requisitos temporais mais rigorosos no microcontrolador, enquanto os demais dispositivos realizam o processamento e a comunicação necessários à navegação autônoma. Assim, eventuais atrasos no processamento em Linux podem degradar o desempenho da navegação, mas seus efeitos sobre a segurança são mitigados pelos mecanismos de supervisão implementados no ESP32, que verificam a validade das referências recebidas e conduzem o veículo a uma condição de parada quando necessário \citep{Buttazzo2011,Bonci2026}.
 
 
-\subsection{Comunicação e Integração dos Subsistemas}
+\subsection{Comunicação e integração dos subsistemas}
 
-A integração dos três níveis de processamento é realizada por meio do ROS~2 Humble, cuja arquitetura se basea em nós, tópicos e serviços e permite a comunicação entre componentes distribuídos \citep{Macenski2022}. A Figura~\ref{fig:arquitetura_computacional} apresenta a organização geral da arquitetura e as principais interfaces de comunicação entre os dispositivos.
+A integração dos três níveis de processamento é realizada por meio do ROS~2 Humble, cuja arquitetura se baseia em nós, tópicos e serviços e permite a comunicação entre componentes distribuídos \citep{Macenski2022,Hong2024,Bonci2026}. A Figura~\ref{fig:arquitetura_computacional} apresenta a organização geral da arquitetura e as principais interfaces de comunicação entre os dispositivos.
 
 \begin{figure}[htb]
     \centering
@@ -17,15 +17,15 @@ A integração dos três níveis de processamento é realizada por meio do ROS~2
     \label{fig:arquitetura_computacional}
 \end{figure}
 
-A comunicação entre o ESP32 e a Odroid é realizada por uma conexão serial USB a 921\,600~bits/s, utilizando o micro-ROS e o protocolo XRCE-DDS. O agente micro-ROS executado na Odroid estabelece a ponte entre o microcontrolador e a rede DDS do ROS~2.
+A comunicação entre o ESP32 e a Odroid é realizada por uma conexão serial USB a 921\,600~bits/s, utilizando o micro-ROS e o protocolo XRCE-DDS. O agente micro-ROS executado na Odroid estabelece a ponte entre o microcontrolador e a rede DDS do ROS~2 \citep{Rocha2022MicroROS}.
 
 A Odroid e o notebook são conectados por um cabo Ethernet ponto a ponto, com endereçamento IP fixo. Por essa conexão trafegam as mensagens DDS entre os nós ROS~2 dos dois dispositivos, incluindo os estados estimados, as informações de navegação e as referências de controle. Ambos utilizam a implementação Fast DDS, configurada para transporte exclusivamente por UDP, no mesmo domínio ROS~2.
 
-Adicionalmente, o notebook compartilha com a Odroid, por tradução de endereços de rede (NAT, do inglês Network Address Translation), a conexão com a Internet obtida por meio de rede sem fio. Esse compartilhamento fornece o acesso necessário para que o cliente NTRIP receba as correções RTK.
+Adicionalmente, o notebook compartilha com a Odroid, por tradução de endereços de rede (NAT, do inglês \textit{Network Address Translation}), a conexão com a Internet obtida por meio de rede sem fio. Esse compartilhamento fornece o acesso necessário para que o cliente NTRIP receba as correções RTK.
 
 A utilização de contêineres Docker na Odroid e no notebook padroniza os ambientes de execução, encapsulando as dependências dos componentes ROS~2 e reduzindo problemas de compatibilidade com os sistemas hospedeiros.
 
-\subsection{Nível de Baixo Processamento -- ESP32}
+\subsection{Hard-Realtime -- ESP32}
 
 \begin{figure*}[t]
     \centering
@@ -38,9 +38,9 @@ A utilização de contêineres Docker na Odroid e no notebook padroniza os ambie
     \label{fig:arquitetura_tasks_esp32}
 \end{figure*}
 
-O nível de baixo processamento é constituído por um microcontrolador ESP32, responsável pela aquisição dos sinais dos encoders (velocidade) e LVDT (esterçamento), execução dos controladores de baixo nível, geração dos sinais de acionamento e pela supervisão das condições de segurança. O firmware utiliza o sistema operacional de tempo real FreeRTOS \citep{Barry2024FreeRTOS}, que organiza essas funções em tarefas periódicas distribuídas entre os dois núcleos do processador: o núcleo 1 é dedicado às tarefas de tempo real (aquisição, segurança e controle), enquanto o núcleo 0 concentra a comunicação e a supervisão das demais tarefas.
+O nível de baixo processamento é constituído por um microcontrolador ESP32, responsável pela aquisição dos sinais dos \textit{encoders} (velocidade) e LVDT (esterçamento), execução dos controladores de baixo nível, geração dos sinais de acionamento e pela supervisão das condições de segurança. O \textit{firmware} utiliza o sistema operacional de tempo real FreeRTOS \citep{Barry2024FreeRTOS}, que organiza essas funções em tarefas periódicas distribuídas entre os dois núcleos do processador: o núcleo 1 é dedicado às tarefas de tempo real (aquisição, segurança e controle), enquanto o núcleo 0 concentra a comunicação e a supervisão das demais tarefas.
 
-A aquisição dos dados compreende a leitura dos três encoders incrementais, e do sensor LVDT. A partir dessas medições, o firmware determina o ângulo de esterçamento e sua taxa de variação, bem como as velocidades e acelerações das rodas. Como as tarefas são executadas concorrentemente nos dois núcleos, as medições e as referências recebidas são compartilhadas por meio de \textit{snapshots}, que são cópias completas gravadas e lidas em seções críticas protegidas pelo mecanismo de exclusão mútua do FreeRTOS baseado em \textit{spinlock} (\texttt{portMUX}). Assim, cada tarefa obtém um conjunto coerente de dados, evitando a leitura de valores parcialmente atualizados e minimizando o tempo de bloqueio das tarefas de tempo real.
+A aquisição dos dados compreende a leitura dos três \textit{encoders} incrementais e do sensor LVDT. A partir dessas medições, o \textit{firmware} determina o ângulo de esterçamento e sua taxa de variação, bem como as velocidades e acelerações das rodas. Como as tarefas são executadas concorrentemente nos dois núcleos, as medições e as referências recebidas são compartilhadas por meio de \textit{snapshots}, que são cópias completas gravadas e lidas em seções críticas protegidas pelo mecanismo de exclusão mútua do FreeRTOS baseado em \textit{spinlock} (\texttt{portMUX}). Assim, cada tarefa obtém um conjunto coerente de dados, evitando a leitura de valores parcialmente atualizados e minimizando o tempo de bloqueio das tarefas de tempo real.
 
 O controle dos atuadores é realizado por duas malhas independentes: um controlador PI regula a velocidade longitudinal, realimentado pela média das velocidades das rodas dianteiras, e um controlador PID regula o ângulo de esterçamento, realimentado pelo LVDT. As referências utilizadas por essas malhas são recebidas por meio do micro-ROS. Os comandos resultantes são encaminhados ao motor de esterçamento, ao motor de tração e ao servomotor do freio por um único módulo de acionamento, que concentra o acesso aos atuadores. A implementação dos controladores e seus parâmetros são detalhados na Seção~\ref{sec:baixo_nivel}.
 
@@ -48,31 +48,33 @@ Embora os algoritmos de controle sejam executados localmente, a liberação do m
 
 A Figura~\ref{fig:arquitetura_tasks_esp32} apresenta a organização das tarefas executadas no ESP32, seus períodos de execução e o fluxo de processamento de cada uma.
 
-\subsection{Nível Intermediário -- Odroid N2}
+Embora tenham sido empregadas técnicas e conceitos de sistemas de tempo real, como a execução periódica de tarefas, o gerenciamento de prioridades e a distribuição das tarefas entre os núcleos do processador, a validação temporal do sistema ainda se faz necessária. Essa validação deve contemplar a análise de escalonabilidade e dos tempos de execução no pior caso, a fim de verificar o cumprimento dos requisitos temporais estabelecidos.
+
+\subsection{Firm-Realtime -- Odroid N2}
 
 O nível intermediário de processamento é constituído por um computador embarcado Odroid N2 com sistema operacional Linux, responsável pela integração do microcontrolador à infraestrutura ROS~2 e pela execução dos componentes de localização e estimação de estados do veículo.
 
-Os ambientes de execução são organizados em dois contêiners Docker. O primeiro é dedicado ao agente micro-ROS, que estabelece a comunicação com o ESP32 e disponibiliza as mensagens do microcontrolador aos demais nós da rede ROS 2. O segundo reúne os nós executados no ROS~2 Humble: o driver do receptor GNSS, o cliente NTRIP, o estimador de estados e o nó de habilitação lógica.
+Os ambientes de execução são organizados em dois contêineres Docker. O primeiro é dedicado ao agente micro-ROS, que estabelece a comunicação com o ESP32 e disponibiliza as mensagens do microcontrolador aos demais nós da rede ROS 2. O segundo reúne os nós executados no ROS~2 Humble: o \textit{driver} do receptor GNSS, o cliente NTRIP, o estimador de estados e o nó de habilitação lógica.
 
-A separação dos ambientes em contêiners isola as dependências do agente micro-ROS e dos demais componentes ROS~2, reduzindo conflitos de configuração e facilitando a manutenção e a atualização dos diferentes módulos.
+A separação dos ambientes em contêineres isola as dependências do agente micro-ROS e dos demais componentes ROS~2, reduzindo conflitos de configuração e facilitando a manutenção e a atualização dos diferentes módulos.
 
 O receptor GNSS u-blox ZED-F9R está conectado à Odroid via USB e fornece posições geográficas e medições da unidade inercial integrada. O cliente NTRIP, executado como um nó ROS~2, obtém as correções RTK de uma rede pública de estações de referência e as encaminha ao receptor pela mesma conexão USB, permitindo o posicionamento com precisão centimétrica. As posições GNSS são fundidas aos demais dados por meio de um filtro de Kalman estendido (EKF). A implementação do EKF é detalhada na Seção~\ref{sec:estimacao}.
 
-A Odroid também executa o nó responsável por gerar o sinal de habilitação lógica enviado ao ESP32. Esse sinal permanece ativo enquanto o notebook recebe mensagens do controle de operação manual a pelo menos 4 ~Hz. A perda de comunicação com o operador, portanto, leva o ESP32 a bloquear o movimento e aplicar o freio.
+A Odroid também executa o nó responsável por gerar o sinal de habilitação lógica enviado ao ESP32. Esse sinal permanece ativo enquanto o notebook recebe mensagens do controle de operação manual a pelo menos 4~Hz. A perda de comunicação com o operador, portanto, leva o ESP32 a bloquear o movimento e aplicar o freio.
 
 
-\subsection{Nível de Alto Processamento -- Notebook}
+\subsection{Soft-Realtime -- Notebook}
 
-O nível de alto processamento é executado em um notebook, responsável pelas funções de navegação, gerenciamento dos modos de operação e interação com o operador. Seus componentes de software são executados em ROS~2 Humble, organizados em contêiners Docker, mantendo a compatibilidade com os demais dispositivos da arquitetura.
+O nível de alto processamento é executado em um notebook, responsável pelas funções de navegação, gerenciamento dos modos de operação e interação com o operador. Seus componentes de software são executados em ROS~2 Humble, organizados em contêineres Docker, mantendo a compatibilidade com os demais dispositivos da arquitetura.
 
 O sistema de navegação utiliza as estimativas do EKF para realizar o acompanhamento de uma trajetória previamente gravada com GNSS-RTK. O controlador Stanley é executado a cada nova estimativa de estado e sua implementação é detalhada na Seção~\ref{sec:seguimento_trajetoria}.
 
 O notebook também executa o gerenciador de modos de operação, responsável por coordenar as transições entre a condução manual e a navegação autônoma, supervisionar as condições operacionais do veículo e encaminhar as referências de controle ao ESP32. O funcionamento desse gerenciador é descrito na Subseção~\ref{subsec:gerenciamento_navegacao}.
 
-Para a condução manual, o operador utiliza um gamepad conectado ao notebook via Bluetooth, cujos comandos são convertidos em referências de velocidade e de esterçamento e transmitidos pela mesma infraestrutura de comunicação utilizada no modo autônomo. Além disso, o notebook disponibiliza ferramentas para gravação e validação de trajetórias de referência e um painel de supervisão para o monitoramento do veículo.
+Para a condução manual, o operador utiliza um \textit{gamepad} conectado ao notebook via Bluetooth, cujos comandos são convertidos em referências de velocidade e de esterçamento e transmitidos pela mesma infraestrutura de comunicação utilizada no modo autônomo. Além disso, o notebook disponibiliza ferramentas para gravação e validação de trajetórias de referência e um painel de supervisão para o monitoramento do veículo.
 
 A concentração dessas funções no notebook mantém os componentes de alto nível independentes das tarefas de aquisição e controle executadas nos demais dispositivos, facilitando a incorporação futura de algoritmos mais exigentes computacionalmente.
 
-Os códigos-fonte desenvolvidos para os diferentes níveis da arquitetura computacional, incluindo o firmware do ESP32, o controle de baixo nível, o controle de alto nível e o painel de operação, estão disponíveis em repositórios do GitHub, cujos endereços são apresentados no Apêndice~\ref{ap:repositorios}.
+Os códigos-fonte desenvolvidos para os diferentes níveis da arquitetura computacional, incluindo o \textit{firmware} do ESP32, o controle de baixo nível, o controle de alto nível e o painel de operação, estão disponíveis em repositórios do GitHub, cujos endereços são apresentados no Apêndice~\ref{ap:repositorios}.
 
 
